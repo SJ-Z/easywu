@@ -16,4 +16,10 @@ public interface UserMapper {
     String selectIdByEmailAndPwd(User user);
     // 按用户id查询用户账号状态，返回用户账号状态
     int selectStateById(String u_id);
+    // 按用户邮箱更新激活码
+    void updateUserCodeByEmail(User user);
+    // 按用户邮箱和激活码查询，返回用户id
+    String selectByEmailAndCode(User user);
+    // 按用户邮箱修改账户密码
+    void updateUserPwdByEmail(User user);
 }

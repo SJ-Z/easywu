@@ -59,4 +59,37 @@ public class UserServiceImpl implements UserService {
         }
         return u_id;
     }
+
+    @Override
+    public void saveEmailCode(String u_email, String u_code) {
+        User user = new User();
+        user.setU_email(u_email);
+        user.setU_code(u_code);
+        userMapper.updateUserCodeByEmail(user);
+    }
+
+    @Override
+    public boolean checkEmailCode(String u_email, String u_code) {
+        User user = new User();
+        user.setU_email(u_email);
+        user.setU_code(u_code);
+        String u_id = userMapper.selectByEmailAndCode(user);
+        if (u_id == null || u_id.equals("")) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public boolean resetPwd(String u_email, String u_pwd) {
+        User user = new User();
+        user.setU_email(u_email);
+        user.setU_pwd(u_pwd);
+        userMapper.updateUserPwdByEmail(user);
+        String u_id = userMapper.selectIdByEmailAndPwd(user);
+        if (u_id == null || u_id.equals("")) {
+            return false;
+        }
+        return true;
+    }
 }

@@ -26,6 +26,82 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    // 修改密码
+    @RequestMapping("/resetPwd")
+    public @ResponseBody String resetPwd(@RequestBody String json) {
+        JSONObject jsonObject = JSONObject.parseObject(json);
+        String u_email = jsonObject.getString("u_email");
+        String u_pwd = jsonObject.getString("u_pwd");
+        boolean success = userService.resetPwd(u_email, u_pwd);
+        String content = "";
+        if (success) {
+            content = "{'code':'1', 'msg':'修改密码成功'}";
+        } else {
+            content = "{'code':'0', 'msg':'修改密码失败'}";
+        }
+        try {
+            return URLEncoder.encode(content, "utf-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    // 验证邮箱验证码
+    @RequestMapping("/checkVerifyCode")
+    public @ResponseBody String checkVerifyCode(@RequestBody String json) {
+        JSONObject jsonObject = JSONObject.parseObject(json);
+        String u_email = jsonObject.getString("u_email");
+        String u_code = jsonObject.getString("u_code");
+        boolean correct = userService.checkEmailCode(u_email, u_code);
+        String content = "";
+        if (correct) {
+            content = "{'code':'1', 'msg':'成功'}";
+        } else {
+            content = "{'code':'0', 'msg':'验证码错误'}";
+        }
+        try {
+            return URLEncoder.encode(content, "utf-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    // 找回密码
+    @RequestMapping("/findPwd")
+    public @ResponseBody String findPwd(@RequestBody String json) {
+        JSONObject jsonObject = JSONObject.parseObject(json);
+        String email = jsonObject.getString("email");
+        boolean exist = userService.checkEmailExist(email);
+        String content = "";
+        if (exist) {
+            content = "{'code':'1', 'msg':'邮箱存在'}";
+        } else {
+            content = "{'code':'0', 'msg':'邮箱不存在'}";
+            try {
+                return URLEncoder.encode(content, "utf-8");
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
+        }
+        // 存储邮件验证码
+        String code = CommonUtils.uuid(6);
+        userService.saveEmailCode(email, code);
+        // 发邮件
+        sendEmail(email, null, code, "findPwd"); // 发送验证码邮件
+
+        try {
+            return URLEncoder.encode(content, "utf-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
     // 登录
     @RequestMapping("/login")
     public @ResponseBody String login(@RequestBody String json) {

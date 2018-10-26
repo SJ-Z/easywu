@@ -10,4 +10,7 @@ public interface UserService {
     boolean checkNickExist(String nick);
     void updateUserState(String u_id, String u_code, int u_state);
     String login(String u_email, String u_pwd) throws UserException;
+    void saveEmailCode(String u_email, String u_code);
+    boolean checkEmailCode(String u_email, String u_code);
+    boolean resetPwd(String u_email, String u_pwd);
 }
