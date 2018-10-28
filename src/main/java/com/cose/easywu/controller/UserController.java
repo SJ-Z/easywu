@@ -1,5 +1,6 @@
 package com.cose.easywu.controller;
 
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.cose.easywu.exception.UserException;
 import com.cose.easywu.po.User;
@@ -25,6 +26,26 @@ import java.util.Properties;
 public class UserController {
     @Autowired
     private UserService userService;
+
+    // 个人中心
+    @RequestMapping("/personalCenter")
+    public @ResponseBody String personalCenter(@RequestBody String u_id) {
+        // 查询数据
+        User user = userService.getUserInfo(u_id);
+        // ...
+
+        // 封装数据
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("user", user);
+        String content = jsonObject.toJSONString();
+        try {
+            return URLEncoder.encode(content, "utf-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
 
     // 修改密码
     @RequestMapping("/resetPwd")

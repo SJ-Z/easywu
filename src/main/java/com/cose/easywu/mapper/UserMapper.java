@@ -22,4 +22,6 @@ public interface UserMapper {
     String selectByEmailAndCode(User user);
     // 按用户邮箱修改账户密码
     void updateUserPwdByEmail(User user);
+    // 按用户id查询用户个人信息
+    User selectById(String u_id);
 }

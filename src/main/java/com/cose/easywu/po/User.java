@@ -6,8 +6,10 @@ public class User {
     private String u_nick;
     private String u_pwd;
     private String u_photo;
+    private int u_sex;
     private int u_state; // 用户账号状态：0未激活，1已激活，2被停用，3已冻结
     private String u_code; // 用户账号激活码
+    private double u_gain; // 用户赚到的钱
 
     public String getU_id() {
         return u_id;
@@ -49,6 +51,14 @@ public class User {
         this.u_photo = u_photo;
     }
 
+    public int getU_sex() {
+        return u_sex;
+    }
+
+    public void setU_sex(int u_sex) {
+        this.u_sex = u_sex;
+    }
+
     public int getU_state() {
         return u_state;
     }
@@ -65,6 +75,14 @@ public class User {
         this.u_code = u_code;
     }
 
+    public double getU_gain() {
+        return u_gain;
+    }
+
+    public void setU_gain(double u_gain) {
+        this.u_gain = u_gain;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -73,8 +91,10 @@ public class User {
                 ", u_nick='" + u_nick + '\'' +
                 ", u_pwd='" + u_pwd + '\'' +
                 ", u_photo='" + u_photo + '\'' +
+                ", u_sex=" + u_sex +
                 ", u_state=" + u_state +
                 ", u_code='" + u_code + '\'' +
+                ", u_gain=" + u_gain +
                 '}';
     }
 }

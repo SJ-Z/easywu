@@ -92,4 +92,9 @@ public class UserServiceImpl implements UserService {
         }
         return true;
     }
+
+    @Override
+    public User getUserInfo(String u_id) {
+        return userMapper.selectById(u_id);
+    }
 }

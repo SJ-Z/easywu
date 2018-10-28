@@ -13,4 +13,5 @@ public interface UserService {
     void saveEmailCode(String u_email, String u_code);
     boolean checkEmailCode(String u_email, String u_code);
     boolean resetPwd(String u_email, String u_pwd);
+    User getUserInfo(String u_id);
 }
