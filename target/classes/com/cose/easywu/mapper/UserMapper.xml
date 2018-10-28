@@ -27,4 +27,16 @@
         SELECT u_state FROM users WHERE u_id=#{u_id}
     </select>
 
+    <update id="updateUserCodeByEmail" parameterType="com.cose.easywu.po.User">
+        UPDATE users SET u_code=#{u_code} WHERE u_email=#{u_email}
+    </update>
+
+    <select id="selectByEmailAndCode" parameterType="com.cose.easywu.po.User" resultType="String">
+        SELECT u_id FROM users WHERE u_email=#{u_email} AND u_code=#{u_code}
+    </select>
+
+    <update id="updateUserPwdByEmail" parameterType="com.cose.easywu.po.User">
+        UPDATE users SET u_pwd=#{u_pwd} WHERE u_email=#{u_email}
+    </update>
+
 </mapper>

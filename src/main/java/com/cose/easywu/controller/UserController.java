@@ -72,9 +72,7 @@ public class UserController {
 
     // 找回密码
     @RequestMapping("/findPwd")
-    public @ResponseBody String findPwd(@RequestBody String json) {
-        JSONObject jsonObject = JSONObject.parseObject(json);
-        String email = jsonObject.getString("email");
+    public @ResponseBody String findPwd(@RequestBody String email) {
         boolean exist = userService.checkEmailExist(email);
         String content = "";
         if (exist) {
