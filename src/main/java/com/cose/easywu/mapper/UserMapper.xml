@@ -43,4 +43,12 @@
         SELECT u_id, u_email, u_nick, u_photo, u_sex, u_gain, u_state FROM users WHERE u_id=#{u_id}
     </select>
 
+    <update id="updateSexById" parameterType="com.cose.easywu.po.User">
+        UPDATE users SET u_sex=#{u_sex} WHERE u_id=#{u_id}
+    </update>
+
+    <update id="updateNickById" parameterType="com.cose.easywu.po.User">
+        UPDATE users SET u_nick=#{u_nick} WHERE u_id=#{u_id}
+    </update>
+
 </mapper>

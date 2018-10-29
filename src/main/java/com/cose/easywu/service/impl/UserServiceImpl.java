@@ -97,4 +97,40 @@ public class UserServiceImpl implements UserService {
     public User getUserInfo(String u_id) {
         return userMapper.selectById(u_id);
     }
+
+    @Override
+    public boolean editPwd(String u_email, String u_newpwd, String u_oldpwd) {
+        User user = new User();
+        user.setU_email(u_email);
+        user.setU_pwd(u_oldpwd);
+        String u_id = userMapper.selectIdByEmailAndPwd(user);
+        if (u_id == null || u_id.equals("")) {
+            return false;
+        }
+        // 修改密码
+        user.setU_pwd(u_newpwd);
+        userMapper.updateUserPwdByEmail(user);
+        return true;
+    }
+
+    @Override
+    public void editSex(String u_id, int u_sex) {
+        User user = new User();
+        user.setU_id(u_id);
+        user.setU_sex(u_sex);
+        userMapper.updateSexById(user);
+    }
+
+    @Override
+    public void editNick(String u_id, String u_nick) throws UserException {
+        // 检验昵称是否已存在
+        if (userMapper.selectByNick(u_nick) != null) {
+            throw new UserException("该昵称已存在");
+        }
+        // 更新用户昵称
+        User user = new User();
+        user.setU_id(u_id);
+        user.setU_nick(u_nick);
+        userMapper.updateNickById(user);
+    }
 }

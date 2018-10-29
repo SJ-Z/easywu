@@ -1,6 +1,5 @@
 package com.cose.easywu.controller;
 
-import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.cose.easywu.exception.UserException;
 import com.cose.easywu.po.User;
@@ -10,7 +9,10 @@ import com.cose.easywu.utils.email.Mail;
 import com.cose.easywu.utils.email.MailUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.mail.MessagingException;
@@ -26,6 +28,73 @@ import java.util.Properties;
 public class UserController {
     @Autowired
     private UserService userService;
+
+    // 修改昵称
+    @RequestMapping("/editNick")
+    public @ResponseBody String editNick(@RequestBody String json) {
+        JSONObject jsonObject = JSONObject.parseObject(json);
+        String u_id = jsonObject.getString("u_id");
+        String u_nick = jsonObject.getString("u_nick");
+        String content;
+        try {
+            userService.editNick(u_id, u_nick);
+        } catch (UserException e) {
+            content = "{'code':'0', 'msg':'" + e.getMessage() + "'}";
+            try {
+                return URLEncoder.encode(content, "utf-8");
+            } catch (UnsupportedEncodingException e1) {
+                e1.printStackTrace();
+            }
+        }
+        content = "{'code':'1', 'msg':'昵称修改成功'}";
+        try {
+            return URLEncoder.encode(content, "utf-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    // 修改性别
+    @RequestMapping("/editSex")
+    public @ResponseBody String editSex(@RequestBody String json) {
+        JSONObject jsonObject = JSONObject.parseObject(json);
+        String u_id = jsonObject.getString("u_id");
+        int u_sex = jsonObject.getInteger("u_sex");
+        userService.editSex(u_id, u_sex);
+        String content = "{'code':'1', 'msg':'性别修改成功'}";
+        try {
+            return URLEncoder.encode(content, "utf-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    // 修改密码
+    @RequestMapping("/editPwd")
+    public @ResponseBody String editPwd(@RequestBody String json) {
+        JSONObject jsonObject = JSONObject.parseObject(json);
+        String u_email = jsonObject.getString("u_email");
+        String u_newpwd = jsonObject.getString("u_pwd");
+        String u_oldpwd = jsonObject.getString("u_oldpwd");
+        boolean success = userService.editPwd(u_email, u_newpwd, u_oldpwd);
+        String content = "";
+        if (success) {
+            content = "{'code':'1', 'msg':'修改密码成功'}";
+        } else {
+            content = "{'code':'0', 'msg':'原密码错误'}";
+        }
+        try {
+            return URLEncoder.encode(content, "utf-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
 
     // 个人中心
     @RequestMapping("/personalCenter")
@@ -47,7 +116,7 @@ public class UserController {
         return null;
     }
 
-    // 修改密码
+    // 重置密码
     @RequestMapping("/resetPwd")
     public @ResponseBody String resetPwd(@RequestBody String json) {
         JSONObject jsonObject = JSONObject.parseObject(json);
