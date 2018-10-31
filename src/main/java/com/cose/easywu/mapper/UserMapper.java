@@ -28,4 +28,6 @@ public interface UserMapper {
     void updateSexById(User user);
     // 按用户id更新用户昵称
     void updateNickById(User user);
+    // 按用户id更新用户头像
+    void updatePhotoById(User user);
 }

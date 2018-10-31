@@ -7,20 +7,30 @@ import com.cose.easywu.service.UserService;
 import com.cose.easywu.utils.CommonUtils;
 import com.cose.easywu.utils.email.Mail;
 import com.cose.easywu.utils.email.MailUtils;
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.FileUploadBase;
+import org.apache.commons.fileupload.FileUploadException;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import org.apache.commons.fileupload.servlet.ServletRequestContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.mail.MessagingException;
 import javax.mail.Session;
+import javax.servlet.http.HttpServletRequest;
+import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.text.MessageFormat;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 
 @Controller
@@ -28,6 +38,99 @@ import java.util.Properties;
 public class UserController {
     @Autowired
     private UserService userService;
+
+    // 修改头像
+    @RequestMapping("/editPhoto")
+    public @ResponseBody String editPhoto(HttpServletRequest request) {
+        String content; // 返回客户端的内容
+
+        try {
+            request.setCharacterEncoding("utf-8");  //设置编码
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        //创建工厂
+        DiskFileItemFactory factory = new DiskFileItemFactory(10*1024*1024, new File("E:/temp"));//设置缓存大小和临时目录
+        //得到解析器
+        ServletFileUpload sfu = new ServletFileUpload(factory);
+        //设置单个文件最大值为10*1024*1024
+        sfu.setFileSizeMax(10*1024*1024);
+
+        // 设置保存路径
+        String str = request.getServletContext().getRealPath("/");
+        int loc = str.indexOf("target");
+        String savepath = str.substring(0, loc) + "user_photo";
+
+        //使用sfu去解析request对象，得到List<FileItem>
+        try {
+            List<FileItem> fileItemList = sfu.parseRequest(new ServletRequestContext(request));
+            int photoIndex = -1;
+            Map<String, String> map = new HashMap<>();
+            for (int i = 0; i < fileItemList.size(); i++) {
+                if (fileItemList.get(i).isFormField()) {
+                    map.put(fileItemList.get(i).getFieldName(), fileItemList.get(i).getString("utf-8"));
+                } else { // 图片类型
+                    photoIndex = i;
+                }
+            }
+
+            // 得到用户id
+            String u_id = map.get("u_id");
+
+            //设置图片名称：u_id + 随机16位uuid + 图片后缀
+            int begin = fileItemList.get(photoIndex).getName().indexOf(".");
+            String suffix = fileItemList.get(1).getName().substring(begin); //截取图片后缀
+            String filename = u_id + CommonUtils.uuid(16) + suffix;
+
+            if (!(filename.toLowerCase().endsWith("png") || filename.toLowerCase().endsWith("jpg") || filename.toLowerCase().endsWith("jpeg"))) {
+                // 图片格式错误
+                content = "{'code':'0', 'msg':'图片格式错误，上传失败'}";
+                try {
+                    return URLEncoder.encode(content, "utf-8");
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                }
+                return content;
+            }
+
+            //使用目录和文件名称创建目标文件
+            File destFile = new File(savepath, filename);
+            //保存上传文件到目标文件位置
+            fileItemList.get(photoIndex).write(destFile);
+
+            // 删除原头像
+            String oldPhoto = userService.getUserInfo(u_id).getU_photo();
+            File file = new File(savepath, oldPhoto);
+            if (file.exists()) {
+                file.delete();
+            }
+
+            // 保存到服务器
+            userService.savePhoto(u_id, filename);
+
+            // 返回成功信息和图片名给客户端
+            content = "{'code':'1', 'msg':'" + filename + "'}";
+            try {
+                return URLEncoder.encode(content, "utf-8");
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
+            return content;
+        } catch (Exception e){
+            if(e instanceof FileUploadBase.FileSizeLimitExceededException) {
+                // 图片尺寸过大
+                content = "{'code':'0', 'msg':'图片尺寸超过10MB，上传失败'}";
+                try {
+                    return URLEncoder.encode(content, "utf-8");
+                } catch (UnsupportedEncodingException e1) {
+                    e1.printStackTrace();
+                }
+                return content;
+            }
+        }
+
+        return null;
+    }
 
     // 修改昵称
     @RequestMapping("/editNick")

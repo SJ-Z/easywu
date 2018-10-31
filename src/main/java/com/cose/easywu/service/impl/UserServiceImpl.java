@@ -133,4 +133,12 @@ public class UserServiceImpl implements UserService {
         user.setU_nick(u_nick);
         userMapper.updateNickById(user);
     }
+
+    @Override
+    public void savePhoto(String u_id, String photoName) {
+        User user = new User();
+        user.setU_id(u_id);
+        user.setU_photo(photoName);
+        userMapper.updatePhotoById(user);
+    }
 }

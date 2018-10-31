@@ -51,4 +51,8 @@
         UPDATE users SET u_nick=#{u_nick} WHERE u_id=#{u_id}
     </update>
 
+    <update id="updatePhotoById" parameterType="com.cose.easywu.po.User">
+        UPDATE users SET u_photo=#{u_photo} WHERE u_id=#{u_id}
+    </update>
+
 </mapper>
