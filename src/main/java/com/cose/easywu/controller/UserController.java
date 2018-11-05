@@ -9,15 +9,15 @@ import com.cose.easywu.utils.email.Mail;
 import com.cose.easywu.utils.email.MailUtils;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadBase;
-import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.fileupload.servlet.ServletRequestContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.mail.MessagingException;
@@ -42,7 +42,7 @@ public class UserController {
     // 修改头像
     @RequestMapping("/editPhoto")
     public @ResponseBody String editPhoto(HttpServletRequest request) {
-        String content; // 返回客户端的内容
+        String content; // 返回给客户端的内容
 
         try {
             request.setCharacterEncoding("utf-8");  //设置编码
