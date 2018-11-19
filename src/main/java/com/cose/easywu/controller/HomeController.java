@@ -13,6 +13,7 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.fileupload.servlet.ServletRequestContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -37,7 +38,6 @@ public class HomeController {
     public @ResponseBody String getNewestGoods() {
         List<GoodsQueryPo> newestGoodsList = homeService.getNewestGoodsList();
         String content = JSONArray.toJSONString(newestGoodsList);
-        System.out.println(content);
         try {
             return URLEncoder.encode(content, "utf-8");
         } catch (UnsupportedEncodingException e) {
@@ -47,9 +47,32 @@ public class HomeController {
         return null;
     }
 
-    // 发布闲置
+    // 发布闲置（无图片）
+    @RequestMapping("/release_goods_without_pic")
+    public @ResponseBody String releaseGoodsWithoutPic(@RequestBody String json) {
+        JSONObject jsonObject = JSONObject.parseObject(json);
+        String g_name = jsonObject.getString("g_name");
+        String g_desc = jsonObject.getString("g_desc");
+        double g_price = Double.valueOf(jsonObject.getString("g_price"));
+        double g_originalPrice = Double.valueOf(jsonObject.getString("g_originalPrice"));
+        String g_t_id = jsonObject.getString("g_t_id");
+        String g_u_id = jsonObject.getString("g_u_id");
+        String g_id = CommonUtils.uuid(16);
+        homeService.release(g_id, g_name, g_desc, g_price, g_originalPrice, g_t_id, g_u_id);
+
+        String content = "{'code':'1', 'msg':'上传成功'}";
+        try {
+            return URLEncoder.encode(content, "utf-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    // 发布闲置（带图片）
     @RequestMapping("/release_goods")
-    public @ResponseBody String editPhoto(HttpServletRequest request) {
+    public @ResponseBody String releaseGoods(HttpServletRequest request) {
         String content; // 返回给客户端的内容
 
         try {

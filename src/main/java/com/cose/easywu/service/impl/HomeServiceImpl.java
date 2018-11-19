@@ -51,6 +51,25 @@ public class HomeServiceImpl implements HomeService {
     }
 
     @Override
+    public void release(String g_id, String g_name, String g_desc, double g_price, double g_originalPrice,
+                        String g_t_id, String g_u_id) {
+        Goods goods = new Goods(g_id, g_name, g_desc, g_price, g_originalPrice);
+
+        Type type = new Type();
+        type.setT_id(g_t_id);
+        goods.setG_type(type);
+
+        User user = new User();
+        user.setU_id(g_u_id);
+        goods.setG_user(user);
+
+        goods.setG_state(0);
+        goods.setG_updateTime(new Date());
+
+        homeMapper.insertGoods(goods);
+    }
+
+    @Override
     public List<GoodsQueryPo> getNewestGoodsList() {
         return homeMapper.selectNewestGoods();
     }
