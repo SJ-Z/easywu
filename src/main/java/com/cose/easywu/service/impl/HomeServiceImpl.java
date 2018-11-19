@@ -14,9 +14,10 @@ public class HomeServiceImpl implements HomeService {
 
     @Override
     public HomeData getHomeData() {
-        List<Banner> banner = homeMapper.selectAllBanner();
-        List<Type> type = homeMapper.selectAllType();
-        return new HomeData(banner, type);
+        List<Banner> bannerList = homeMapper.selectAllBanner();
+        List<Type> typeList = homeMapper.selectAllType();
+        List<GoodsQueryPo> goodsQueryPoList = homeMapper.selectNewestGoods();
+        return new HomeData(bannerList, typeList, goodsQueryPoList);
     }
 
     @Override
@@ -25,14 +26,14 @@ public class HomeServiceImpl implements HomeService {
         Goods goods = new Goods(g_id, g_name, g_desc, g_price, g_originalPrice);
         int picLen = filenames.size();
         if (picLen == 1) {
-            goods.setG_pic1("/goods_pic/" + filenames.get(0));
+            goods.setG_pic1(filenames.get(0));
         } else if (picLen == 2) {
-            goods.setG_pic1("/goods_pic/" + filenames.get(0));
-            goods.setG_pic2("/goods_pic/" + filenames.get(1));
+            goods.setG_pic1(filenames.get(0));
+            goods.setG_pic2(filenames.get(1));
         } else if (picLen == 3) {
-            goods.setG_pic1("/goods_pic/" + filenames.get(0));
-            goods.setG_pic2("/goods_pic/" + filenames.get(1));
-            goods.setG_pic3("/goods_pic/" + filenames.get(2));
+            goods.setG_pic1(filenames.get(0));
+            goods.setG_pic2(filenames.get(1));
+            goods.setG_pic3(filenames.get(2));
         }
 
         Type type = new Type();
@@ -47,5 +48,10 @@ public class HomeServiceImpl implements HomeService {
         goods.setG_updateTime(new Date());
 
         homeMapper.insertGoods(goods);
+    }
+
+    @Override
+    public List<GoodsQueryPo> getNewestGoodsList() {
+        return homeMapper.selectNewestGoods();
     }
 }

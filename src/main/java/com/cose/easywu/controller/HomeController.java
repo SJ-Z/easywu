@@ -1,6 +1,8 @@
 package com.cose.easywu.controller;
 
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.cose.easywu.po.GoodsQueryPo;
 import com.cose.easywu.po.HomeData;
 import com.cose.easywu.service.HomeService;
 import com.cose.easywu.utils.CommonUtils;
@@ -29,6 +31,21 @@ public class HomeController {
 
     @Autowired
     private HomeService homeService;
+
+    // 获取最新发布
+    @RequestMapping("/newestGoods")
+    public @ResponseBody String getNewestGoods() {
+        List<GoodsQueryPo> newestGoodsList = homeService.getNewestGoodsList();
+        String content = JSONArray.toJSONString(newestGoodsList);
+        System.out.println(content);
+        try {
+            return URLEncoder.encode(content, "utf-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
 
     // 发布闲置
     @RequestMapping("/release_goods")
@@ -118,7 +135,7 @@ public class HomeController {
 
     // 获取主页数据
     @RequestMapping("/home")
-    public @ResponseBody String editNick() {
+    public @ResponseBody String getHomeData() {
         HomeData homeData = homeService.getHomeData();
         String content = JSONObject.toJSONString(homeData);
         try {
