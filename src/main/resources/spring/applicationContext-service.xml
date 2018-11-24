@@ -4,5 +4,6 @@
 
     <bean id="userService" class="com.cose.easywu.service.impl.UserServiceImpl"/>
     <bean id="homeService" class="com.cose.easywu.service.impl.HomeServiceImpl"/>
+    <bean id="goodsService" class="com.cose.easywu.service.impl.GoodsServiceImpl"/>
 
 </beans>

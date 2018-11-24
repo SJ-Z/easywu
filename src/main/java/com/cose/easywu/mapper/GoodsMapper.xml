@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cose.easywu.mapper.GoodsMapper">
+
+    <insert id="insertGoods" parameterType="com.cose.easywu.po.Goods">
+        INSERT INTO goods (g_id, g_name, g_desc, g_price, g_originalPrice, g_pic1, g_pic2, g_pic3, g_state,
+        g_updateTime, g_t_id, g_u_id) VALUES (#{g_id}, #{g_name}, #{g_desc}, #{g_price}, #{g_originalPrice},
+        #{g_pic1}, #{g_pic2}, #{g_pic3}, #{g_state}, #{g_updateTime}, #{g_type.t_id}, #{g_user.u_id})
+    </insert>
+
+    <select id="selectNewestGoods" resultType="com.cose.easywu.po.GoodsQueryPo">
+        SELECT g_id, g_name, g_desc, g_price, g_originalPrice, g_pic1, g_pic2, g_pic3, g_updateTime, g_state,
+        g_like, u_id AS g_u_id, u_nick AS g_u_nick, u_photo AS g_u_photo, u_sex AS g_u_sex
+        FROM goods, users WHERE g_u_id = u_id ORDER BY g_updateTime DESC
+    </select>
+
+    <select id="selectGoodsLike" parameterType="String" resultType="com.cose.easywu.po.GoodsQueryPo">
+        SELECT g_id, g_name, g_desc, g_price, g_originalPrice, g_pic1, g_pic2, g_pic3, g_updateTime, g_state,
+        g_like, u_id AS g_u_id, u_nick AS g_u_nick, u_photo AS g_u_photo, u_sex AS g_u_sex
+        FROM goods, users WHERE u_id = #{u_id} AND g_u_id = u_id ORDER BY g_updateTime DESC
+    </select>
+
+    <insert id="addLikeGoods" parameterType="com.cose.easywu.po.UpdateLikeGoodsPo">
+      INSERT INTO likegoods VALUES (#{u_id}, #{g_id})
+    </insert>
+
+    <delete id="cancelLikeGoods" parameterType="com.cose.easywu.po.UpdateLikeGoodsPo">
+      DELETE FROM likegoods WHERE lg_u_id = #{u_id} AND lg_g_id = #{g_id}
+    </delete>
+
+</mapper>

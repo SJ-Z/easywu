@@ -1,5 +1,7 @@
 package com.cose.easywu.po;
 
+import java.util.Date;
+
 public class GoodsQueryPo {
 
     private String g_id;
@@ -10,7 +12,9 @@ public class GoodsQueryPo {
     private String g_pic1;
     private String g_pic2;
     private String g_pic3;
+    private int g_state;
     private int g_like;
+    private Date g_updateTime;
     private String g_u_id;
     private String g_u_nick;
     private String g_u_photo;
@@ -19,7 +23,7 @@ public class GoodsQueryPo {
     public GoodsQueryPo() {
     }
 
-    public GoodsQueryPo(String g_id, String g_name, String g_desc, double g_price, double g_originalPrice, String g_pic1, String g_pic2, String g_pic3, int g_like, String g_u_id, String g_u_nick, String g_u_photo, int g_u_sex) {
+    public GoodsQueryPo(String g_id, String g_name, String g_desc, double g_price, double g_originalPrice, String g_pic1, String g_pic2, String g_pic3, int g_state, int g_like, Date g_updateTime, String g_u_id, String g_u_nick, String g_u_photo, int g_u_sex) {
         this.g_id = g_id;
         this.g_name = g_name;
         this.g_desc = g_desc;
@@ -28,7 +32,9 @@ public class GoodsQueryPo {
         this.g_pic1 = g_pic1;
         this.g_pic2 = g_pic2;
         this.g_pic3 = g_pic3;
+        this.g_state = g_state;
         this.g_like = g_like;
+        this.g_updateTime = g_updateTime;
         this.g_u_id = g_u_id;
         this.g_u_nick = g_u_nick;
         this.g_u_photo = g_u_photo;
@@ -139,6 +145,22 @@ public class GoodsQueryPo {
         this.g_u_sex = g_u_sex;
     }
 
+    public Date getG_updateTime() {
+        return g_updateTime;
+    }
+
+    public void setG_updateTime(Date g_updateTime) {
+        this.g_updateTime = g_updateTime;
+    }
+
+    public int getG_state() {
+        return g_state;
+    }
+
+    public void setG_state(int g_state) {
+        this.g_state = g_state;
+    }
+
     @Override
     public String toString() {
         return "GoodsQueryPo{" +
@@ -150,7 +172,9 @@ public class GoodsQueryPo {
                 ", g_pic1='" + g_pic1 + '\'' +
                 ", g_pic2='" + g_pic2 + '\'' +
                 ", g_pic3='" + g_pic3 + '\'' +
+                ", g_state=" + g_state +
                 ", g_like=" + g_like +
+                ", g_updateTime=" + g_updateTime +
                 ", g_u_id='" + g_u_id + '\'' +
                 ", g_u_nick='" + g_u_nick + '\'' +
                 ", g_u_photo='" + g_u_photo + '\'' +
