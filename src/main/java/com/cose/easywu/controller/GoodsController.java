@@ -43,7 +43,7 @@ public class GoodsController {
         goodsService.setLikeGoods(g_id, u_id, like);
         String content;
         if (like) {
-            content = "{'code':'1', 'msg':'添加收藏成功'}";
+            content = "{'code':'1', 'msg':'收藏成功'}";
         } else {
             content = "{'code':'1', 'msg':'取消收藏成功'}";
         }

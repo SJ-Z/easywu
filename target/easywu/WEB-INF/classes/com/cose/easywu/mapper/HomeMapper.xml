@@ -10,16 +10,4 @@
         SELECT * FROM type
     </select>
 
-    <insert id="insertGoods" parameterType="com.cose.easywu.po.Goods">
-        INSERT INTO goods (g_id, g_name, g_desc, g_price, g_originalPrice, g_pic1, g_pic2, g_pic3, g_state,
-        g_updateTime, g_t_id, g_u_id) VALUES (#{g_id}, #{g_name}, #{g_desc}, #{g_price}, #{g_originalPrice},
-        #{g_pic1}, #{g_pic2}, #{g_pic3}, #{g_state}, #{g_updateTime}, #{g_type.t_id}, #{g_user.u_id})
-    </insert>
-
-    <select id="selectNewestGoods" resultType="com.cose.easywu.po.GoodsQueryPo">
-        SELECT g_id, g_name, g_desc, g_price, g_originalPrice, g_pic1, g_pic2, g_pic3, g_updateTime, g_like,
-        u_id AS g_u_id, u_nick AS g_u_nick, u_photo AS g_u_photo, u_sex AS g_u_sex
-        FROM goods, users WHERE g_u_id = u_id ORDER BY g_updateTime DESC
-    </select>
-
 </mapper>
