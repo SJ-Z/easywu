@@ -4,13 +4,15 @@ public class UpdateLikeGoodsPo {
 
     private String g_id;
     private String u_id;
+    private int count;
 
     public UpdateLikeGoodsPo() {
     }
 
-    public UpdateLikeGoodsPo(String g_id, String u_id) {
+    public UpdateLikeGoodsPo(String g_id, String u_id, int count) {
         this.g_id = g_id;
         this.u_id = u_id;
+        this.count = count;
     }
 
     public String getG_id() {
@@ -27,5 +29,13 @@ public class UpdateLikeGoodsPo {
 
     public void setU_id(String u_id) {
         this.u_id = u_id;
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
     }
 }

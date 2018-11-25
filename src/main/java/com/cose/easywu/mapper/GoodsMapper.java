@@ -11,6 +11,8 @@ public interface GoodsMapper {
     void insertGoods(Goods goods);
     List<GoodsQueryPo> selectNewestGoods();
     List<GoodsQueryPo> selectGoodsLike(String u_id);
-    void addLikeGoods(UpdateLikeGoodsPo updateLikeGoodsPo);
-    void cancelLikeGoods(UpdateLikeGoodsPo updateLikeGoodsPo);
+    List<Goods> selectReleaseGoodsList(String u_id);
+    void insertLikeGoods(UpdateLikeGoodsPo updateLikeGoodsPo);
+    void deleteLikeGoods(UpdateLikeGoodsPo updateLikeGoodsPo);
+    void updateGoodsLike(UpdateLikeGoodsPo updateLikeGoodsPo);
 }

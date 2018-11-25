@@ -26,6 +26,7 @@ public class HomeController {
         String u_id = jsonObject.getString("u_id");
         HomeData homeData = homeService.getHomeData(u_id);
         String content = JSONObject.toJSONString(homeData);
+        System.out.println(content);
         try {
             return URLEncoder.encode(content, "utf-8");
         } catch (UnsupportedEncodingException e) {

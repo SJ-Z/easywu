@@ -8,15 +8,17 @@ public class HomeData {
     private List<Type> type_info;
     private List<GoodsQueryPo> newest_info;
     private List<GoodsQueryPo> goodsLikeList;
+    private List<Goods> releaseGoodsList;
 
     public HomeData() {
     }
 
-    public HomeData(List<Banner> banner_info, List<Type> type_info, List<GoodsQueryPo> newest_info, List<GoodsQueryPo> goodsLikeList) {
+    public HomeData(List<Banner> banner_info, List<Type> type_info, List<GoodsQueryPo> newest_info, List<GoodsQueryPo> goodsLikeList, List<Goods> releaseGoodsList) {
         this.banner_info = banner_info;
         this.type_info = type_info;
         this.newest_info = newest_info;
         this.goodsLikeList = goodsLikeList;
+        this.releaseGoodsList = releaseGoodsList;
     }
 
     public List<Banner> getBanner_info() {
@@ -51,6 +53,14 @@ public class HomeData {
         this.goodsLikeList = goodsLikeList;
     }
 
+    public List<Goods> getReleaseGoodsList() {
+        return releaseGoodsList;
+    }
+
+    public void setReleaseGoodsList(List<Goods> releaseGoodsList) {
+        this.releaseGoodsList = releaseGoodsList;
+    }
+
     @Override
     public String toString() {
         return "HomeData{" +
@@ -58,6 +68,7 @@ public class HomeData {
                 ", type_info=" + type_info +
                 ", newest_info=" + newest_info +
                 ", goodsLikeList=" + goodsLikeList +
+                ", releaseGoodsList=" + releaseGoodsList +
                 '}';
     }
 }

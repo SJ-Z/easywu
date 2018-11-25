@@ -14,12 +14,18 @@ public class GoodsServiceImpl implements GoodsService {
 
     @Override
     public void setLikeGoods(String g_id, String u_id, boolean like) {
-        UpdateLikeGoodsPo updateLikeGoodsPo = new UpdateLikeGoodsPo(g_id, u_id);
+        UpdateLikeGoodsPo updateLikeGoodsPo;
         if (like) {
-            goodsMapper.addLikeGoods(updateLikeGoodsPo);
+            updateLikeGoodsPo = new UpdateLikeGoodsPo(g_id, u_id, 1);
         } else {
-            goodsMapper.cancelLikeGoods(updateLikeGoodsPo);
+            updateLikeGoodsPo = new UpdateLikeGoodsPo(g_id, u_id, -1);
         }
+        if (like) {
+            goodsMapper.insertLikeGoods(updateLikeGoodsPo);
+        } else {
+            goodsMapper.deleteLikeGoods(updateLikeGoodsPo);
+        }
+        goodsMapper.updateGoodsLike(updateLikeGoodsPo);
     }
 
     @Override

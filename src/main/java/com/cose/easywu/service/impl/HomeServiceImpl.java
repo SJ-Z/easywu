@@ -2,10 +2,7 @@ package com.cose.easywu.service.impl;
 
 import com.cose.easywu.mapper.GoodsMapper;
 import com.cose.easywu.mapper.HomeMapper;
-import com.cose.easywu.po.Banner;
-import com.cose.easywu.po.GoodsQueryPo;
-import com.cose.easywu.po.HomeData;
-import com.cose.easywu.po.Type;
+import com.cose.easywu.po.*;
 import com.cose.easywu.service.HomeService;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -23,7 +20,8 @@ public class HomeServiceImpl implements HomeService {
         List<Type> typeList = homeMapper.selectAllType();
         List<GoodsQueryPo> goodsQueryPoList = goodsMapper.selectNewestGoods();
         List<GoodsQueryPo> goodsLikeList = goodsMapper.selectGoodsLike(u_id);
-        return new HomeData(bannerList, typeList, goodsQueryPoList, goodsLikeList);
+        List<Goods> releaseGoodsList = goodsMapper.selectReleaseGoodsList(u_id);
+        return new HomeData(bannerList, typeList, goodsQueryPoList, goodsLikeList, releaseGoodsList);
     }
 
 }
