@@ -100,9 +100,11 @@ public class UserController {
 
             // 删除原头像
             String oldPhoto = userService.getUserInfo(u_id).getU_photo();
-            File file = new File(savepath, oldPhoto);
-            if (file.exists()) {
-                file.delete();
+            if (oldPhoto != null) {
+                File file = new File(savepath, oldPhoto);
+                if (file.exists()) {
+                    file.delete();
+                }
             }
 
             // 保存到服务器

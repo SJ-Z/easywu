@@ -13,19 +13,40 @@ public class GoodsServiceImpl implements GoodsService {
     private GoodsMapper goodsMapper;
 
     @Override
+    public boolean userDeleteGoods(String g_id, String u_id) {
+        UpdateGoodsPo updateGoodsPo = new UpdateGoodsPo(g_id, u_id);
+        updateGoodsPo.setState(2); // 2表示被用户下架
+        int result = goodsMapper.updateGoodsState(updateGoodsPo);
+        if (result == 1) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean polishGoods(String g_id, String u_id, Date updateTime) {
+        UpdateGoodsPo updateGoodsPo = new UpdateGoodsPo(g_id, u_id, updateTime);
+        int result = goodsMapper.updateGoodsUpdateTime(updateGoodsPo);
+        if (result == 1) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
     public void setLikeGoods(String g_id, String u_id, boolean like) {
-        UpdateLikeGoodsPo updateLikeGoodsPo;
+        UpdateGoodsPo updateGoodsPo;
         if (like) {
-            updateLikeGoodsPo = new UpdateLikeGoodsPo(g_id, u_id, 1);
+            updateGoodsPo = new UpdateGoodsPo(g_id, u_id, 1);
         } else {
-            updateLikeGoodsPo = new UpdateLikeGoodsPo(g_id, u_id, -1);
+            updateGoodsPo = new UpdateGoodsPo(g_id, u_id, -1);
         }
         if (like) {
-            goodsMapper.insertLikeGoods(updateLikeGoodsPo);
+            goodsMapper.insertLikeGoods(updateGoodsPo);
         } else {
-            goodsMapper.deleteLikeGoods(updateLikeGoodsPo);
+            goodsMapper.deleteLikeGoods(updateGoodsPo);
         }
-        goodsMapper.updateGoodsLike(updateLikeGoodsPo);
+        goodsMapper.updateGoodsLike(updateGoodsPo);
     }
 
     @Override

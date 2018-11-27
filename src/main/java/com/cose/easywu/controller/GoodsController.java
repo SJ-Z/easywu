@@ -20,10 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Controller
 @RequestMapping("/goods")
@@ -32,10 +29,55 @@ public class GoodsController {
     @Autowired
     private GoodsService goodsService;
 
+    // 删除商品
+    @RequestMapping("/deleteGoods")
+    public @ResponseBody
+    String deleteGoods(@RequestBody String json) {
+        JSONObject jsonObject = JSONObject.parseObject(json);
+        String g_id = jsonObject.getString("g_id");
+        String u_id = jsonObject.getString("u_id");
+        String content;
+        if (goodsService.userDeleteGoods(g_id, u_id)) {
+            content = "{'code':'1', 'msg':'商品删除成功'}";
+        } else {
+            content = "{'code':'0', 'msg':'商品删除失败'}";
+        }
+        try {
+            return URLEncoder.encode(content, "utf-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    // 擦亮商品
+    @RequestMapping("/polishGoods")
+    public @ResponseBody
+    String polishGoods(@RequestBody String json) {
+        JSONObject jsonObject = JSONObject.parseObject(json);
+        String g_id = jsonObject.getString("g_id");
+        String u_id = jsonObject.getString("u_id");
+        Date updateTime = new Date();
+        String content;
+        if (goodsService.polishGoods(g_id, u_id, updateTime)) {
+            content = "{'code':'1', 'msg':'" + updateTime.getTime() + "'}";
+        } else {
+            content = "{'code':'0', 'msg':'擦亮失败'}";
+        }
+        try {
+            return URLEncoder.encode(content, "utf-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
     // 修改收藏的商品
     @RequestMapping("/setLikeGoods")
     public @ResponseBody
-    String getHomeData(@RequestBody String json) {
+    String setLikeGoods(@RequestBody String json) {
         JSONObject jsonObject = JSONObject.parseObject(json);
         String g_id = jsonObject.getString("g_id");
         String u_id = jsonObject.getString("u_id");

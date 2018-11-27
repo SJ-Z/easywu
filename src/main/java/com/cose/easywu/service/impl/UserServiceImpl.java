@@ -139,6 +139,7 @@ public class UserServiceImpl implements UserService {
         User user = new User();
         user.setU_id(u_id);
         user.setU_photo(photoName);
+        System.out.println(user.toString());
         userMapper.updatePhotoById(user);
     }
 }

@@ -11,13 +11,13 @@
     <select id="selectNewestGoods" resultType="com.cose.easywu.po.GoodsQueryPo">
         SELECT g_id, g_name, g_desc, g_price, g_originalPrice, g_pic1, g_pic2, g_pic3, g_updateTime, g_state,
         g_like, u_id AS g_u_id, u_nick AS g_u_nick, u_photo AS g_u_photo, u_sex AS g_u_sex
-        FROM goods, users WHERE g_u_id = u_id ORDER BY g_updateTime DESC
+        FROM goods, users WHERE g_u_id = u_id AND g_state = 0 ORDER BY g_updateTime DESC
     </select>
 
     <select id="selectGoodsLike" parameterType="String" resultType="com.cose.easywu.po.GoodsQueryPo">
         SELECT g_id, g_name, g_desc, g_price, g_originalPrice, g_pic1, g_pic2, g_pic3, g_updateTime, g_state,
         g_like, u_id AS g_u_id, u_nick AS g_u_nick, u_photo AS g_u_photo, u_sex AS g_u_sex
-        FROM goods, users, likegoods WHERE lg_u_id = #{u_id} AND lg_g_id = g_id ORDER BY g_updateTime DESC
+        FROM goods, users, likegoods WHERE lg_u_id = #{u_id} AND lg_g_id = g_id AND g_u_id = u_id ORDER BY g_updateTime DESC
     </select>
 
     <select id="selectReleaseGoodsList" parameterType="String" resultType="com.cose.easywu.po.Goods">
@@ -25,16 +25,24 @@
         FROM goods WHERE g_u_id = #{u_id} ORDER BY g_updateTime DESC
     </select>
 
-    <insert id="insertLikeGoods" parameterType="com.cose.easywu.po.UpdateLikeGoodsPo">
+    <insert id="insertLikeGoods" parameterType="com.cose.easywu.po.UpdateGoodsPo">
         INSERT INTO likegoods VALUES (#{u_id}, #{g_id})
     </insert>
 
-    <delete id="deleteLikeGoods" parameterType="com.cose.easywu.po.UpdateLikeGoodsPo">
+    <delete id="deleteLikeGoods" parameterType="com.cose.easywu.po.UpdateGoodsPo">
         DELETE FROM likegoods WHERE lg_u_id = #{u_id} AND lg_g_id = #{g_id}
     </delete>
 
-    <update id="updateGoodsLike" parameterType="com.cose.easywu.po.UpdateLikeGoodsPo">
+    <update id="updateGoodsLike" parameterType="com.cose.easywu.po.UpdateGoodsPo">
         UPDATE goods SET g_like = g_like + #{count} WHERE g_id = #{g_id}
+    </update>
+
+    <update id="updateGoodsUpdateTime" parameterType="com.cose.easywu.po.UpdateGoodsPo">
+        UPDATE goods SET g_updateTime = #{updateTime} WHERE g_id = #{g_id} AND g_u_id = #{u_id}
+    </update>
+
+    <update id="updateGoodsState" parameterType="com.cose.easywu.po.UpdateGoodsPo">
+        UPDATE goods SET g_state = #{state} WHERE g_id = #{g_id} AND g_u_id = #{u_id}
     </update>
 
 </mapper>
