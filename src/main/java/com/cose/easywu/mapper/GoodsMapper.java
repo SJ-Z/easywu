@@ -9,9 +9,10 @@ import java.util.List;
 public interface GoodsMapper {
 
     void insertGoods(Goods goods);
+    void updateGoods(Goods goods);
     List<GoodsQueryPo> selectNewestGoods();
     List<GoodsQueryPo> selectGoodsLike(String u_id);
-    List<Goods> selectReleaseGoodsList(String u_id);
+    List<GoodsQueryPo> selectReleaseGoodsList(String u_id);
     void insertLikeGoods(UpdateGoodsPo updateGoodsPo);
     void deleteLikeGoods(UpdateGoodsPo updateGoodsPo);
     void updateGoodsLike(UpdateGoodsPo updateGoodsPo);

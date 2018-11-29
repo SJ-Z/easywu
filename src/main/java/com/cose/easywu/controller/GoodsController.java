@@ -100,7 +100,8 @@ public class GoodsController {
 
     // 获取最新发布
     @RequestMapping("/newestGoods")
-    public @ResponseBody String getNewestGoods() {
+    public @ResponseBody
+    String getNewestGoods() {
         List<GoodsQueryPo> newestGoodsList = goodsService.getNewestGoodsList();
         String content = JSONArray.toJSONString(newestGoodsList);
         try {
@@ -123,11 +124,11 @@ public class GoodsController {
             e.printStackTrace();
         }
         //创建工厂
-        DiskFileItemFactory factory = new DiskFileItemFactory(10*1024*1024, new File("E:/temp"));//设置缓存大小和临时目录
+        DiskFileItemFactory factory = new DiskFileItemFactory(10 * 1024 * 1024, new File("E:/temp"));//设置缓存大小和临时目录
         //得到解析器
         ServletFileUpload sfu = new ServletFileUpload(factory);
         //设置单个文件最大值为10*1024*1024
-        sfu.setFileSizeMax(10*1024*1024);
+        sfu.setFileSizeMax(10 * 1024 * 1024);
 
         // 设置保存路径
         String str = request.getServletContext().getRealPath("/");
@@ -154,14 +155,29 @@ public class GoodsController {
             double g_originalPrice = Double.valueOf(params.get("g_originalPrice"));
             String g_t_id = params.get("g_t_id");
             String g_u_id = params.get("g_u_id");
-            String g_id = CommonUtils.uuid(16);
 
-            //设置图片名称：g_id + 图片索引 + 图片后缀
+            String g_id = params.get("g_id");
+            boolean isNew = true;
+            if (g_id != null) {
+                isNew = false;
+            } else {
+                g_id = CommonUtils.uuid(16);
+            }
+
+            if (!isNew) {
+                for (int i = 0; i < 3; i++) {
+                    // 删除服务器上原有商品图片
+                    File photoFile = new File(savepath, g_id + i + ".jpg");
+                    if (photoFile.exists()) {
+                        photoFile.delete();
+                    }
+                }
+            }
+
+            //设置图片名称：g_id + 图片索引 + 图片后缀(.jpg)
             List<String> filenames = new ArrayList<>();
             for (int i = 0; i < picIndexList.size(); i++) {
-                int begin = fileItemList.get(picIndexList.get(i)).getName().indexOf(".");
-                String suffix = fileItemList.get(picIndexList.get(i)).getName().substring(begin); //截取图片后缀
-                filenames.add(g_id + i + suffix);
+                filenames.add(g_id + i + ".jpg");
             }
 
             for (int i = 0; i < filenames.size(); i++) {
@@ -172,18 +188,18 @@ public class GoodsController {
             }
 
             // 保存到服务器
-            goodsService.release(g_id, g_name, g_desc, g_price, g_originalPrice, filenames, g_t_id, g_u_id);
+            Date g_updateTime = goodsService.release(isNew, g_id, g_name, g_desc, g_price, g_originalPrice, filenames, g_t_id, g_u_id);
 
             // 返回成功信息和图片名给客户端
-            content = "{'code':'1', 'msg':'发布成功'}";
+            content = "{'code':'1', 'msg':'发布成功', 'g_id':'" + g_id + "', 'g_updateTime':'" + g_updateTime.getTime() + "'}";
             try {
                 return URLEncoder.encode(content, "utf-8");
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
             }
             return content;
-        } catch (Exception e){
-            if(e instanceof FileUploadBase.FileSizeLimitExceededException) {
+        } catch (Exception e) {
+            if (e instanceof FileUploadBase.FileSizeLimitExceededException) {
                 // 图片尺寸过大
                 content = "{'code':'0', 'msg':'图片尺寸过大，发布失败'}";
                 try {

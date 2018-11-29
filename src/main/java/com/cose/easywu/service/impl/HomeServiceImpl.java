@@ -20,7 +20,7 @@ public class HomeServiceImpl implements HomeService {
         List<Type> typeList = homeMapper.selectAllType();
         List<GoodsQueryPo> goodsQueryPoList = goodsMapper.selectNewestGoods();
         List<GoodsQueryPo> goodsLikeList = goodsMapper.selectGoodsLike(u_id);
-        List<Goods> releaseGoodsList = goodsMapper.selectReleaseGoodsList(u_id);
+        List<GoodsQueryPo> releaseGoodsList = goodsMapper.selectReleaseGoodsList(u_id);
         return new HomeData(bannerList, typeList, goodsQueryPoList, goodsLikeList, releaseGoodsList);
     }
 
