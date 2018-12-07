@@ -13,4 +13,5 @@ public interface GoodsService {
     void setLikeGoods(String g_id, String u_id, boolean like);
     boolean polishGoods(String g_id, String u_id, Date updateTime);
     boolean userDeleteGoods(String g_id, String u_id);
+    boolean userRemoveGoods(String g_id, String u_id);
 }

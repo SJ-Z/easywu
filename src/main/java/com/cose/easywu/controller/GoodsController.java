@@ -29,6 +29,28 @@ public class GoodsController {
     @Autowired
     private GoodsService goodsService;
 
+    // 移除商品
+    @RequestMapping("/removeGoods")
+    public @ResponseBody
+    String removeGoods(@RequestBody String json) {
+        JSONObject jsonObject = JSONObject.parseObject(json);
+        String g_id = jsonObject.getString("g_id");
+        String u_id = jsonObject.getString("u_id");
+        String content;
+        if (goodsService.userRemoveGoods(g_id, u_id)) {
+            content = "{'code':'1', 'msg':'商品删除成功'}";
+        } else {
+            content = "{'code':'0', 'msg':'商品删除失败'}";
+        }
+        try {
+            return URLEncoder.encode(content, "utf-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
     // 删除商品
     @RequestMapping("/deleteGoods")
     public @ResponseBody

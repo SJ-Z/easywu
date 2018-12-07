@@ -5,13 +5,23 @@ import com.cose.easywu.po.*;
 import com.cose.easywu.service.GoodsService;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.io.File;
 import java.util.Date;
 import java.util.List;
 
 public class GoodsServiceImpl implements GoodsService {
     @Autowired
     private GoodsMapper goodsMapper;
+
+    @Override
+    public boolean userRemoveGoods(String g_id, String u_id) {
+        UpdateGoodsPo updateGoodsPo = new UpdateGoodsPo(g_id, u_id);
+        updateGoodsPo.setState(4); // 4表示用户界面不显示
+        int result = goodsMapper.updateGoodsState(updateGoodsPo);
+        if (result == 1) {
+            return true;
+        }
+        return false;
+    }
 
     @Override
     public boolean userDeleteGoods(String g_id, String u_id) {
