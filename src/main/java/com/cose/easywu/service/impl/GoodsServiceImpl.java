@@ -13,6 +13,32 @@ public class GoodsServiceImpl implements GoodsService {
     private GoodsMapper goodsMapper;
 
     @Override
+    public int addComment(CommentDetailBean commentDetailBean, int gc_id, String g_id) {
+        if (gc_id == -1) {
+            CommentBean commentBean = new CommentBean(g_id, commentDetailBean);
+            if (goodsMapper.insertCommentBean(commentBean) == 1) {
+                gc_id = commentBean.getId();
+            } else {
+                return 0;
+            }
+        }
+        CommentDetailPo commentDetailPo = new CommentDetailPo(commentDetailBean, gc_id);
+        return goodsMapper.insertCommentDetailPo(commentDetailPo);
+    }
+
+    @Override
+    public CommentBean getGoodsComment(String g_id) {
+        CommentBean commentBean =  goodsMapper.selectGoodsCommentWithReply(g_id); // 查到有回复的留言
+        if (commentBean != null) {
+            CommentBean commentBean1 = goodsMapper.selectGoodsComment(g_id); // 无回复的留言
+            commentBean.addToList(commentBean1.getList());
+            return commentBean;
+        } else {
+            return goodsMapper.selectGoodsComment(g_id);
+        }
+    }
+
+    @Override
     public boolean userRemoveGoods(String g_id, String u_id) {
         UpdateGoodsPo updateGoodsPo = new UpdateGoodsPo(g_id, u_id);
         updateGoodsPo.setState(4); // 4表示用户界面不显示

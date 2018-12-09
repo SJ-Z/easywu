@@ -2,6 +2,8 @@ package com.cose.easywu.controller;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.cose.easywu.po.CommentBean;
+import com.cose.easywu.po.CommentDetailBean;
 import com.cose.easywu.po.GoodsQueryPo;
 import com.cose.easywu.service.GoodsService;
 import com.cose.easywu.utils.CommonUtils;
@@ -28,6 +30,50 @@ public class GoodsController {
 
     @Autowired
     private GoodsService goodsService;
+
+    // 添加商品评论
+    @RequestMapping("/goodsAddComment")
+    public @ResponseBody
+    String goodsAddComment(@RequestBody String json) {
+        JSONObject jsonObject = JSONObject.parseObject(json);
+        Map map = (Map) jsonObject.get("commentDetailBean");
+        CommentDetailBean commentDetailBean = new CommentDetailBean((String) map.get("nickName"),
+                (String) map.get("userPhoto"), (String) map.get("content"));
+        String gc_id = jsonObject.getString("gc_id");
+        String g_id = jsonObject.getString("g_id");
+        String content;
+        if (goodsService.addComment(commentDetailBean, Integer.valueOf(gc_id), g_id) == 1) {
+            content = "{'code':'1', 'msg':'留言成功'}";
+        } else {
+            content = "{'code':'0', 'msg':'留言失败'}";
+        }
+        try {
+            return URLEncoder.encode(content, "utf-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    // 加载商品评论
+    @RequestMapping("/goodsComment")
+    public @ResponseBody
+    String goodsComment(@RequestBody String json) {
+        JSONObject jsonObject = JSONObject.parseObject(json);
+        String g_id = jsonObject.getString("g_id");
+        CommentBean commentBean = goodsService.getGoodsComment(g_id);
+        jsonObject = new JSONObject();
+        jsonObject.put("CommentBean", commentBean);
+        String content = jsonObject.toJSONString();
+        try {
+            return URLEncoder.encode(content, "utf-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
 
     // 移除商品
     @RequestMapping("/removeGoods")

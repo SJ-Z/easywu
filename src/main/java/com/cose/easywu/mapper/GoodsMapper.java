@@ -1,8 +1,6 @@
 package com.cose.easywu.mapper;
 
-import com.cose.easywu.po.Goods;
-import com.cose.easywu.po.GoodsQueryPo;
-import com.cose.easywu.po.UpdateGoodsPo;
+import com.cose.easywu.po.*;
 
 import java.util.List;
 
@@ -18,4 +16,8 @@ public interface GoodsMapper {
     void updateGoodsLike(UpdateGoodsPo updateGoodsPo);
     int updateGoodsUpdateTime(UpdateGoodsPo updateGoodsPo);
     int updateGoodsState(UpdateGoodsPo updateGoodsPo);
+    CommentBean selectGoodsCommentWithReply(String g_id);
+    CommentBean selectGoodsComment(String g_id);
+    int insertCommentDetailPo(CommentDetailPo commentDetailPo);
+    int insertCommentBean(CommentBean commentBean);
 }
