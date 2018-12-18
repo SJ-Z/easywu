@@ -13,6 +13,11 @@ public class GoodsServiceImpl implements GoodsService {
     private GoodsMapper goodsMapper;
 
     @Override
+    public void addReply(String g_id, String u_id, String reply, int comment_id) {
+        ReplyDetailPo replyDetailPo = new ReplyDetailPo(new ReplyDetailBean(), comment_id);
+    }
+
+    @Override
     public int addComment(CommentDetailBean commentDetailBean, int gc_id, String g_id) {
         if (gc_id == -1) {
             CommentBean commentBean = new CommentBean(g_id, commentDetailBean);
@@ -28,14 +33,7 @@ public class GoodsServiceImpl implements GoodsService {
 
     @Override
     public CommentBean getGoodsComment(String g_id) {
-        CommentBean commentBean =  goodsMapper.selectGoodsCommentWithReply(g_id); // 查到有回复的留言
-        if (commentBean != null) {
-            CommentBean commentBean1 = goodsMapper.selectGoodsComment(g_id); // 无回复的留言
-            commentBean.addToList(commentBean1.getList());
-            return commentBean;
-        } else {
-            return goodsMapper.selectGoodsComment(g_id);
-        }
+        return goodsMapper.selectGoodsCommentWithReply(g_id);
     }
 
     @Override

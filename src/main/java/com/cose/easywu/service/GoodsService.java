@@ -18,4 +18,5 @@ public interface GoodsService {
     boolean userRemoveGoods(String g_id, String u_id);
     CommentBean getGoodsComment(String g_id);
     int addComment(CommentDetailBean commentDetailBean, int gc_id, String g_id);
+    void addReply(String g_id, String u_id, String reply, int comment_id);
 }

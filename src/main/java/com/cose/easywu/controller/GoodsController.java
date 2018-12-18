@@ -31,6 +31,32 @@ public class GoodsController {
     @Autowired
     private GoodsService goodsService;
 
+//    // 添加商品评论
+//    @RequestMapping("/goodsAddReply")
+//    public @ResponseBody
+//    String goodsAddReply(@RequestBody String json) {
+//        JSONObject jsonObject = JSONObject.parseObject(json);
+//        String g_id = jsonObject.getString("g_id");
+//        String u_id = jsonObject.getString("u_id");
+//        String reply = jsonObject.getString("reply");
+//        int comment_id = jsonObject.getInteger("comment_id");
+//        goodsService.addReply(g_id, u_id, reply, comment_id);
+//
+//        String content;
+//        if (goodsService.addComment(commentDetailBean, Integer.valueOf(gc_id), g_id) == 1) {
+//            content = "{'code':'1', 'msg':'留言成功'}";
+//        } else {
+//            content = "{'code':'0', 'msg':'留言失败'}";
+//        }
+//        try {
+//            return URLEncoder.encode(content, "utf-8");
+//        } catch (UnsupportedEncodingException e) {
+//            e.printStackTrace();
+//        }
+//
+//        return null;
+//    }
+
     // 添加商品评论
     @RequestMapping("/goodsAddComment")
     public @ResponseBody
@@ -63,6 +89,7 @@ public class GoodsController {
         JSONObject jsonObject = JSONObject.parseObject(json);
         String g_id = jsonObject.getString("g_id");
         CommentBean commentBean = goodsService.getGoodsComment(g_id);
+        System.out.println(commentBean);
         jsonObject = new JSONObject();
         jsonObject.put("CommentBean", commentBean);
         String content = jsonObject.toJSONString();

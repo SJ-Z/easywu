@@ -17,7 +17,6 @@ public interface GoodsMapper {
     int updateGoodsUpdateTime(UpdateGoodsPo updateGoodsPo);
     int updateGoodsState(UpdateGoodsPo updateGoodsPo);
     CommentBean selectGoodsCommentWithReply(String g_id);
-    CommentBean selectGoodsComment(String g_id);
     int insertCommentDetailPo(CommentDetailPo commentDetailPo);
     int insertCommentBean(CommentBean commentBean);
 }

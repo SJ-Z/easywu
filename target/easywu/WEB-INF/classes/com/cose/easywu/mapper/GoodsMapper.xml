@@ -58,39 +58,33 @@
 
     <insert id="insertCommentBean"
             useGeneratedKeys="true" keyColumn="gc_id" keyProperty="id" parameterType="com.cose.easywu.po.CommentBean">
-        INSERT INTO goodscomment (gc_g_id) VALUES (#{g_id})
+        INSERT INTO goodscomment (gc_g_id) VALUES (#{g_id});
         <selectKey resultType="int" keyProperty="id" order="AFTER">
             SELECT LAST_INSERT_ID()
         </selectKey>
     </insert>
 
     <select id="selectGoodsCommentWithReply" parameterType="String" resultMap="commentResult">
-        SELECT gc.gc_id gc_id, gc.gc_g_id gc_g_id, gcd.gcd_id gcd_id, gcd.gcd_name gcd_name, gcd.gcd_photo gcd_photo,
-        gcd.gcd_content gcd_content, gcd.gcd_createTime gcd_createTime, grd.grd_id grd_id, grd.grd_name grd_name,
-        grd.grd_photo grd_photo, grd.grd_content grd_content, grd.grd_createTime grd_createTime
-        FROM goodsComment gc, goodsCommentDetail gcd, goodsReplyDetail grd
-        WHERE gc.gc_g_id = #{g_id} AND gc.gc_id = gcd.gcd_gc_id AND gcd.gcd_id = grd.grd_gcd_id
-    </select>
-
-    <select id="selectGoodsComment" parameterType="String" resultMap="commentResult">
-        SELECT gc.gc_id gc_id, gc.gc_g_id gc_g_id, gcd.gcd_id gcd_id, gcd.gcd_name gcd_name, gcd.gcd_photo gcd_photo,
-        gcd.gcd_content gcd_content, gcd.gcd_createTime gcd_createTime
-        FROM goodsComment gc, goodsCommentDetail gcd
-        WHERE gc.gc_g_id = #{g_id} AND gc.gc_id = gcd.gcd_gc_id
+        SELECT temp.*, u2.u_nick, u2.u_photo FROM (SELECT u1.u_nick u1_nick, u1.u_photo u1_photo, gc.gc_id, gc.gc_g_id, gcd.gcd_id, gcd.gcd_content,
+                              gcd.gcd_createTime, grd.grd_id, grd.grd_content, grd.grd_createTime, grd.grd_u_id
+                       FROM users u1, goodsComment gc, goodsCommentDetail gcd LEFT OUTER JOIN goodsReplyDetail grd
+                                                               ON gcd.gcd_id = grd.grd_gcd_id
+                       WHERE gc.gc_g_id = #{g_id} AND gc.gc_id = gcd.gcd_gc_id AND u1.u_id = gcd.gcd_u_id) temp
+                          LEFT OUTER JOIN users u2 ON temp.grd_u_id = u2.u_id
     </select>
 
     <resultMap id="replyDetailResult" type="com.cose.easywu.po.ReplyDetailBean">
         <id property="id" column="grd_id"/>
-        <result property="nickName" column="grd_name"/>
-        <result property="userPhoto" column="grd_photo"/>
+        <result property="nickName" column="u_nick"/>
+        <result property="userPhoto" column="u_photo"/>
         <result property="content" column="grd_content"/>
         <result property="createTime" column="grd_createTime"/>
     </resultMap>
 
     <resultMap id="commentDetailResult" type="com.cose.easywu.po.CommentDetailBean">
         <id property="id" column="gcd_id"/>
-        <result property="nickName" column="gcd_name"/>
-        <result property="userPhoto" column="gcd_photo"/>
+        <result property="nickName" column="u1_nick"/>
+        <result property="userPhoto" column="u1_photo"/>
         <result property="content" column="gcd_content"/>
         <result property="createTime" column="gcd_createTime"/>
         <collection property="replyList" ofType="com.cose.easywu.po.ReplyDetailBean" resultMap="replyDetailResult"/>
