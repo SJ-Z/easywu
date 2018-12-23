@@ -13,22 +13,31 @@ public class GoodsServiceImpl implements GoodsService {
     private GoodsMapper goodsMapper;
 
     @Override
-    public void addReply(String g_id, String u_id, String reply, int comment_id) {
-        ReplyDetailPo replyDetailPo = new ReplyDetailPo(new ReplyDetailBean(), comment_id);
+    public int addReplyToComment(String u_id, String reply, int comment_id, Date createTime) {
+        ReplyDetailPo replyDetailPo = new ReplyDetailPo(u_id, reply, comment_id, createTime);
+        if (goodsMapper.insertReplyPo(replyDetailPo) == 1) {
+            return replyDetailPo.getId();
+        } else {
+            return 0;
+        }
     }
 
     @Override
-    public int addComment(CommentDetailBean commentDetailBean, int gc_id, String g_id) {
+    public int addComment(String comment, int gc_id, String g_id, String u_id, Date date) {
         if (gc_id == -1) {
-            CommentBean commentBean = new CommentBean(g_id, commentDetailBean);
+            CommentBean commentBean = new CommentBean(g_id);
             if (goodsMapper.insertCommentBean(commentBean) == 1) {
                 gc_id = commentBean.getId();
             } else {
                 return 0;
             }
         }
-        CommentDetailPo commentDetailPo = new CommentDetailPo(commentDetailBean, gc_id);
-        return goodsMapper.insertCommentDetailPo(commentDetailPo);
+        CommentDetailPo commentDetailPo = new CommentDetailPo(comment, gc_id, g_id, u_id, date);
+        if (goodsMapper.insertCommentDetailPo(commentDetailPo) == 1) {
+            return commentDetailPo.getId();
+        } else {
+            return 0;
+        }
     }
 
     @Override

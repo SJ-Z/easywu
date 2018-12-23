@@ -16,6 +16,5 @@ public interface UserService {
     User getUserInfo(String u_id);
     boolean editPwd(String u_email, String u_newpwd, String u_oldpwd);
     void editSex(String u_id, int u_sex);
-    void editNick(String u_id, String u_nick) throws UserException;
     void savePhoto(String u_id, String photoName);
 }

@@ -19,4 +19,5 @@ public interface GoodsMapper {
     CommentBean selectGoodsCommentWithReply(String g_id);
     int insertCommentDetailPo(CommentDetailPo commentDetailPo);
     int insertCommentBean(CommentBean commentBean);
+    int insertReplyPo(ReplyDetailPo replyDetailPo);
 }

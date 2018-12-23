@@ -26,8 +26,6 @@ public interface UserMapper {
     User selectById(String u_id);
     // 按用户id更新用户性别
     void updateSexById(User user);
-    // 按用户id更新用户昵称
-    void updateNickById(User user);
     // 按用户id更新用户头像
     void updatePhotoById(User user);
 }

@@ -122,19 +122,6 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void editNick(String u_id, String u_nick) throws UserException {
-        // 检验昵称是否已存在
-        if (userMapper.selectByNick(u_nick) != null) {
-            throw new UserException("该昵称已存在");
-        }
-        // 更新用户昵称
-        User user = new User();
-        user.setU_id(u_id);
-        user.setU_nick(u_nick);
-        userMapper.updateNickById(user);
-    }
-
-    @Override
     public void savePhoto(String u_id, String photoName) {
         User user = new User();
         user.setU_id(u_id);

@@ -134,33 +134,6 @@ public class UserController {
         return null;
     }
 
-    // 修改昵称
-    @RequestMapping("/editNick")
-    public @ResponseBody String editNick(@RequestBody String json) {
-        JSONObject jsonObject = JSONObject.parseObject(json);
-        String u_id = jsonObject.getString("u_id");
-        String u_nick = jsonObject.getString("u_nick");
-        String content;
-        try {
-            userService.editNick(u_id, u_nick);
-        } catch (UserException e) {
-            content = "{'code':'0', 'msg':'" + e.getMessage() + "'}";
-            try {
-                return URLEncoder.encode(content, "utf-8");
-            } catch (UnsupportedEncodingException e1) {
-                e1.printStackTrace();
-            }
-        }
-        content = "{'code':'1', 'msg':'昵称修改成功'}";
-        try {
-            return URLEncoder.encode(content, "utf-8");
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
-
-        return null;
-    }
-
     // 修改性别
     @RequestMapping("/editSex")
     public @ResponseBody String editSex(@RequestBody String json) {

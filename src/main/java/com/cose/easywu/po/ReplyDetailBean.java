@@ -6,7 +6,6 @@ public class ReplyDetailBean {
 
     private int id;
     private String nickName;
-    private String userPhoto;
     private String content;
     private Date createTime;
 
@@ -24,14 +23,6 @@ public class ReplyDetailBean {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public String getUserPhoto() {
-        return userPhoto;
-    }
-
-    public void setUserPhoto(String userPhoto) {
-        this.userPhoto = userPhoto;
     }
 
     public String getContent() {
@@ -55,10 +46,8 @@ public class ReplyDetailBean {
         return "ReplyDetailBean{" +
                 "id=" + id +
                 ", nickName='" + nickName + '\'' +
-                ", userPhoto='" + userPhoto + '\'' +
                 ", content='" + content + '\'' +
                 ", createTime=" + createTime +
                 '}';
     }
-
 }

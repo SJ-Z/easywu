@@ -13,6 +13,10 @@ public class CommentBean {
     public CommentBean() {
     }
 
+    public CommentBean(String g_id) {
+        this.g_id = g_id;
+    }
+
     public CommentBean(String g_id, CommentDetailBean commentDetailBean) {
         this.g_id = g_id;
         list = new ArrayList<>();

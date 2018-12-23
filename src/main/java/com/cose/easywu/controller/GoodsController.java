@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.cose.easywu.po.CommentBean;
 import com.cose.easywu.po.CommentDetailBean;
+import com.cose.easywu.po.CommentDetailPo;
 import com.cose.easywu.po.GoodsQueryPo;
 import com.cose.easywu.service.GoodsService;
 import com.cose.easywu.utils.CommonUtils;
@@ -31,45 +32,46 @@ public class GoodsController {
     @Autowired
     private GoodsService goodsService;
 
-//    // 添加商品评论
-//    @RequestMapping("/goodsAddReply")
-//    public @ResponseBody
-//    String goodsAddReply(@RequestBody String json) {
-//        JSONObject jsonObject = JSONObject.parseObject(json);
-//        String g_id = jsonObject.getString("g_id");
-//        String u_id = jsonObject.getString("u_id");
-//        String reply = jsonObject.getString("reply");
-//        int comment_id = jsonObject.getInteger("comment_id");
-//        goodsService.addReply(g_id, u_id, reply, comment_id);
-//
-//        String content;
-//        if (goodsService.addComment(commentDetailBean, Integer.valueOf(gc_id), g_id) == 1) {
-//            content = "{'code':'1', 'msg':'留言成功'}";
-//        } else {
-//            content = "{'code':'0', 'msg':'留言失败'}";
-//        }
-//        try {
-//            return URLEncoder.encode(content, "utf-8");
-//        } catch (UnsupportedEncodingException e) {
-//            e.printStackTrace();
-//        }
-//
-//        return null;
-//    }
+    // 添加商品评论的回复
+    @RequestMapping("/goodsAddReply")
+    public @ResponseBody
+    String goodsAddReply(@RequestBody String json) {
+        JSONObject jsonObject = JSONObject.parseObject(json);
+        String u_id = jsonObject.getString("u_id");
+        String reply = jsonObject.getString("reply");
+        int comment_id = jsonObject.getInteger("comment_id");
+        Date createTime = new Date();
+        int replyId = goodsService.addReplyToComment(u_id, reply, comment_id, createTime);
+
+        String content;
+        if (replyId != 0) {
+            content = "{'code':'1', 'msg':'回复成功', 'time':'" + createTime.getTime() + "', 'id':'" + replyId + "'}";
+        } else {
+            content = "{'code':'0', 'msg':'回复失败'}";
+        }
+        try {
+            return URLEncoder.encode(content, "utf-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
 
     // 添加商品评论
     @RequestMapping("/goodsAddComment")
     public @ResponseBody
     String goodsAddComment(@RequestBody String json) {
         JSONObject jsonObject = JSONObject.parseObject(json);
-        Map map = (Map) jsonObject.get("commentDetailBean");
-        CommentDetailBean commentDetailBean = new CommentDetailBean((String) map.get("nickName"),
-                (String) map.get("userPhoto"), (String) map.get("content"));
-        String gc_id = jsonObject.getString("gc_id");
+        String comment = jsonObject.getString("comment");
+        int gc_id = jsonObject.getInteger("gc_id");
         String g_id = jsonObject.getString("g_id");
+        String u_id = jsonObject.getString("u_id");
+        Date createTime = new Date();
         String content;
-        if (goodsService.addComment(commentDetailBean, Integer.valueOf(gc_id), g_id) == 1) {
-            content = "{'code':'1', 'msg':'留言成功'}";
+        int comment_id = goodsService.addComment(comment, gc_id, g_id, u_id, createTime);
+        if (comment_id != 0) {
+            content = "{'code':'1', 'msg':'留言成功', 'time':'" + createTime.getTime() + "', 'id':'" + comment_id + "'}";
         } else {
             content = "{'code':'0', 'msg':'留言失败'}";
         }

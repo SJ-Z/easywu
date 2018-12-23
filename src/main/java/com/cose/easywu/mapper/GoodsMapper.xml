@@ -51,9 +51,13 @@
         UPDATE goods SET g_state = #{state} WHERE g_id = #{g_id} AND g_u_id = #{u_id}
     </update>
 
-    <insert id="insertCommentDetailPo" parameterType="com.cose.easywu.po.CommentDetailPo">
-        INSERT INTO goodscommentdetail (gcd_name, gcd_photo, gcd_content, gcd_gc_id)
-        VALUES (#{commentDetailBean.nickName}, #{commentDetailBean.userPhoto}, #{commentDetailBean.content}, #{gc_id})
+    <insert id="insertCommentDetailPo"
+            useGeneratedKeys="true" keyColumn="gc_id" keyProperty="id" parameterType="com.cose.easywu.po.CommentDetailPo">
+        INSERT INTO goodscommentdetail (gcd_content, gcd_gc_id, gcd_u_id, gcd_createTime)
+        VALUES (#{content}, #{gc_id}, #{u_id}, #{createTime});
+        <selectKey resultType="int" keyProperty="id" order="AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
     </insert>
 
     <insert id="insertCommentBean"
@@ -65,19 +69,19 @@
     </insert>
 
     <select id="selectGoodsCommentWithReply" parameterType="String" resultMap="commentResult">
-        SELECT temp.*, u2.u_nick, u2.u_photo FROM (SELECT u1.u_nick u1_nick, u1.u_photo u1_photo, gc.gc_id,
+        SELECT temp.*, u2.u_nick u2_nick FROM (SELECT u1.u_nick u1_nick, u1.u_photo u1_photo, gc.gc_id,
                        gc.gc_g_id, gcd.gcd_id, gcd.gcd_content, gcd.gcd_createTime, grd.grd_id, grd.grd_content,
                        grd.grd_createTime, grd.grd_u_id
                        FROM users u1, goodsComment gc, goodsCommentDetail gcd LEFT OUTER JOIN goodsReplyDetail grd
                                                                ON gcd.gcd_id = grd.grd_gcd_id
-                       WHERE gc.gc_g_id = #{g_id} AND gc.gc_id = gcd.gcd_gc_id AND u1.u_id = gcd.gcd_u_id) temp
+                       WHERE gc.gc_g_id = #{g_id} AND gc.gc_id = gcd.gcd_gc_id AND u1.u_id = gcd.gcd_u_id
+                                                  ORDER BY gcd.gcd_createTime DESC) temp
                           LEFT OUTER JOIN users u2 ON temp.grd_u_id = u2.u_id
     </select>
 
     <resultMap id="replyDetailResult" type="com.cose.easywu.po.ReplyDetailBean">
         <id property="id" column="grd_id"/>
-        <result property="nickName" column="u_nick"/>
-        <result property="userPhoto" column="u_photo"/>
+        <result property="nickName" column="u2_nick"/>
         <result property="content" column="grd_content"/>
         <result property="createTime" column="grd_createTime"/>
     </resultMap>
@@ -96,5 +100,13 @@
         <result property="g_id" column="gc_g_id"/>
         <collection property="list" ofType="com.cose.easywu.po.CommentDetailBean" resultMap="commentDetailResult"/>
     </resultMap>
+
+    <insert id="insertReplyPo" parameterType="com.cose.easywu.po.ReplyDetailPo">
+        INSERT INTO goodsreplydetail (grd_content, grd_createTime, grd_gcd_id, grd_u_id)
+        VALUES (#{reply}, #{createTime}, #{comment_id}, #{u_id});
+        <selectKey resultType="int" keyProperty="id" order="AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+    </insert>
 
 </mapper>

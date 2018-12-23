@@ -1,24 +1,47 @@
 package com.cose.easywu.po;
 
+import java.util.Date;
+
 public class ReplyDetailPo {
 
-    private ReplyDetailBean replyDetailBean;
+    private int id;
+    private String u_id;
+    private String reply;
     private int comment_id;
+    private Date createTime;
 
     public ReplyDetailPo() {
     }
 
-    public ReplyDetailPo(ReplyDetailBean replyDetailBean, int comment_id) {
-        this.replyDetailBean = replyDetailBean;
+    public ReplyDetailPo(String u_id, String reply, int comment_id, Date createTime) {
+        this.u_id = u_id;
+        this.reply = reply;
         this.comment_id = comment_id;
+        this.createTime = createTime;
     }
 
-    public ReplyDetailBean getReplyDetailBean() {
-        return replyDetailBean;
+    public int getId() {
+        return id;
     }
 
-    public void setReplyDetailBean(ReplyDetailBean replyDetailBean) {
-        this.replyDetailBean = replyDetailBean;
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getU_id() {
+        return u_id;
+    }
+
+    public void setU_id(String u_id) {
+        this.u_id = u_id;
+    }
+
+    public String getReply() {
+        return reply;
+    }
+
+    public void setReply(String reply) {
+        this.reply = reply;
     }
 
     public int getComment_id() {
@@ -27,5 +50,13 @@ public class ReplyDetailPo {
 
     public void setComment_id(int comment_id) {
         this.comment_id = comment_id;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
     }
 }

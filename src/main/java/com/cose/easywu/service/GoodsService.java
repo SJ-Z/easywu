@@ -1,7 +1,6 @@
 package com.cose.easywu.service;
 
 import com.cose.easywu.po.CommentBean;
-import com.cose.easywu.po.CommentDetailBean;
 import com.cose.easywu.po.GoodsQueryPo;
 
 import java.util.Date;
@@ -17,6 +16,6 @@ public interface GoodsService {
     boolean userDeleteGoods(String g_id, String u_id);
     boolean userRemoveGoods(String g_id, String u_id);
     CommentBean getGoodsComment(String g_id);
-    int addComment(CommentDetailBean commentDetailBean, int gc_id, String g_id);
-    void addReply(String g_id, String u_id, String reply, int comment_id);
+    int addReplyToComment(String u_id, String reply, int comment_id, Date createTime);
+    int addComment(String comment, int gc_id, String g_id, String u_id, Date date);
 }
