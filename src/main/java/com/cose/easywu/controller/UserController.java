@@ -1,6 +1,10 @@
 package com.cose.easywu.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.cose.easemob.lmc.service.TalkDataService;
+import com.cose.easemob.lmc.service.impl.TalkDataServiceImpl;
+import com.cose.easemob.lmc.service.impl.TalkHttpServiceImplApache;
+import com.cose.easemob.lmc.tool.JsonTool;
 import com.cose.easywu.exception.UserException;
 import com.cose.easywu.po.User;
 import com.cose.easywu.service.UserService;
@@ -38,6 +42,36 @@ import java.util.Properties;
 public class UserController {
     @Autowired
     private UserService userService;
+    // 通过构造方法注入http请求业务以实现数据业务
+    TalkDataService talkDataService = new TalkDataServiceImpl(new TalkHttpServiceImplApache());
+
+    // 获取环信需要的昵称、头像信息
+    @RequestMapping("/hxInfo")
+    public @ResponseBody String hxInfo(@RequestBody String json) {
+        JSONObject jsonObject = JSONObject.parseObject(json);
+        String u_id = jsonObject.getString("u_id");
+        User user = userService.getUserInfo(u_id);
+        jsonObject = new JSONObject();
+        if (user != null) {
+            jsonObject.put("code", 1);
+            jsonObject.put("msg", "SUCCESS");
+            jsonObject.put("nick", user.getU_nick());
+            jsonObject.put("photo", user.getU_photo());
+        } else {
+            jsonObject.put("code", 0);
+            jsonObject.put("msg", "FAIL");
+            jsonObject.put("nick", " ");
+            jsonObject.put("photo", " ");
+        }
+
+        try {
+            return URLEncoder.encode(jsonObject.toJSONString(), "utf-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
 
     // 修改头像
     @RequestMapping("/editPhoto")
@@ -297,7 +331,7 @@ public class UserController {
 
     // 注册
     @RequestMapping("/regist")
-    public @ResponseBody String regist(@RequestBody String json) {
+    public @ResponseBody String regist(@RequestBody String json) throws Exception {
         JSONObject jsonObject = JSONObject.parseObject(json);
         User user = new User();
         user.setU_email(jsonObject.getString("u_email"));
@@ -328,6 +362,9 @@ public class UserController {
         user.setU_state(0);
         userService.regist(user); // 注册用户
         sendEmail(user.getU_email(), user.getU_id(), user.getU_code(), "regist"); // 发送激活邮件
+
+        // 注册环信
+        talkDataService.userSave(user.getU_id(), user.getU_id(), user.getU_nick());
 
         String content = "{'code':'1', 'msg':'注册成功'}";
         try {

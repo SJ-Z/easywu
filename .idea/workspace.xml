@@ -7,25 +7,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="64fb0107-7985-4e64-9a5e-ee2dfdc1df1b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/859c813b-ec78-40d2-9359-f7ea942a1862.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/859c813b-ec78-40d2-9359-f7ea942a1862.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cose/easywu/controller/GoodsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cose/easywu/controller/GoodsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/cose/easywu/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cose/easywu/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cose/easywu/mapper/GoodsMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cose/easywu/mapper/GoodsMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cose/easywu/mapper/GoodsMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cose/easywu/mapper/GoodsMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cose/easywu/mapper/UserMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cose/easywu/mapper/UserMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cose/easywu/mapper/UserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cose/easywu/mapper/UserMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cose/easywu/po/CommentBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cose/easywu/po/CommentBean.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cose/easywu/po/CommentDetailPo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cose/easywu/po/CommentDetailPo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cose/easywu/po/ReplyDetailBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cose/easywu/po/ReplyDetailBean.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cose/easywu/po/ReplyDetailPo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cose/easywu/po/ReplyDetailPo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cose/easywu/service/GoodsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cose/easywu/service/GoodsService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cose/easywu/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cose/easywu/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cose/easywu/service/impl/GoodsServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cose/easywu/service/impl/GoodsServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cose/easywu/service/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cose/easywu/service/impl/UserServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/cose/easywu/mapper/GoodsMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/cose/easywu/mapper/GoodsMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/easywu/WEB-INF/classes/com/cose/easywu/mapper/GoodsMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/easywu/WEB-INF/classes/com/cose/easywu/mapper/GoodsMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/cose/easywu/controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/cose/easywu/controller/UserController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/cose/easywu/mapper/UserMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/cose/easywu/mapper/UserMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/cose/easywu/mapper/UserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/cose/easywu/mapper/UserMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/cose/easywu/service/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/cose/easywu/service/UserService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/cose/easywu/service/impl/UserServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/cose/easywu/service/impl/UserServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/easywu/WEB-INF/classes/com/cose/easywu/controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/easywu/WEB-INF/classes/com/cose/easywu/controller/UserController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/easywu/WEB-INF/classes/com/cose/easywu/mapper/UserMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/easywu/WEB-INF/classes/com/cose/easywu/mapper/UserMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/easywu/WEB-INF/classes/com/cose/easywu/mapper/UserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/easywu/WEB-INF/classes/com/cose/easywu/mapper/UserMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/easywu/WEB-INF/classes/com/cose/easywu/service/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/easywu/WEB-INF/classes/com/cose/easywu/service/UserService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/easywu/WEB-INF/classes/com/cose/easywu/service/impl/UserServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/easywu/WEB-INF/classes/com/cose/easywu/service/impl/UserServiceImpl.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -52,10 +46,10 @@
     <session id="-1621099225">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="66" />
+          <entry key="project.closed" value="68" />
           <entry key="project.open.time.1" value="6" />
           <entry key="project.open.time.10" value="11" />
-          <entry key="project.open.time.11" value="8" />
+          <entry key="project.open.time.11" value="9" />
           <entry key="project.open.time.13" value="1" />
           <entry key="project.open.time.14" value="2" />
           <entry key="project.open.time.15" value="1" />
@@ -65,8 +59,8 @@
           <entry key="project.open.time.6" value="1" />
           <entry key="project.open.time.7" value="1" />
           <entry key="project.open.time.8" value="17" />
-          <entry key="project.open.time.9" value="15" />
-          <entry key="project.opened" value="68" />
+          <entry key="project.open.time.9" value="16" />
+          <entry key="project.opened" value="70" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -74,7 +68,7 @@
           <entry key="class" value="5" />
           <entry key="cpp" value="1" />
           <entry key="html" value="1" />
-          <entry key="java" value="273" />
+          <entry key="java" value="297" />
           <entry key="jpg" value="34" />
           <entry key="jsp" value="1" />
           <entry key="png" value="2" />
@@ -82,7 +76,7 @@
           <entry key="properties" value="12" />
           <entry key="sql" value="1" />
           <entry key="svg" value="2" />
-          <entry key="xml" value="80" />
+          <entry key="xml" value="82" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
@@ -91,32 +85,32 @@
           <entry key="CLASS" value="5" />
           <entry key="HTML" value="1" />
           <entry key="Image" value="36" />
-          <entry key="JAVA" value="273" />
+          <entry key="JAVA" value="297" />
           <entry key="JSP" value="1" />
           <entry key="Properties" value="12" />
           <entry key="SVG" value="2" />
           <entry key="Scratch" value="1" />
-          <entry key="XML" value="81" />
+          <entry key="XML" value="83" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="12" />
           <entry key="html" value="26" />
-          <entry key="java" value="13303" />
+          <entry key="java" value="13620" />
           <entry key="properties" value="235" />
           <entry key="txt" value="12" />
-          <entry key="xml" value="3882" />
+          <entry key="xml" value="3900" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="HTML" value="26" />
-          <entry key="JAVA" value="13303" />
+          <entry key="JAVA" value="13620" />
           <entry key="PLAIN_TEXT" value="24" />
           <entry key="Properties" value="235" />
           <entry key="SQL" value="134" />
-          <entry key="XML" value="3748" />
+          <entry key="XML" value="3766" />
         </counts>
       </usages-collector>
     </session>
@@ -124,55 +118,10 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/cose/easywu/controller/GoodsController.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/cose/easywu/controller/UserController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="361">
-              <caret line="51" column="13" lean-forward="true" selection-start-line="51" selection-start-column="13" selection-end-line="51" selection-end-column="13" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/cose/easywu/service/GoodsService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="361">
-              <caret line="19" column="82" selection-start-line="19" selection-start-column="82" selection-end-line="19" selection-end-column="82" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/cose/easywu/service/impl/GoodsServiceImpl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="95">
-              <caret line="14" selection-start-line="14" selection-end-line="14" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/cose/easywu/mapper/GoodsMapper.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="19" column="8" selection-start-line="19" selection-start-column="8" selection-end-line="19" selection-end-column="8" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/cose/easywu/mapper/GoodsMapper.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="351">
-              <caret line="79" column="13" selection-start-line="79" selection-start-column="13" selection-end-line="79" selection-end-column="13" />
+            <state relative-caret-position="433">
+              <caret line="82" column="50" lean-forward="true" selection-start-line="82" selection-start-column="50" selection-end-line="82" selection-end-column="50" />
             </state>
           </provider>
         </entry>
@@ -190,6 +139,7 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
+      <find>core</find>
       <find>jackson</find>
     </findStrings>
   </component>
@@ -199,14 +149,8 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/resources/spring/applicationContext-dao.xml" />
-        <option value="$PROJECT_DIR$/src/main/resources/spring/applicationContext-transaction.xml" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/com/cose/easywu/service/impl/UserService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/cose/easywu/po/UserService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/cose/easywu/exception/UserException.java" />
         <option value="$PROJECT_DIR$/src/main/resources/mybatis/sqlMapConfig.xml" />
-        <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/cose/easywu/utils/Mail.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/cose/easywu/utils/AttachBean.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/cose/easywu/utils/CommonUtils.java" />
@@ -245,6 +189,16 @@
         <option value="$PROJECT_DIR$/src/main/java/com/cose/easywu/mapper/UserMapper.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/cose/easywu/mapper/UserMapper.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/cose/easywu/service/impl/UserServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/lmc/tool/_Global.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com.cose.easemob.lmc/tool/_Global.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com.cose.easemob.lmc/service/TalkHttpService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com.cose.easemob.lmc/service/impl/TalkHttpServiceImplJersey.java" />
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com.cose.easemob.lmc/model/Authentic.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com.cose.easemob.lmc/service/impl/TalkHttpServiceImplApache.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com.cose.easemob.lmc/service/TalkDataService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com.cose.easemob.lmc/service/impl/TalkDataServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/test/java/TestMain.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/cose/easywu/controller/UserController.java" />
       </list>
     </option>
@@ -286,10 +240,27 @@
       <select />
     </treeState>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="815" />
     <option name="width" value="1110" />
     <option name="height" value="1040" />
+  </component>
+  <component name="ProjectInspectionProfilesVisibleTreeState">
+    <entry key="Project Default">
+      <profile-state>
+        <expanded-state>
+          <State />
+          <State>
+            <id>Maven</id>
+          </State>
+        </expanded-state>
+        <selected-state>
+          <State>
+            <id>MavenModelInspection</id>
+          </State>
+        </selected-state>
+      </profile-state>
+    </entry>
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="1" id="Add" />
@@ -330,6 +301,51 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com.cose.easemob.lmc" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="easywu" type="b2602c69:ProjectViewProjectNode" />
+              <item name="easywu" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com.cose.easemob.lmc" type="462c0819:PsiDirectoryNode" />
+              <item name="model" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="easywu" type="b2602c69:ProjectViewProjectNode" />
+              <item name="easywu" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com.cose.easemob.lmc" type="462c0819:PsiDirectoryNode" />
+              <item name="service" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="easywu" type="b2602c69:ProjectViewProjectNode" />
+              <item name="easywu" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com.cose.easemob.lmc" type="462c0819:PsiDirectoryNode" />
+              <item name="service" type="462c0819:PsiDirectoryNode" />
+              <item name="impl" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="easywu" type="b2602c69:ProjectViewProjectNode" />
+              <item name="easywu" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com.cose.easemob.lmc" type="462c0819:PsiDirectoryNode" />
+              <item name="tool" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="easywu" type="b2602c69:ProjectViewProjectNode" />
+              <item name="easywu" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="easywu" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -357,15 +373,6 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="easywu" type="462c0819:PsiDirectoryNode" />
-              <item name="po" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="easywu" type="b2602c69:ProjectViewProjectNode" />
-              <item name="easywu" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="easywu" type="462c0819:PsiDirectoryNode" />
               <item name="service" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -377,15 +384,6 @@
               <item name="easywu" type="462c0819:PsiDirectoryNode" />
               <item name="service" type="462c0819:PsiDirectoryNode" />
               <item name="impl" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="easywu" type="b2602c69:ProjectViewProjectNode" />
-              <item name="easywu" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="easywu" type="462c0819:PsiDirectoryNode" />
-              <item name="utils" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="easywu" type="b2602c69:ProjectViewProjectNode" />
@@ -408,27 +406,37 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="test" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="easywu" type="b2602c69:ProjectViewProjectNode" />
+              <item name="easywu" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="AndroidView" />
       <pane id="Scope" />
       <pane id="PackagesPane" />
-      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="DatabaseDriversLRU" value="mysql" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="Downloaded.Files.Path.Enabled" value="false" />
+    <property name="Repository.Attach.JavaDocs" value="false" />
+    <property name="Repository.Attach.Sources" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1545376400503" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1545731041474" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/httpmime-4.2.0.jar!/" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15527344" />
-    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="project.structure.side.proportion" value="0.42080924" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
@@ -438,10 +446,10 @@
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\炸弹人\IdeaProjects\easywu\banner" />
+      <recent name="C:\Users\炸弹人\IdeaProjects\easywu\src\main\webapp\WEB-INF\lib" />
+      <recent name="C:\Users\炸弹人\IdeaProjects\easywu\src\main\java" />
       <recent name="C:\Users\炸弹人\IdeaProjects\easywu\src\main\java\com\cose\easywu\mapper" />
       <recent name="C:\Users\炸弹人\IdeaProjects\easywu\type_img" />
-      <recent name="C:\Users\炸弹人\IdeaProjects\easywu\src\main\java\com\cose\easywu\utils" />
-      <recent name="C:\Users\炸弹人\IdeaProjects\easywu\src\main\resources" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -456,7 +464,14 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Tomcat Server.Tomcat 7.0.90">
+    <configuration name="TestMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="TestMain" />
+      <module name="easywu" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Tomcat 7.0.90" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 7.0.90" ALTERNATIVE_JRE_ENABLED="false">
       <option name="UPDATING_POLICY" value="redeploy-artifacts" />
       <deployment>
@@ -548,6 +563,15 @@
         </option>
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Tomcat Server.Tomcat 7.0.90" />
+      <item itemvalue="Application.TestMain" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.TestMain" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -626,18 +650,20 @@
       <workItem from="1545368472874" duration="911000" />
       <workItem from="1545377714920" duration="108000" />
       <workItem from="1545381346196" duration="5801000" />
-      <workItem from="1545536094382" duration="1195000" />
+      <workItem from="1545536094382" duration="9078000" />
+      <workItem from="1545621147019" duration="6002000" />
+      <workItem from="1545727462603" duration="1268000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="228521000" />
+    <option name="totallyTimeSpent" value="243674000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.211126" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.21648793" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -647,7 +673,7 @@
       <window_info id="Web" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.4283688" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.54042554" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -666,12 +692,12 @@
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="right" id="Capture Analysis" order="4" />
       <window_info anchor="right" id="JSF" order="5" weight="0.3297587" />
-      <window_info anchor="right" id="Maven Projects" order="6" weight="0.3297587" />
+      <window_info anchor="right" id="Maven Projects" order="6" weight="0.2580429" />
       <window_info anchor="right" id="Palette&#9;" order="7" />
       <window_info anchor="right" id="Theme Preview" order="8" />
-      <window_info anchor="right" id="Database" order="9" weight="0.3297587" />
-      <window_info anchor="right" id="CDI" order="10" />
-      <window_info anchor="right" id="Bean Validation" order="11" weight="0.3297587" />
+      <window_info anchor="right" id="Bean Validation" order="9" weight="0.3297587" />
+      <window_info anchor="right" id="Database" order="10" weight="0.3297587" />
+      <window_info anchor="right" id="CDI" order="11" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -685,44 +711,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/cose/easywu/po/ReleaseGoods.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/cose/easywu/mapper/HomeMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="11" selection-start-line="11" selection-end-line="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/cose/easywu/mapper/HomeMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/goods_pic/6acd66d293f140080.jpg" />
-    <entry file="file://$PROJECT_DIR$/goods_pic/4d3315d9d0b344480.jpg" />
-    <entry file="file://$PROJECT_DIR$/goods_pic/b495e96aabbe425d1.jpg" />
-    <entry file="file://$PROJECT_DIR$/goods_pic/b495e96aabbe425d0.jpg" />
-    <entry file="file://$PROJECT_DIR$/goods_pic/b495e96aabbe425d2.jpg" />
-    <entry file="file://$PROJECT_DIR$/banner/banner2.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/banner/banner3.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/banner/banner4.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/banner/banner1.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/type_img/0ACBDA4B469E41C69F0AE736ECC40020.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/type_img/1BE8C15547F4408CBD27C50861F2450B.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/user_photo/bf1627981aa943d13b3e9b3167a84754.jpg">
       <provider selected="true" editor-type-id="images" />
     </entry>
@@ -861,9 +849,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="361">
           <caret line="19" column="82" selection-start-line="19" selection-start-column="82" selection-end-line="19" selection-end-column="82" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -878,16 +863,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="95">
           <caret line="14" selection-start-line="14" selection-end-line="14" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/cose/easywu/mapper/UserMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="427">
-          <caret line="47" column="13" selection-start-line="47" selection-start-column="13" selection-end-line="47" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -898,34 +873,130 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/lmc/tool/_Global.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/cose/easywu/controller/GoodsController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="361">
+          <caret line="51" column="13" lean-forward="true" selection-start-line="51" selection-start-column="13" selection-end-line="51" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com.cose.easemob.lmc/model/TalkMsg.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-494">
+          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com.cose.easemob.lmc/model/TalkNode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-124">
+          <caret line="345" column="6" selection-start-line="345" selection-start-column="6" selection-end-line="345" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com.cose.easemob.lmc/model/TalkUserMessage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-247">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com.cose.easemob.lmc/service/TalkHttpService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="437">
+          <caret line="27" column="72" selection-start-line="27" selection-start-column="72" selection-end-line="27" selection-end-column="72" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com.cose.easemob.lmc/service/impl/TalkHttpServiceImplJersey.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="304">
+          <caret line="21" column="57" selection-start-line="21" selection-start-column="57" selection-end-line="21" selection-end-column="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com.cose.easemob.lmc/tool/_Global.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="8" column="22" lean-forward="true" selection-start-line="8" selection-start-column="22" selection-end-line="8" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="38">
+          <caret line="2" column="1" selection-start-line="2" selection-start-column="1" selection-end-line="2" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com.cose.easemob.lmc/model/Authentic.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="361">
+          <caret line="27" column="36" lean-forward="true" selection-start-line="27" selection-start-column="36" selection-end-line="27" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com.cose.easemob.lmc/service/impl/TalkHttpServiceImplApache.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-19">
+          <caret line="2" column="7" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com.cose.easemob.lmc/service/impl/TalkDataServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="17" column="36" lean-forward="true" selection-start-line="17" selection-start-column="36" selection-end-line="17" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com.cose.easemob.lmc/tool/JsonTool.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="76">
+          <caret line="15" column="25" selection-start-line="15" selection-start-column="25" selection-end-line="15" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com.cose.easemob.lmc/service/TalkDataService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="31" column="20" selection-start-line="31" selection-start-column="20" selection-end-line="31" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/TestMain.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="11" column="61" lean-forward="true" selection-start-line="11" selection-start-column="61" selection-end-line="11" selection-end-column="61" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/cose/easywu/service/impl/UserServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="332">
+        <state relative-caret-position="641">
           <caret line="121" column="5" selection-start-line="121" selection-start-column="5" selection-end-line="121" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/cose/easywu/mapper/UserMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="551">
+          <caret line="47" column="13" selection-start-line="47" selection-start-column="13" selection-end-line="47" selection-end-column="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/cose/easywu/service/UserService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="18" column="50" lean-forward="true" selection-start-line="18" selection-start-column="50" selection-end-line="18" selection-end-column="50" />
+        <state relative-caret-position="247">
+          <caret line="14" column="26" selection-start-line="14" selection-start-column="26" selection-end-line="14" selection-end-column="26" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/cose/easywu/controller/UserController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="79">
-          <caret line="134" column="5" selection-start-line="134" selection-start-column="5" selection-end-line="134" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/cose/easywu/controller/GoodsController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="361">
-          <caret line="51" column="13" lean-forward="true" selection-start-line="51" selection-start-column="13" selection-end-line="51" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="433">
+          <caret line="82" column="50" lean-forward="true" selection-start-line="82" selection-start-column="50" selection-end-line="82" selection-end-column="50" />
         </state>
       </provider>
     </entry>
@@ -939,7 +1010,7 @@
           <splitter-proportions>
             <option name="proportions">
               <list>
-                <option value="0.2" />
+                <option value="0.42080924" />
                 <option value="0.5" />
               </list>
             </option>
@@ -952,7 +1023,7 @@
           <splitter-proportions>
             <option name="proportions">
               <list>
-                <option value="0.2" />
+                <option value="0.42080924" />
               </list>
             </option>
           </splitter-proportions>
@@ -987,7 +1058,7 @@
           <splitter-proportions>
             <option name="proportions">
               <list>
-                <option value="0.2" />
+                <option value="0.42080924" />
               </list>
             </option>
           </splitter-proportions>
@@ -999,7 +1070,7 @@
           <splitter-proportions>
             <option name="proportions">
               <list>
-                <option value="0.2" />
+                <option value="0.42080924" />
               </list>
             </option>
           </splitter-proportions>
