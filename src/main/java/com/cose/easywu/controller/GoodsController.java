@@ -2,10 +2,7 @@ package com.cose.easywu.controller;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.cose.easywu.po.CommentBean;
-import com.cose.easywu.po.CommentDetailBean;
-import com.cose.easywu.po.CommentDetailPo;
-import com.cose.easywu.po.GoodsQueryPo;
+import com.cose.easywu.po.*;
 import com.cose.easywu.service.GoodsService;
 import com.cose.easywu.utils.CommonUtils;
 import org.apache.commons.fileupload.FileItem;
@@ -95,6 +92,32 @@ public class GoodsController {
         jsonObject = new JSONObject();
         jsonObject.put("CommentBean", commentBean);
         String content = jsonObject.toJSONString();
+        try {
+            return URLEncoder.encode(content, "utf-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    // 根据商品id查询商品信息
+    @RequestMapping("/getGoodsInfo")
+    public @ResponseBody
+    String getGoodsInfo(@RequestBody String g_id) {
+        GoodsQueryPo goods = goodsService.getGoodsInfo(g_id);
+        JSONObject jsonObject = new JSONObject();
+        String content;
+        if (goods != null) {
+            jsonObject.put("code", 1);
+            jsonObject.put("msg", "查询成功");
+            jsonObject.put("goods", goods);
+            content = jsonObject.toJSONString();
+        } else {
+            jsonObject.put("code", 0);
+            jsonObject.put("msg", "商品不存在");
+            content = jsonObject.toJSONString();
+        }
         try {
             return URLEncoder.encode(content, "utf-8");
         } catch (UnsupportedEncodingException e) {

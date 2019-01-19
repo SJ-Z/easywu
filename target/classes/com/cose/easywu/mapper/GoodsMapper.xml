@@ -31,6 +31,10 @@
         FROM goods WHERE g_u_id = #{u_id} AND g_state != 4 ORDER BY g_updateTime DESC
     </select>
 
+    <select id="selectGoodsById" parameterType="String" resultType="com.cose.easywu.po.GoodsQueryPo">
+        SELECT * FROM goods, users WHERE g_id = #{g_id} AND g_state = 0 AND g_u_id = u_id
+    </select>
+
     <insert id="insertLikeGoods" parameterType="com.cose.easywu.po.UpdateGoodsPo">
         INSERT INTO likegoods VALUES (#{u_id}, #{g_id})
     </insert>

@@ -41,6 +41,11 @@ public class GoodsServiceImpl implements GoodsService {
     }
 
     @Override
+    public GoodsQueryPo getGoodsInfo(String g_id) {
+        return goodsMapper.selectGoodsById(g_id);
+    }
+
+    @Override
     public CommentBean getGoodsComment(String g_id) {
         return goodsMapper.selectGoodsCommentWithReply(g_id);
     }
