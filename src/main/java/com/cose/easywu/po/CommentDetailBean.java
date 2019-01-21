@@ -6,6 +6,7 @@ import java.util.List;
 public class CommentDetailBean {
 
     private int id;
+    private String uid;
     private String nickName;
     private String userPhoto;
     private String content;
@@ -15,10 +16,19 @@ public class CommentDetailBean {
     public CommentDetailBean() {
     }
 
-    public CommentDetailBean(String nickName, String userPhoto, String content) {
+    public CommentDetailBean(String uid, String nickName, String userPhoto, String content) {
+        this.uid = uid;
         this.nickName = nickName;
         this.userPhoto = userPhoto;
         this.content = content;
+    }
+
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
     }
 
     public int getId() {
@@ -77,6 +87,7 @@ public class CommentDetailBean {
     public String toString() {
         return "CommentDetailBean{" +
                 "id=" + id +
+                ", uid='" + uid + '\'' +
                 ", nickName='" + nickName + '\'' +
                 ", userPhoto='" + userPhoto + '\'' +
                 ", content='" + content + '\'' +

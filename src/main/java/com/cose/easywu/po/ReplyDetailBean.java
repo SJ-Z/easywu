@@ -5,9 +5,18 @@ import java.util.Date;
 public class ReplyDetailBean {
 
     private int id;
+    private String uid;
     private String nickName;
     private String content;
     private Date createTime;
+
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
+    }
 
     public void setNickName(String nickName) {
         this.nickName = nickName;
@@ -45,6 +54,7 @@ public class ReplyDetailBean {
     public String toString() {
         return "ReplyDetailBean{" +
                 "id=" + id +
+                ", uid='" + uid + '\'' +
                 ", nickName='" + nickName + '\'' +
                 ", content='" + content + '\'' +
                 ", createTime=" + createTime +

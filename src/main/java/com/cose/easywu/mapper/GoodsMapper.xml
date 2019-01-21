@@ -73,8 +73,8 @@
     </insert>
 
     <select id="selectGoodsCommentWithReply" parameterType="String" resultMap="commentResult">
-        SELECT temp.*, u2.u_nick u2_nick FROM (SELECT u1.u_nick u1_nick, u1.u_photo u1_photo, gc.gc_id,
-                       gc.gc_g_id, gcd.gcd_id, gcd.gcd_content, gcd.gcd_createTime, grd.grd_id, grd.grd_content,
+        SELECT temp.*, u2.u_id u2_id, u2.u_nick u2_nick FROM (SELECT u1.u_id u1_id, u1.u_nick u1_nick, u1.u_photo u1_photo,
+                       gc.gc_id, gc.gc_g_id, gcd.gcd_id, gcd.gcd_content, gcd.gcd_createTime, grd.grd_id, grd.grd_content,
                        grd.grd_createTime, grd.grd_u_id
                        FROM users u1, goodsComment gc, goodsCommentDetail gcd LEFT OUTER JOIN goodsReplyDetail grd
                                                                ON gcd.gcd_id = grd.grd_gcd_id
@@ -86,12 +86,14 @@
     <resultMap id="replyDetailResult" type="com.cose.easywu.po.ReplyDetailBean">
         <id property="id" column="grd_id"/>
         <result property="nickName" column="u2_nick"/>
+        <result property="uid" column="u2_id"/>
         <result property="content" column="grd_content"/>
         <result property="createTime" column="grd_createTime"/>
     </resultMap>
 
     <resultMap id="commentDetailResult" type="com.cose.easywu.po.CommentDetailBean">
         <id property="id" column="gcd_id"/>
+        <result property="uid" column="u1_id"/>
         <result property="nickName" column="u1_nick"/>
         <result property="userPhoto" column="u1_photo"/>
         <result property="content" column="gcd_content"/>
@@ -106,8 +108,8 @@
     </resultMap>
 
     <insert id="insertReplyPo" parameterType="com.cose.easywu.po.ReplyDetailPo">
-        INSERT INTO goodsreplydetail (grd_content, grd_createTime, grd_gcd_id, grd_u_id)
-        VALUES (#{reply}, #{createTime}, #{comment_id}, #{u_id});
+        INSERT INTO goodsreplydetail (grd_content, grd_createTime, grd_gcd_id, grd_u_id, grd_orgin_u_id)
+        VALUES (#{reply}, #{createTime}, #{comment_id}, #{u_id}, #{origin_uid});
         <selectKey resultType="int" keyProperty="id" order="AFTER">
             SELECT LAST_INSERT_ID()
         </selectKey>

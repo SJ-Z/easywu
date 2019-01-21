@@ -7,17 +7,27 @@ public class ReplyDetailPo {
     private int id;
     private String u_id;
     private String reply;
+    private String origin_uid;
     private int comment_id;
     private Date createTime;
 
     public ReplyDetailPo() {
     }
 
-    public ReplyDetailPo(String u_id, String reply, int comment_id, Date createTime) {
+    public ReplyDetailPo(String u_id, String reply, String origin_uid, int comment_id, Date createTime) {
         this.u_id = u_id;
         this.reply = reply;
+        this.origin_uid = origin_uid;
         this.comment_id = comment_id;
         this.createTime = createTime;
+    }
+
+    public String getOrigin_uid() {
+        return origin_uid;
+    }
+
+    public void setOrigin_uid(String origin_uid) {
+        this.origin_uid = origin_uid;
     }
 
     public int getId() {

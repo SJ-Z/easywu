@@ -2,9 +2,11 @@ package com.cose.easywu.controller;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.cose.easywu.po.*;
+import com.cose.easywu.po.CommentBean;
+import com.cose.easywu.po.GoodsQueryPo;
 import com.cose.easywu.service.GoodsService;
 import com.cose.easywu.utils.CommonUtils;
+import com.cose.jpush.JPushHelper;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadBase;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
@@ -36,13 +38,17 @@ public class GoodsController {
         JSONObject jsonObject = JSONObject.parseObject(json);
         String u_id = jsonObject.getString("u_id");
         String reply = jsonObject.getString("reply");
+        String origin_uid = jsonObject.getString("origin_uid");
         int comment_id = jsonObject.getInteger("comment_id");
         Date createTime = new Date();
-        int replyId = goodsService.addReplyToComment(u_id, reply, comment_id, createTime);
+        int replyId = goodsService.addReplyToComment(u_id, reply, origin_uid, comment_id, createTime);
 
         String content;
         if (replyId != 0) {
             content = "{'code':'1', 'msg':'回复成功', 'time':'" + createTime.getTime() + "', 'id':'" + replyId + "'}";
+            StringBuilder stringBuilder = new StringBuilder("有人回复了你的评论：");
+            stringBuilder.append(reply);
+            JPushHelper.jPush(origin_uid, stringBuilder.toString());
         } else {
             content = "{'code':'0', 'msg':'回复失败'}";
         }
@@ -64,11 +70,18 @@ public class GoodsController {
         int gc_id = jsonObject.getInteger("gc_id");
         String g_id = jsonObject.getString("g_id");
         String u_id = jsonObject.getString("u_id");
+        String owner_id = jsonObject.getString("owner_id");
+        String goods_name = jsonObject.getString("goods_name");
         Date createTime = new Date();
         String content;
         int comment_id = goodsService.addComment(comment, gc_id, g_id, u_id, createTime);
         if (comment_id != 0) {
             content = "{'code':'1', 'msg':'留言成功', 'time':'" + createTime.getTime() + "', 'id':'" + comment_id + "'}";
+            StringBuilder stringBuilder = new StringBuilder("你发布的商品(");
+            stringBuilder.append(goods_name)
+                         .append(")收到一条新留言：")
+                         .append(comment);
+            JPushHelper.jPush(owner_id, stringBuilder.toString());
         } else {
             content = "{'code':'0', 'msg':'留言失败'}";
         }
@@ -88,7 +101,6 @@ public class GoodsController {
         JSONObject jsonObject = JSONObject.parseObject(json);
         String g_id = jsonObject.getString("g_id");
         CommentBean commentBean = goodsService.getGoodsComment(g_id);
-        System.out.println(commentBean);
         jsonObject = new JSONObject();
         jsonObject.put("CommentBean", commentBean);
         String content = jsonObject.toJSONString();

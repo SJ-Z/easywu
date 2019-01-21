@@ -13,8 +13,8 @@ public class GoodsServiceImpl implements GoodsService {
     private GoodsMapper goodsMapper;
 
     @Override
-    public int addReplyToComment(String u_id, String reply, int comment_id, Date createTime) {
-        ReplyDetailPo replyDetailPo = new ReplyDetailPo(u_id, reply, comment_id, createTime);
+    public int addReplyToComment(String u_id, String reply, String origin_uid, int comment_id, Date createTime) {
+        ReplyDetailPo replyDetailPo = new ReplyDetailPo(u_id, reply, origin_uid, comment_id, createTime);
         if (goodsMapper.insertReplyPo(replyDetailPo) == 1) {
             return replyDetailPo.getId();
         } else {
