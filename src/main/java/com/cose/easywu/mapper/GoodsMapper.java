@@ -3,12 +3,13 @@ package com.cose.easywu.mapper;
 import com.cose.easywu.po.*;
 
 import java.util.List;
+import java.util.Map;
 
 public interface GoodsMapper {
 
     void insertGoods(Goods goods);
     void updateGoods(Goods goods);
-    List<GoodsQueryPo> selectNewestGoods();
+    List<GoodsQueryPo> selectNewestGoods(Map<String, Integer> page);
     List<GoodsQueryPo> selectGoodsLike(String u_id);
     List<GoodsQueryPo> selectReleaseGoodsList(String u_id);
     void insertLikeGoods(UpdateGoodsPo updateGoodsPo);

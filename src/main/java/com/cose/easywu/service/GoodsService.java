@@ -2,6 +2,7 @@ package com.cose.easywu.service;
 
 import com.cose.easywu.po.CommentBean;
 import com.cose.easywu.po.GoodsQueryPo;
+import com.cose.easywu.po.Page;
 
 import java.util.Date;
 import java.util.List;
@@ -10,7 +11,7 @@ public interface GoodsService {
 
     Date release(boolean isNew, String g_id, String g_name, String g_desc, double g_price, double g_originalPrice,
                  List<String> filenames, String g_t_id, String g_u_id);
-    List<GoodsQueryPo> getNewestGoodsList();
+    List<GoodsQueryPo> getNewestGoodsList(Page page);
     void setLikeGoods(String g_id, String u_id, boolean like);
     boolean polishGoods(String g_id, String u_id, Date updateTime);
     boolean userDeleteGoods(String g_id, String u_id);

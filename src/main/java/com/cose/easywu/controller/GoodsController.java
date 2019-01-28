@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.cose.easywu.po.CommentBean;
 import com.cose.easywu.po.GoodsQueryPo;
+import com.cose.easywu.po.Page;
 import com.cose.easywu.service.GoodsService;
 import com.cose.easywu.utils.CommonUtils;
 import com.cose.jpush.JPushHelper;
@@ -16,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
@@ -39,6 +41,7 @@ public class GoodsController {
         String u_id = jsonObject.getString("u_id");
         String reply = jsonObject.getString("reply");
         String origin_uid = jsonObject.getString("origin_uid");
+        String g_id = jsonObject.getString("g_id");
         int comment_id = jsonObject.getInteger("comment_id");
         Date createTime = new Date();
         int replyId = goodsService.addReplyToComment(u_id, reply, origin_uid, comment_id, createTime);
@@ -48,7 +51,7 @@ public class GoodsController {
             content = "{'code':'1', 'msg':'回复成功', 'time':'" + createTime.getTime() + "', 'id':'" + replyId + "'}";
             StringBuilder stringBuilder = new StringBuilder("有人回复了你的评论：");
             stringBuilder.append(reply);
-            JPushHelper.jPush(origin_uid, stringBuilder.toString());
+            JPushHelper.jPushGoodsComment(origin_uid, stringBuilder.toString(), g_id, JPushHelper.TYPE_GOODS_REPLY);
         } else {
             content = "{'code':'0', 'msg':'回复失败'}";
         }
@@ -81,7 +84,7 @@ public class GoodsController {
             stringBuilder.append(goods_name)
                          .append(")收到一条新留言：")
                          .append(comment);
-            JPushHelper.jPush(owner_id, stringBuilder.toString());
+            JPushHelper.jPushGoodsComment(owner_id, stringBuilder.toString(), g_id, JPushHelper.TYPE_GOODS_COMMENT);
         } else {
             content = "{'code':'0', 'msg':'留言失败'}";
         }
@@ -230,11 +233,29 @@ public class GoodsController {
         return null;
     }
 
-    // 获取最新发布
-    @RequestMapping("/newestGoods")
+    // 获取最新发布（五条，get请求）
+    @RequestMapping(value = "/newestGoods", method = RequestMethod.GET)
     public @ResponseBody
     String getNewestGoods() {
-        List<GoodsQueryPo> newestGoodsList = goodsService.getNewestGoodsList();
+        Page page = new Page(5, 0);
+        List<GoodsQueryPo> newestGoodsList = goodsService.getNewestGoodsList(page);
+        String content = JSONArray.toJSONString(newestGoodsList);
+        try {
+            return URLEncoder.encode(content, "utf-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    // 获取最新发布（根据页码返回数据，post请求）
+    @RequestMapping(value = "/newestGoods", method = RequestMethod.POST)
+    public @ResponseBody
+    String getNewestGoods(@RequestBody String json) {
+        JSONObject jsonObject = JSONObject.parseObject(json);
+        int pageCode = jsonObject.getInteger("pageCode");
+        List<GoodsQueryPo> newestGoodsList = goodsService.getNewestGoodsList(new Page(pageCode));
         String content = JSONArray.toJSONString(newestGoodsList);
         try {
             return URLEncoder.encode(content, "utf-8");

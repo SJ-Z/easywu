@@ -6,7 +6,9 @@ import com.cose.easywu.service.GoodsService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class GoodsServiceImpl implements GoodsService {
     @Autowired
@@ -141,7 +143,10 @@ public class GoodsServiceImpl implements GoodsService {
     }
 
     @Override
-    public List<GoodsQueryPo> getNewestGoodsList() {
-        return goodsMapper.selectNewestGoods();
+    public List<GoodsQueryPo> getNewestGoodsList(Page page) {
+        Map<String, Integer> pageMap = new HashMap<>();
+        pageMap.put("pageSize", page.getPageSize());
+        pageMap.put("startPos", page.getPageSize() * page.getPageCode());
+        return goodsMapper.selectNewestGoods(pageMap);
     }
 }
