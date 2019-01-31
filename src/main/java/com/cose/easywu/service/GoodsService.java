@@ -20,4 +20,5 @@ public interface GoodsService {
     int addReplyToComment(String u_id, String reply, String origin_uid, int comment_id, Date createTime);
     int addComment(String comment, int gc_id, String g_id, String u_id, Date date);
     GoodsQueryPo getGoodsInfo(String g_id);
+    List<GoodsQueryPo> getGoodsOfType(String type_id, Page page);
 }

@@ -33,6 +33,24 @@ public class GoodsController {
     @Autowired
     private GoodsService goodsService;
 
+    // 分页查询某一分类下的商品
+    @RequestMapping("/typeGoods")
+    public @ResponseBody
+    String getTypeGoods(@RequestBody String json) {
+        JSONObject jsonObject = JSONObject.parseObject(json);
+        int pageCode = jsonObject.getInteger("pageCode");
+        String type_id = jsonObject.getString("type_id");
+        List<GoodsQueryPo> newestGoodsList = goodsService.getGoodsOfType(type_id, new Page(pageCode));
+        String content = JSONArray.toJSONString(newestGoodsList);
+        try {
+            return URLEncoder.encode(content, "utf-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
     // 添加商品评论的回复
     @RequestMapping("/goodsAddReply")
     public @ResponseBody

@@ -22,4 +22,5 @@ public interface GoodsMapper {
     int insertCommentBean(CommentBean commentBean);
     int insertReplyPo(ReplyDetailPo replyDetailPo);
     GoodsQueryPo selectGoodsById(String g_id);
+    List<GoodsQueryPo> selectGoodsByTypeId(Map<String, Object> map);
 }

@@ -48,6 +48,15 @@ public class GoodsServiceImpl implements GoodsService {
     }
 
     @Override
+    public List<GoodsQueryPo> getGoodsOfType(String type_id, Page page) {
+        Map<String, Object> pageMap = new HashMap<>();
+        pageMap.put("type_id", type_id);
+        pageMap.put("pageSize", page.getPageSize());
+        pageMap.put("startPos", page.getPageSize() * page.getPageCode());
+        return goodsMapper.selectGoodsByTypeId(pageMap);
+    }
+
+    @Override
     public CommentBean getGoodsComment(String g_id) {
         return goodsMapper.selectGoodsCommentWithReply(g_id);
     }
