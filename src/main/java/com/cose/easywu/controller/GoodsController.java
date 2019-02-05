@@ -33,6 +33,24 @@ public class GoodsController {
     @Autowired
     private GoodsService goodsService;
 
+    // 按关键字搜索商品
+    @RequestMapping("/searchGoods")
+    public @ResponseBody
+    String searchGoods(@RequestBody String json) {
+        JSONObject jsonObject = JSONObject.parseObject(json);
+        int pageCode = jsonObject.getInteger("pageCode");
+        String key = jsonObject.getString("key");
+        List<GoodsQueryPo> newestGoodsList = goodsService.searchGoods(key, new Page(pageCode));
+        String content = JSONArray.toJSONString(newestGoodsList);
+        try {
+            return URLEncoder.encode(content, "utf-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
     // 分页查询某一分类下的商品
     @RequestMapping("/typeGoods")
     public @ResponseBody
@@ -69,7 +87,7 @@ public class GoodsController {
             content = "{'code':'1', 'msg':'回复成功', 'time':'" + createTime.getTime() + "', 'id':'" + replyId + "'}";
             StringBuilder stringBuilder = new StringBuilder("有人回复了你的评论：");
             stringBuilder.append(reply);
-            JPushHelper.jPushGoodsComment(origin_uid, stringBuilder.toString(), g_id, JPushHelper.TYPE_GOODS_REPLY);
+            JPushHelper.jPushNotification(origin_uid, stringBuilder.toString(), g_id, createTime, JPushHelper.TYPE_GOODS_REPLY);
         } else {
             content = "{'code':'0', 'msg':'回复失败'}";
         }
@@ -102,7 +120,7 @@ public class GoodsController {
             stringBuilder.append(goods_name)
                          .append(")收到一条新留言：")
                          .append(comment);
-            JPushHelper.jPushGoodsComment(owner_id, stringBuilder.toString(), g_id, JPushHelper.TYPE_GOODS_COMMENT);
+            JPushHelper.jPushNotification(owner_id, stringBuilder.toString(), g_id, createTime, JPushHelper.TYPE_GOODS_COMMENT);
         } else {
             content = "{'code':'0', 'msg':'留言失败'}";
         }
@@ -150,6 +168,92 @@ public class GoodsController {
             jsonObject.put("code", 0);
             jsonObject.put("msg", "商品不存在");
             content = jsonObject.toJSONString();
+        }
+        try {
+            return URLEncoder.encode(content, "utf-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    // 拒绝商品订单
+    @RequestMapping("/newGoodsOrderRefuse")
+    public @ResponseBody
+    String newGoodsOrderRefuse(@RequestBody String json) {
+        JSONObject jsonObject = JSONObject.parseObject(json);
+        String g_id = jsonObject.getString("g_id");
+        String u_id = jsonObject.getString("u_id");
+        String buyer_id = jsonObject.getString("buyer_id");
+        String g_name = jsonObject.getString("g_name");
+        String content;
+        if (goodsService.refuseNewGoodsOrder(g_id, u_id)) {
+            content = "{'code':'1', 'msg':'拒绝商品订单成功'}";
+            // 向下订单的用户发送一条通知
+            StringBuilder stringBuilder = new StringBuilder("你下单的商品(");
+            stringBuilder.append(g_name).append(")订单已被卖家拒绝，交易取消");
+            JPushHelper.jPushNotification(buyer_id, stringBuilder.toString(), g_id, new Date(), JPushHelper.TYPE_REFUSE_GOODS_ORDER);
+        } else {
+            content = "{'code':'0', 'msg':'拒绝商品订单失败'}";
+        }
+        try {
+            return URLEncoder.encode(content, "utf-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    // 确认商品订单
+    @RequestMapping("/newGoodsOrderConfirm")
+    public @ResponseBody
+    String newGoodsOrderConfirm(@RequestBody String json) {
+        JSONObject jsonObject = JSONObject.parseObject(json);
+        String g_id = jsonObject.getString("g_id");
+        String u_id = jsonObject.getString("u_id");
+        String buyer_id = jsonObject.getString("buyer_id");
+        String g_name = jsonObject.getString("g_name");
+        String content;
+        if (goodsService.confirmNewGoodsOrder(g_id, u_id)) {
+            content = "{'code':'1', 'msg':'确认商品订单成功'}";
+            // 向下订单的用户发送一条通知
+            StringBuilder stringBuilder = new StringBuilder("你下单的商品(");
+            stringBuilder.append(g_name).append(")订单已被卖家确认，交易成功");
+            JPushHelper.jPushNotification(buyer_id, stringBuilder.toString(), g_id, new Date(), JPushHelper.TYPE_CONFIRM_GOODS_ORDER);
+        } else {
+            content = "{'code':'0', 'msg':'确认商品订单失败'}";
+        }
+        try {
+            return URLEncoder.encode(content, "utf-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    // 下单商品
+    @RequestMapping("/newGoodsOrder")
+    public @ResponseBody
+    String newGoodsOrder(@RequestBody String json) {
+        JSONObject jsonObject = JSONObject.parseObject(json);
+        String g_id = jsonObject.getString("g_id");
+        String g_name = jsonObject.getString("g_name");
+        String g_u_id = jsonObject.getString("g_u_id");
+        String u_id = jsonObject.getString("u_id");
+        String u_nick = jsonObject.getString("u_nick");
+        Date date = new Date();
+        String content;
+        if (goodsService.addNewGoodsOrder(g_id, u_id, date)) {
+            content = "{'code':'1', 'msg':'商品下单成功'}";
+            // 向商品所有者发送一条通知
+            StringBuilder stringBuilder = new StringBuilder("你发布的商品(");
+            stringBuilder.append(g_name).append(")已被").append(u_nick).append("下单");
+            JPushHelper.jPushNotification(g_u_id, stringBuilder.toString(), g_id, u_id, date, JPushHelper.TYPE_NEW_GOODS_ORDER);
+        } else {
+            content = "{'code':'0', 'msg':'商品下单失败'}";
         }
         try {
             return URLEncoder.encode(content, "utf-8");

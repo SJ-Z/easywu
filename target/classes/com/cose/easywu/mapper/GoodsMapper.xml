@@ -29,6 +29,14 @@
         LIMIT #{startPos}, #{pageSize}
     </select>
 
+    <select id="selectGoodsByKey" parameterType="Map" resultType="com.cose.easywu.po.GoodsQueryPo">
+        SELECT g_id, g_name, g_desc, g_price, g_originalPrice, g_pic1, g_pic2, g_pic3, g_updateTime, g_state,
+               g_like, g_t_id, u_id AS g_u_id, u_nick AS g_u_nick, u_photo AS g_u_photo, u_sex AS g_u_sex
+        FROM goods, users WHERE g_u_id = u_id AND g_state = 0 AND g_name LIKE '%${key}%'
+        ORDER BY g_updateTime DESC
+        LIMIT #{startPos}, #{pageSize}
+    </select>
+
     <select id="selectGoodsLike" parameterType="String" resultType="com.cose.easywu.po.GoodsQueryPo">
         SELECT g_id, g_name, g_desc, g_price, g_originalPrice, g_pic1, g_pic2, g_pic3, g_updateTime, g_state,
         g_like, g_t_id, u_id AS g_u_id, u_nick AS g_u_nick, u_photo AS g_u_photo, u_sex AS g_u_sex
@@ -36,7 +44,7 @@
     </select>
 
     <select id="selectReleaseGoodsList" parameterType="String" resultType="com.cose.easywu.po.GoodsQueryPo">
-        SELECT g_id, g_name, g_desc, g_price, g_originalPrice, g_pic1, g_pic2, g_pic3, g_updateTime, g_state, g_like, g_t_id
+        SELECT g_id, g_name, g_desc, g_price, g_originalPrice, g_pic1, g_pic2, g_pic3, g_updateTime, g_state, g_like, g_t_id, g_buyer_id
         FROM goods WHERE g_u_id = #{u_id} AND g_state != 4 ORDER BY g_updateTime DESC
     </select>
 
@@ -62,6 +70,14 @@
 
     <update id="updateGoodsState" parameterType="com.cose.easywu.po.UpdateGoodsPo">
         UPDATE goods SET g_state = #{state} WHERE g_id = #{g_id} AND g_u_id = #{u_id}
+    </update>
+
+    <update id="updateGoodsStateAndBuyerID" parameterType="com.cose.easywu.po.UpdateGoodsPo">
+        UPDATE goods SET g_state = #{state}, g_buyer_id = #{u_id}, g_updateTime = #{updateTime} WHERE g_id = #{g_id}
+    </update>
+
+    <update id="updateGoodsStateAndSetBuyerIDNull" parameterType="com.cose.easywu.po.UpdateGoodsPo">
+        UPDATE goods SET g_state = #{state}, g_buyer_id = NULL WHERE g_id = #{g_id}
     </update>
 
     <insert id="insertCommentDetailPo"

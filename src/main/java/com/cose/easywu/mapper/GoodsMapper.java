@@ -23,4 +23,7 @@ public interface GoodsMapper {
     int insertReplyPo(ReplyDetailPo replyDetailPo);
     GoodsQueryPo selectGoodsById(String g_id);
     List<GoodsQueryPo> selectGoodsByTypeId(Map<String, Object> map);
+    List<GoodsQueryPo> selectGoodsByKey(Map<String, Object> pageMap);
+    int updateGoodsStateAndBuyerID(UpdateGoodsPo updateGoodsPo);
+    int updateGoodsStateAndSetBuyerIDNull(UpdateGoodsPo updateGoodsPo);
 }

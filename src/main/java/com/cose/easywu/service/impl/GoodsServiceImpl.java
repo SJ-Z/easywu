@@ -57,8 +57,50 @@ public class GoodsServiceImpl implements GoodsService {
     }
 
     @Override
+    public List<GoodsQueryPo> searchGoods(String key, Page page) {
+        Map<String, Object> pageMap = new HashMap<>();
+        pageMap.put("key", key);
+        pageMap.put("pageSize", page.getPageSize());
+        pageMap.put("startPos", page.getPageSize() * page.getPageCode());
+        return goodsMapper.selectGoodsByKey(pageMap);
+    }
+
+    @Override
     public CommentBean getGoodsComment(String g_id) {
         return goodsMapper.selectGoodsCommentWithReply(g_id);
+    }
+
+    @Override
+    public boolean confirmNewGoodsOrder(String g_id, String u_id) {
+        UpdateGoodsPo updateGoodsPo = new UpdateGoodsPo(g_id, u_id);
+        updateGoodsPo.setState(1); // 1表示订单完成
+        int result = goodsMapper.updateGoodsState(updateGoodsPo);
+        if (result == 1) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean refuseNewGoodsOrder(String g_id, String u_id) {
+        UpdateGoodsPo updateGoodsPo = new UpdateGoodsPo(g_id, u_id);
+        updateGoodsPo.setState(0); // 0表示商品重新上架
+        int result = goodsMapper.updateGoodsStateAndSetBuyerIDNull(updateGoodsPo);
+        if (result == 1) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean addNewGoodsOrder(String g_id, String u_id, Date date) {
+        UpdateGoodsPo updateGoodsPo = new UpdateGoodsPo(g_id, u_id, date);
+        updateGoodsPo.setState(5); // 5表示被购买者下订单
+        int result = goodsMapper.updateGoodsStateAndBuyerID(updateGoodsPo);
+        if (result == 1) {
+            return true;
+        }
+        return false;
     }
 
     @Override

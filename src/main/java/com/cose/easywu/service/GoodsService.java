@@ -16,9 +16,13 @@ public interface GoodsService {
     boolean polishGoods(String g_id, String u_id, Date updateTime);
     boolean userDeleteGoods(String g_id, String u_id);
     boolean userRemoveGoods(String g_id, String u_id);
+    boolean addNewGoodsOrder(String g_id, String u_id, Date date);
     CommentBean getGoodsComment(String g_id);
     int addReplyToComment(String u_id, String reply, String origin_uid, int comment_id, Date createTime);
     int addComment(String comment, int gc_id, String g_id, String u_id, Date date);
     GoodsQueryPo getGoodsInfo(String g_id);
     List<GoodsQueryPo> getGoodsOfType(String type_id, Page page);
+    List<GoodsQueryPo> searchGoods(String key, Page page);
+    boolean confirmNewGoodsOrder(String g_id, String u_id);
+    boolean refuseNewGoodsOrder(String g_id, String u_id);
 }
