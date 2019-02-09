@@ -25,4 +25,5 @@ public interface GoodsService {
     List<GoodsQueryPo> searchGoods(String key, Page page);
     boolean confirmNewGoodsOrder(String g_id, String u_id);
     boolean refuseNewGoodsOrder(String g_id, String u_id);
+    Date releaseFindGoods(boolean isNew, String fg_id, String fg_name, String fg_desc, List<String> filenames, String fg_ft_id, String fg_u_id);
 }

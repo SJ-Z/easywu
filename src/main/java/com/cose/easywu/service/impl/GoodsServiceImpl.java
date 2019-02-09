@@ -152,6 +152,34 @@ public class GoodsServiceImpl implements GoodsService {
     }
 
     @Override
+    public Date releaseFindGoods(boolean isNew, String fg_id, String fg_name, String fg_desc, List<String> filenames, String fg_ft_id, String fg_u_id) {
+        Date g_updateTime = new Date();
+        FindGoodsQueryPo goods = new FindGoodsQueryPo(fg_id, fg_name, fg_desc, 0, 0, g_updateTime, fg_ft_id, fg_u_id);
+        int picLen = filenames.size();
+        if (picLen == 1) {
+            goods.setFg_pic1(filenames.get(0));
+            goods.setFg_pic2(null);
+            goods.setFg_pic3(null);
+        } else if (picLen == 2) {
+            goods.setFg_pic1(filenames.get(0));
+            goods.setFg_pic2(filenames.get(1));
+            goods.setFg_pic3(null);
+        } else if (picLen == 3) {
+            goods.setFg_pic1(filenames.get(0));
+            goods.setFg_pic2(filenames.get(1));
+            goods.setFg_pic3(filenames.get(2));
+        }
+
+        if (isNew) {
+            goodsMapper.insertFindGoods(goods);
+        } else {
+            goodsMapper.updateFindGoods(goods);
+        }
+
+        return g_updateTime;
+    }
+
+    @Override
     public Date release(boolean isNew, String g_id, String g_name, String g_desc, double g_price, double g_originalPrice,
                         List<String> filenames, String g_t_id, String g_u_id) {
         Goods goods = new Goods(g_id, g_name, g_desc, g_price, g_originalPrice);
@@ -181,8 +209,6 @@ public class GoodsServiceImpl implements GoodsService {
         goods.setG_state(0);
         Date g_updateTime = new Date();
         goods.setG_updateTime(g_updateTime);
-
-        System.out.println("GoodsServiceImpl:" + goods.toString());
 
         if (isNew) {
             goodsMapper.insertGoods(goods);

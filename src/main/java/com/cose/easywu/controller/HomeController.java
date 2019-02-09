@@ -1,6 +1,7 @@
 package com.cose.easywu.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.cose.easywu.po.FindData;
 import com.cose.easywu.po.HomeData;
 import com.cose.easywu.service.HomeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,22 @@ public class HomeController {
         String u_id = jsonObject.getString("u_id");
         HomeData homeData = homeService.getHomeData(u_id);
         String content = JSONObject.toJSONString(homeData);
+        try {
+            return URLEncoder.encode(content, "utf-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    // 获取失物招领主页数据
+    @RequestMapping("/find")
+    public @ResponseBody String getFindHomeData(@RequestBody String json) {
+        JSONObject jsonObject = JSONObject.parseObject(json);
+        String u_id = jsonObject.getString("u_id");
+        FindData findData = homeService.getFindHomeData(u_id);
+        String content = JSONObject.toJSONString(findData);
         try {
             return URLEncoder.encode(content, "utf-8");
         } catch (UnsupportedEncodingException e) {

@@ -9,16 +9,18 @@ public class HomeData {
     private List<GoodsQueryPo> newest_info;
     private List<GoodsQueryPo> goodsLikeList;
     private List<GoodsQueryPo> releaseGoodsList;
+    private List<GoodsQueryPo> buyGoodsList;
 
     public HomeData() {
     }
 
-    public HomeData(List<Banner> banner_info, List<Type> type_info, List<GoodsQueryPo> newest_info, List<GoodsQueryPo> goodsLikeList, List<GoodsQueryPo> releaseGoodsList) {
+    public HomeData(List<Banner> banner_info, List<Type> type_info, List<GoodsQueryPo> newest_info, List<GoodsQueryPo> goodsLikeList, List<GoodsQueryPo> releaseGoodsList, List<GoodsQueryPo> buyGoodsList) {
         this.banner_info = banner_info;
         this.type_info = type_info;
         this.newest_info = newest_info;
         this.goodsLikeList = goodsLikeList;
         this.releaseGoodsList = releaseGoodsList;
+        this.buyGoodsList = buyGoodsList;
     }
 
     public List<Banner> getBanner_info() {
@@ -61,6 +63,14 @@ public class HomeData {
         this.releaseGoodsList = releaseGoodsList;
     }
 
+    public List<GoodsQueryPo> getBuyGoodsList() {
+        return buyGoodsList;
+    }
+
+    public void setBuyGoodsList(List<GoodsQueryPo> buyGoodsList) {
+        this.buyGoodsList = buyGoodsList;
+    }
+
     @Override
     public String toString() {
         return "HomeData{" +
@@ -69,6 +79,7 @@ public class HomeData {
                 ", newest_info=" + newest_info +
                 ", goodsLikeList=" + goodsLikeList +
                 ", releaseGoodsList=" + releaseGoodsList +
+                ", buyGoodsList=" + buyGoodsList +
                 '}';
     }
 }

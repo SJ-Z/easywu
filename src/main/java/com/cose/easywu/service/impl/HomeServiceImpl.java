@@ -29,7 +29,22 @@ public class HomeServiceImpl implements HomeService {
 
         List<GoodsQueryPo> goodsLikeList = goodsMapper.selectGoodsLike(u_id);
         List<GoodsQueryPo> releaseGoodsList = goodsMapper.selectReleaseGoodsList(u_id);
-        return new HomeData(bannerList, typeList, goodsQueryPoList, goodsLikeList, releaseGoodsList);
+        List<GoodsQueryPo> buyGoodsList = goodsMapper.selectBuyGoodsList(u_id);
+        return new HomeData(bannerList, typeList, goodsQueryPoList, goodsLikeList, releaseGoodsList, buyGoodsList);
+    }
+
+    @Override
+    public FindData getFindHomeData(String u_id) {
+        List<FindType> findTypeList = homeMapper.selectAllFindType();
+
+        Page page = new Page(5, 0);
+        Map<String, Integer> pageMap = new HashMap<>();
+        pageMap.put("pageSize", page.getPageSize());
+        pageMap.put("startPos", page.getPageSize() * page.getPageCode());
+        List<FindGoodsQueryPo> findGoodsQueryPoList = goodsMapper.selectNewestFindGoods(pageMap);
+        List<FindGoodsQueryPo> releaseFindGoodsList = goodsMapper.selectReleaseFindGoodsList(u_id);
+        List<FindGoodsQueryPo> likeFindGoodsList = goodsMapper.selectLikeFindGoodsList(u_id);
+        return new FindData(findTypeList, findGoodsQueryPoList, releaseFindGoodsList, likeFindGoodsList);
     }
 
 }

@@ -10,4 +10,8 @@
         SELECT * FROM type
     </select>
 
+    <select id="selectAllFindType" resultType="com.cose.easywu.po.FindType">
+        SELECT * FROM findtype
+    </select>
+
 </mapper>

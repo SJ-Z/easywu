@@ -8,10 +8,23 @@
         #{g_pic1}, #{g_pic2}, #{g_pic3}, #{g_state}, #{g_updateTime}, #{g_type.t_id}, #{g_user.u_id})
     </insert>
 
+    <insert id="insertFindGoods" parameterType="com.cose.easywu.po.FindGoodsQueryPo">
+        INSERT INTO findgoods (fg_id, fg_name, fg_desc, fg_type, fg_pic1, fg_pic2, fg_pic3, fg_state, fg_updateTime,
+                               fg_ft_id, fg_u_id)
+        VALUES (#{fg_id}, #{fg_name}, #{fg_desc}, #{fg_type}, #{fg_pic1}, #{fg_pic2}, #{fg_pic3}, #{fg_state},
+                #{fg_updateTime}, #{fg_ft_id}, #{fg_u_id})
+    </insert>
+
     <update id="updateGoods" parameterType="com.cose.easywu.po.Goods">
         UPDATE goods SET g_name = #{g_name}, g_desc = #{g_desc}, g_price = #{g_price}, g_originalPrice = #{g_originalPrice},
         g_pic1 = #{g_pic1}, g_pic2 = #{g_pic2}, g_pic3 = #{g_pic3}, g_updateTime = #{g_updateTime}, g_t_id = #{g_type.t_id}
         WHERE g_id = #{g_id}
+    </update>
+
+    <update id="updateFindGoods" parameterType="com.cose.easywu.po.FindGoodsQueryPo">
+        UPDATE findgoods SET fg_name = #{fg_name}, fg_desc = #{fg_desc}, fg_pic1 = #{fg_pic1}, fg_pic2 = #{fg_pic2},
+                             fg_pic3 = #{fg_pic3}, fg_updateTime = #{fg_updateTime}, fg_ft_id = #{fg_ft_id}
+        WHERE fg_id = #{fg_id}
     </update>
 
     <select id="selectNewestGoods" parameterType="Map" resultType="com.cose.easywu.po.GoodsQueryPo">
@@ -19,6 +32,19 @@
         g_like, g_t_id, u_id AS g_u_id, u_nick AS g_u_nick, u_photo AS g_u_photo, u_sex AS g_u_sex
         FROM goods, users WHERE g_u_id = u_id AND g_state = 0 ORDER BY g_updateTime DESC
         LIMIT #{startPos}, #{pageSize}
+    </select>
+
+    <select id="selectNewestFindGoods" parameterType="Map" resultType="com.cose.easywu.po.FindGoodsQueryPo">
+        SELECT fg_id, fg_name, fg_desc, fg_type, fg_pic1, fg_pic2, fg_pic3, fg_state, fg_like, fg_updateTime,
+               fg_ft_id, fg_u_id, u_nick AS fg_u_nick, u_photo AS fg_u_photo, u_sex AS fg_u_sex
+        FROM findgoods, users WHERE fg_u_id = u_id AND fg_state = 0 ORDER BY fg_updateTime DESC
+        LIMIT #{startPos}, #{pageSize}
+    </select>
+
+    <select id="selectLikeFindGoodsList" parameterType="Map" resultType="com.cose.easywu.po.FindGoodsQueryPo">
+        SELECT fg_id, fg_name, fg_desc, fg_type, fg_pic1, fg_pic2, fg_pic3, fg_state, fg_like, fg_updateTime,
+               fg_ft_id, fg_u_id, u_nick AS fg_u_nick, u_photo AS fg_u_photo, u_sex AS fg_u_sex
+        FROM findgoods, users, likefindgoods WHERE lfg_u_id = u_id AND lfg_fg_id = fg_id ORDER BY fg_updateTime DESC
     </select>
 
     <select id="selectGoodsByTypeId" parameterType="Map" resultType="com.cose.easywu.po.GoodsQueryPo">
@@ -39,7 +65,7 @@
 
     <select id="selectGoodsLike" parameterType="String" resultType="com.cose.easywu.po.GoodsQueryPo">
         SELECT g_id, g_name, g_desc, g_price, g_originalPrice, g_pic1, g_pic2, g_pic3, g_updateTime, g_state,
-        g_like, g_t_id, u_id AS g_u_id, u_nick AS g_u_nick, u_photo AS g_u_photo, u_sex AS g_u_sex
+               g_like, g_t_id, u_id AS g_u_id, u_nick AS g_u_nick, u_photo AS g_u_photo, u_sex AS g_u_sex
         FROM goods, users, likegoods WHERE lg_u_id = #{u_id} AND lg_g_id = g_id AND g_u_id = u_id ORDER BY g_updateTime DESC
     </select>
 
@@ -48,8 +74,19 @@
         FROM goods WHERE g_u_id = #{u_id} AND g_state != 4 ORDER BY g_updateTime DESC
     </select>
 
+    <select id="selectReleaseFindGoodsList" parameterType="String" resultType="com.cose.easywu.po.FindGoodsQueryPo">
+        SELECT fg_id, fg_name, fg_desc, fg_type, fg_pic1, fg_pic2, fg_pic3, fg_updateTime, fg_state, fg_like, fg_ft_id
+        FROM findgoods WHERE fg_u_id = #{u_id} AND fg_state != 4 ORDER BY fg_updateTime DESC
+    </select>
+
+    <select id="selectBuyGoodsList" parameterType="String" resultType="com.cose.easywu.po.GoodsQueryPo">
+        SELECT g_id, g_name, g_desc, g_price, g_originalPrice, g_pic1, g_pic2, g_pic3, g_updateTime, g_state, g_like, g_t_id,
+               g_u_id, u_nick AS g_u_nick, u_photo AS g_u_photo, u_sex AS g_u_sex
+        FROM goods, users WHERE g_buyer_id = #{u_id} AND g_u_id = u_id ORDER BY g_updateTime DESC
+    </select>
+
     <select id="selectGoodsById" parameterType="String" resultType="com.cose.easywu.po.GoodsQueryPo">
-        SELECT * FROM goods, users WHERE g_id = #{g_id} AND g_state = 0 AND g_u_id = u_id
+        SELECT * FROM goods, users WHERE g_id = #{g_id} AND g_u_id = u_id
     </select>
 
     <insert id="insertLikeGoods" parameterType="com.cose.easywu.po.UpdateGoodsPo">
@@ -139,5 +176,6 @@
             SELECT LAST_INSERT_ID()
         </selectKey>
     </insert>
+
 
 </mapper>
