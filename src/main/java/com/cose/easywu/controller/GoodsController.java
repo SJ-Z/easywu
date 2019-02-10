@@ -3,6 +3,7 @@ package com.cose.easywu.controller;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.cose.easywu.po.CommentBean;
+import com.cose.easywu.po.FindGoodsQueryPo;
 import com.cose.easywu.po.GoodsQueryPo;
 import com.cose.easywu.po.Page;
 import com.cose.easywu.service.GoodsService;
@@ -388,6 +389,38 @@ public class GoodsController {
         return null;
     }
 
+    // 获取最新发布的寻找失物数据（五条，get请求）
+    @RequestMapping(value = "/newestFindGoods", method = RequestMethod.GET)
+    public @ResponseBody
+    String getNewestFindGoods() {
+        Page page = new Page(5, 0);
+        List<FindGoodsQueryPo> newestGoodsList = goodsService.getNewestFindGoodsList(page);
+        String content = JSONArray.toJSONString(newestGoodsList);
+        try {
+            return URLEncoder.encode(content, "utf-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    // 获取最新发布的寻找失主数据（五条，get请求）
+    @RequestMapping(value = "/newestFindPeople", method = RequestMethod.GET)
+    public @ResponseBody
+    String getNewestFindPeople() {
+        Page page = new Page(5, 0);
+        List<FindGoodsQueryPo> newestGoodsList = goodsService.getNewestFindPeopleList(page);
+        String content = JSONArray.toJSONString(newestGoodsList);
+        try {
+            return URLEncoder.encode(content, "utf-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
     // 发布闲置
     @RequestMapping("/release_goods")
     public @ResponseBody String releaseGoods(HttpServletRequest request) {
@@ -489,9 +522,9 @@ public class GoodsController {
         return null;
     }
 
-    // 发布寻找失主
-    @RequestMapping("/release_find_people")
-    public @ResponseBody String releaseFindPeople(HttpServletRequest request) {
+    // 发布失物招领信息
+    @RequestMapping("/release_find")
+    public @ResponseBody String releaseFind(HttpServletRequest request) {
         String content; // 返回给客户端的内容
 
         try {
@@ -525,6 +558,7 @@ public class GoodsController {
             }
 
             // 得到发布内容信息
+            int type = Integer.valueOf(params.get("type"));
             String fg_name = params.get("fg_name");
             String fg_desc = params.get("fg_desc");
             String fg_ft_id = params.get("fg_ft_id");
@@ -562,7 +596,7 @@ public class GoodsController {
             }
 
             // 保存到服务器
-            Date g_updateTime = goodsService.releaseFindGoods(isNew, fg_id, fg_name, fg_desc, filenames, fg_ft_id, fg_u_id);
+            Date g_updateTime = goodsService.releaseFindGoods(type, isNew, fg_id, fg_name, fg_desc, filenames, fg_ft_id, fg_u_id);
 
             // 返回成功信息和图片名给客户端
             content = "{'code':'1', 'msg':'发布成功', 'g_id':'" + fg_id + "', 'g_updateTime':'" + g_updateTime.getTime() + "'}";

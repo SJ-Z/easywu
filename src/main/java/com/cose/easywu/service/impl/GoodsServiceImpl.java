@@ -152,9 +152,9 @@ public class GoodsServiceImpl implements GoodsService {
     }
 
     @Override
-    public Date releaseFindGoods(boolean isNew, String fg_id, String fg_name, String fg_desc, List<String> filenames, String fg_ft_id, String fg_u_id) {
+    public Date releaseFindGoods(int type, boolean isNew, String fg_id, String fg_name, String fg_desc, List<String> filenames, String fg_ft_id, String fg_u_id) {
         Date g_updateTime = new Date();
-        FindGoodsQueryPo goods = new FindGoodsQueryPo(fg_id, fg_name, fg_desc, 0, 0, g_updateTime, fg_ft_id, fg_u_id);
+        FindGoodsQueryPo goods = new FindGoodsQueryPo(fg_id, fg_name, fg_desc, 0, g_updateTime, fg_ft_id, fg_u_id);
         int picLen = filenames.size();
         if (picLen == 1) {
             goods.setFg_pic1(filenames.get(0));
@@ -170,10 +170,18 @@ public class GoodsServiceImpl implements GoodsService {
             goods.setFg_pic3(filenames.get(2));
         }
 
-        if (isNew) {
-            goodsMapper.insertFindGoods(goods);
+        if (type == 0) {
+            if (isNew) {
+                goodsMapper.insertFindPeople(goods);
+            } else {
+                goodsMapper.updateFindPeople(goods);
+            }
         } else {
-            goodsMapper.updateFindGoods(goods);
+            if (isNew) {
+                goodsMapper.insertFindGoods(goods);
+            } else {
+                goodsMapper.updateFindGoods(goods);
+            }
         }
 
         return g_updateTime;
@@ -225,5 +233,21 @@ public class GoodsServiceImpl implements GoodsService {
         pageMap.put("pageSize", page.getPageSize());
         pageMap.put("startPos", page.getPageSize() * page.getPageCode());
         return goodsMapper.selectNewestGoods(pageMap);
+    }
+
+    @Override
+    public List<FindGoodsQueryPo> getNewestFindGoodsList(Page page) {
+        Map<String, Integer> pageMap = new HashMap<>();
+        pageMap.put("pageSize", page.getPageSize());
+        pageMap.put("startPos", page.getPageSize() * page.getPageCode());
+        return goodsMapper.selectNewestFindGoods(pageMap);
+    }
+
+    @Override
+    public List<FindGoodsQueryPo> getNewestFindPeopleList(Page page) {
+        Map<String, Integer> pageMap = new HashMap<>();
+        pageMap.put("pageSize", page.getPageSize());
+        pageMap.put("startPos", page.getPageSize() * page.getPageCode());
+        return goodsMapper.selectNewestFindPeople(pageMap);
     }
 }

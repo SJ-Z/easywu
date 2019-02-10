@@ -41,10 +41,11 @@ public class HomeServiceImpl implements HomeService {
         Map<String, Integer> pageMap = new HashMap<>();
         pageMap.put("pageSize", page.getPageSize());
         pageMap.put("startPos", page.getPageSize() * page.getPageCode());
+        List<FindGoodsQueryPo> findPeopleQueryPoList = goodsMapper.selectNewestFindPeople(pageMap);
         List<FindGoodsQueryPo> findGoodsQueryPoList = goodsMapper.selectNewestFindGoods(pageMap);
         List<FindGoodsQueryPo> releaseFindGoodsList = goodsMapper.selectReleaseFindGoodsList(u_id);
         List<FindGoodsQueryPo> likeFindGoodsList = goodsMapper.selectLikeFindGoodsList(u_id);
-        return new FindData(findTypeList, findGoodsQueryPoList, releaseFindGoodsList, likeFindGoodsList);
+        return new FindData(findTypeList, findPeopleQueryPoList, findGoodsQueryPoList, releaseFindGoodsList, likeFindGoodsList);
     }
 
 }

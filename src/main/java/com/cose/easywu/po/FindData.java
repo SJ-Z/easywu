@@ -5,16 +5,18 @@ import java.util.List;
 public class FindData {
 
     private List<FindType> findTypeList;
-    private List<FindGoodsQueryPo> findNewestInfoList;
+    private List<FindGoodsQueryPo> newestFindPeopleList;
+    private List<FindGoodsQueryPo> newestFindGoodsList;
     private List<FindGoodsQueryPo> releaseFindGoodsList;
     private List<FindGoodsQueryPo> likeFindGoodsList;
 
     public FindData() {
     }
 
-    public FindData(List<FindType> findTypeList, List<FindGoodsQueryPo> findNewestInfoList, List<FindGoodsQueryPo> releaseFindGoodsList, List<FindGoodsQueryPo> likeFindGoodsList) {
+    public FindData(List<FindType> findTypeList, List<FindGoodsQueryPo> newestFindPeopleList, List<FindGoodsQueryPo> newestFindGoodsList, List<FindGoodsQueryPo> releaseFindGoodsList, List<FindGoodsQueryPo> likeFindGoodsList) {
         this.findTypeList = findTypeList;
-        this.findNewestInfoList = findNewestInfoList;
+        this.newestFindPeopleList = newestFindPeopleList;
+        this.newestFindGoodsList = newestFindGoodsList;
         this.releaseFindGoodsList = releaseFindGoodsList;
         this.likeFindGoodsList = likeFindGoodsList;
     }
@@ -27,12 +29,20 @@ public class FindData {
         this.findTypeList = findTypeList;
     }
 
-    public List<FindGoodsQueryPo> getFindNewestInfoList() {
-        return findNewestInfoList;
+    public List<FindGoodsQueryPo> getNewestFindPeopleList() {
+        return newestFindPeopleList;
     }
 
-    public void setFindNewestInfoList(List<FindGoodsQueryPo> findNewestInfoList) {
-        this.findNewestInfoList = findNewestInfoList;
+    public void setNewestFindPeopleList(List<FindGoodsQueryPo> newestFindPeopleList) {
+        this.newestFindPeopleList = newestFindPeopleList;
+    }
+
+    public List<FindGoodsQueryPo> getNewestFindGoodsList() {
+        return newestFindGoodsList;
+    }
+
+    public void setNewestFindGoodsList(List<FindGoodsQueryPo> newestFindGoodsList) {
+        this.newestFindGoodsList = newestFindGoodsList;
     }
 
     public List<FindGoodsQueryPo> getReleaseFindGoodsList() {
@@ -55,7 +65,8 @@ public class FindData {
     public String toString() {
         return "FindData{" +
                 "findTypeList=" + findTypeList +
-                ", findNewestInfoList=" + findNewestInfoList +
+                ", newestFindPeopleList=" + newestFindPeopleList +
+                ", newestFindGoodsList=" + newestFindGoodsList +
                 ", releaseFindGoodsList=" + releaseFindGoodsList +
                 ", likeFindGoodsList=" + likeFindGoodsList +
                 '}';

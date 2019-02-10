@@ -1,6 +1,7 @@
 package com.cose.easywu.service;
 
 import com.cose.easywu.po.CommentBean;
+import com.cose.easywu.po.FindGoodsQueryPo;
 import com.cose.easywu.po.GoodsQueryPo;
 import com.cose.easywu.po.Page;
 
@@ -25,5 +26,7 @@ public interface GoodsService {
     List<GoodsQueryPo> searchGoods(String key, Page page);
     boolean confirmNewGoodsOrder(String g_id, String u_id);
     boolean refuseNewGoodsOrder(String g_id, String u_id);
-    Date releaseFindGoods(boolean isNew, String fg_id, String fg_name, String fg_desc, List<String> filenames, String fg_ft_id, String fg_u_id);
+    Date releaseFindGoods(int type, boolean isNew, String fg_id, String fg_name, String fg_desc, List<String> filenames, String fg_ft_id, String fg_u_id);
+    List<FindGoodsQueryPo> getNewestFindGoodsList(Page page);
+    List<FindGoodsQueryPo> getNewestFindPeopleList(Page page);
 }

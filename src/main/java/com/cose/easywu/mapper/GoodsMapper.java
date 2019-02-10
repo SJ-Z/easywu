@@ -28,8 +28,11 @@ public interface GoodsMapper {
     int updateGoodsStateAndSetBuyerIDNull(UpdateGoodsPo updateGoodsPo);
     List<GoodsQueryPo> selectBuyGoodsList(String u_id);
     List<FindGoodsQueryPo> selectNewestFindGoods(Map<String, Integer> pageMap);
+    List<FindGoodsQueryPo> selectNewestFindPeople(Map<String, Integer> pageMap);
     List<FindGoodsQueryPo> selectReleaseFindGoodsList(String u_id);
     List<FindGoodsQueryPo> selectLikeFindGoodsList(String u_id);
     void insertFindGoods(FindGoodsQueryPo goods);
     void updateFindGoods(FindGoodsQueryPo goods);
+    void insertFindPeople(FindGoodsQueryPo goods);
+    void updateFindPeople(FindGoodsQueryPo goods);
 }
