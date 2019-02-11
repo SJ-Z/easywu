@@ -29,4 +29,10 @@ public interface GoodsService {
     Date releaseFindGoods(int type, boolean isNew, String fg_id, String fg_name, String fg_desc, List<String> filenames, String fg_ft_id, String fg_u_id);
     List<FindGoodsQueryPo> getNewestFindGoodsList(Page page);
     List<FindGoodsQueryPo> getNewestFindPeopleList(Page page);
+    void setLikeFindGoods(String fg_id, String u_id, boolean like, boolean isFindGoods);
+    int addCommentToFindGoods(String comment, int gc_id, String fg_id, String u_id, Date createTime);
+    int addCommentToFindPeople(String comment, int gc_id, String fg_id, String u_id, Date createTime);
+    CommentBean getFindGoodsComment(String fg_id, boolean isFindGoods);
+    int addReplyToFindComment(String u_id, String reply, String origin_uid, int comment_id, Date createTime, boolean isFindGoods);
+    boolean userDeleteFindGoods(String fg_id, String u_id, boolean isFindGoods);
 }

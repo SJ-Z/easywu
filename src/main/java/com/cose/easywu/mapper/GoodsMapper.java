@@ -30,9 +30,27 @@ public interface GoodsMapper {
     List<FindGoodsQueryPo> selectNewestFindGoods(Map<String, Integer> pageMap);
     List<FindGoodsQueryPo> selectNewestFindPeople(Map<String, Integer> pageMap);
     List<FindGoodsQueryPo> selectReleaseFindGoodsList(String u_id);
+    List<FindGoodsQueryPo> selectReleaseFindPeopleList(String u_id);
     List<FindGoodsQueryPo> selectLikeFindGoodsList(String u_id);
+    List<FindGoodsQueryPo> selectLikeFindPeopleList(String u_id);
     void insertFindGoods(FindGoodsQueryPo goods);
     void updateFindGoods(FindGoodsQueryPo goods);
     void insertFindPeople(FindGoodsQueryPo goods);
     void updateFindPeople(FindGoodsQueryPo goods);
+    void insertLikeFindGoods(UpdateGoodsPo updateGoodsPo);
+    void insertLikeFindPeople(UpdateGoodsPo updateGoodsPo);
+    void deleteLikeFindGoods(UpdateGoodsPo updateGoodsPo);
+    void deleteLikeFindPeople(UpdateGoodsPo updateGoodsPo);
+    void updateFindGoodsLike(UpdateGoodsPo updateGoodsPo);
+    void updateFindPeopleLike(UpdateGoodsPo updateGoodsPo);
+    int insertCommentBeanFindGoods(CommentBean commentBean);
+    int insertCommentDetailPoFindGoods(CommentDetailPo commentDetailPo);
+    int insertCommentBeanFindPeople(CommentBean commentBean);
+    int insertCommentDetailPoFindPeople(CommentDetailPo commentDetailPo);
+    CommentBean selectFindGoodsCommentWithReply(String g_id);
+    CommentBean selectFindPeopleCommentWithReply(String g_id);
+    int insertFindGoodsReplyPo(ReplyDetailPo replyDetailPo);
+    int insertFindPeopleReplyPo(ReplyDetailPo replyDetailPo);
+    int updateFindGoodsState(UpdateGoodsPo updateGoodsPo);
+    int updateFindPeopleState(UpdateGoodsPo updateGoodsPo);
 }

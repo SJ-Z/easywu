@@ -44,8 +44,11 @@ public class HomeServiceImpl implements HomeService {
         List<FindGoodsQueryPo> findPeopleQueryPoList = goodsMapper.selectNewestFindPeople(pageMap);
         List<FindGoodsQueryPo> findGoodsQueryPoList = goodsMapper.selectNewestFindGoods(pageMap);
         List<FindGoodsQueryPo> releaseFindGoodsList = goodsMapper.selectReleaseFindGoodsList(u_id);
+        List<FindGoodsQueryPo> releaseFindPeopleList = goodsMapper.selectReleaseFindPeopleList(u_id);
         List<FindGoodsQueryPo> likeFindGoodsList = goodsMapper.selectLikeFindGoodsList(u_id);
-        return new FindData(findTypeList, findPeopleQueryPoList, findGoodsQueryPoList, releaseFindGoodsList, likeFindGoodsList);
+        List<FindGoodsQueryPo> likeFindPeopleList = goodsMapper.selectLikeFindPeopleList(u_id);
+        return new FindData(findTypeList, findPeopleQueryPoList, findGoodsQueryPoList, releaseFindGoodsList,
+                releaseFindPeopleList, likeFindGoodsList, likeFindPeopleList);
     }
 
 }

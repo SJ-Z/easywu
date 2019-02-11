@@ -25,6 +25,24 @@ public class GoodsServiceImpl implements GoodsService {
     }
 
     @Override
+    public int addReplyToFindComment(String u_id, String reply, String origin_uid, int comment_id, Date createTime, boolean isFindGoods) {
+        ReplyDetailPo replyDetailPo = new ReplyDetailPo(u_id, reply, origin_uid, comment_id, createTime);
+        if (isFindGoods) {
+            if (goodsMapper.insertFindGoodsReplyPo(replyDetailPo) == 1) {
+                return replyDetailPo.getId();
+            } else {
+                return 0;
+            }
+        } else {
+            if (goodsMapper.insertFindPeopleReplyPo(replyDetailPo) == 1) {
+                return replyDetailPo.getId();
+            } else {
+                return 0;
+            }
+        }
+    }
+
+    @Override
     public int addComment(String comment, int gc_id, String g_id, String u_id, Date date) {
         if (gc_id == -1) {
             CommentBean commentBean = new CommentBean(g_id);
@@ -36,6 +54,42 @@ public class GoodsServiceImpl implements GoodsService {
         }
         CommentDetailPo commentDetailPo = new CommentDetailPo(comment, gc_id, g_id, u_id, date);
         if (goodsMapper.insertCommentDetailPo(commentDetailPo) == 1) {
+            return commentDetailPo.getId();
+        } else {
+            return 0;
+        }
+    }
+
+    @Override
+    public int addCommentToFindGoods(String comment, int gc_id, String g_id, String u_id, Date date) {
+        if (gc_id == -1) {
+            CommentBean commentBean = new CommentBean(g_id);
+            if (goodsMapper.insertCommentBeanFindGoods(commentBean) == 1) {
+                gc_id = commentBean.getId();
+            } else {
+                return 0;
+            }
+        }
+        CommentDetailPo commentDetailPo = new CommentDetailPo(comment, gc_id, g_id, u_id, date);
+        if (goodsMapper.insertCommentDetailPoFindGoods(commentDetailPo) == 1) {
+            return commentDetailPo.getId();
+        } else {
+            return 0;
+        }
+    }
+
+    @Override
+    public int addCommentToFindPeople(String comment, int gc_id, String g_id, String u_id, Date date) {
+        if (gc_id == -1) {
+            CommentBean commentBean = new CommentBean(g_id);
+            if (goodsMapper.insertCommentBeanFindPeople(commentBean) == 1) {
+                gc_id = commentBean.getId();
+            } else {
+                return 0;
+            }
+        }
+        CommentDetailPo commentDetailPo = new CommentDetailPo(comment, gc_id, g_id, u_id, date);
+        if (goodsMapper.insertCommentDetailPoFindPeople(commentDetailPo) == 1) {
             return commentDetailPo.getId();
         } else {
             return 0;
@@ -68,6 +122,15 @@ public class GoodsServiceImpl implements GoodsService {
     @Override
     public CommentBean getGoodsComment(String g_id) {
         return goodsMapper.selectGoodsCommentWithReply(g_id);
+    }
+
+    @Override
+    public CommentBean getFindGoodsComment(String g_id, boolean isFindGoods) {
+        if (isFindGoods) {
+            return goodsMapper.selectFindGoodsCommentWithReply(g_id);
+        } else {
+            return goodsMapper.selectFindPeopleCommentWithReply(g_id);
+        }
     }
 
     @Override
@@ -126,6 +189,22 @@ public class GoodsServiceImpl implements GoodsService {
     }
 
     @Override
+    public boolean userDeleteFindGoods(String g_id, String u_id, boolean isFindGoods) {
+        UpdateGoodsPo updateGoodsPo = new UpdateGoodsPo(g_id, u_id);
+        updateGoodsPo.setState(2); // 2表示被用户下架
+        int result;
+        if (isFindGoods) {
+            result = goodsMapper.updateFindGoodsState(updateGoodsPo);
+        } else {
+            result = goodsMapper.updateFindPeopleState(updateGoodsPo);
+        }
+        if (result == 1) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
     public boolean polishGoods(String g_id, String u_id, Date updateTime) {
         UpdateGoodsPo updateGoodsPo = new UpdateGoodsPo(g_id, u_id, updateTime);
         int result = goodsMapper.updateGoodsUpdateTime(updateGoodsPo);
@@ -149,6 +228,34 @@ public class GoodsServiceImpl implements GoodsService {
             goodsMapper.deleteLikeGoods(updateGoodsPo);
         }
         goodsMapper.updateGoodsLike(updateGoodsPo);
+    }
+
+    @Override
+    public void setLikeFindGoods(String g_id, String u_id, boolean like, boolean isFindGoods) {
+        UpdateGoodsPo updateGoodsPo;
+        if (like) {
+            updateGoodsPo = new UpdateGoodsPo(g_id, u_id, 1);
+        } else {
+            updateGoodsPo = new UpdateGoodsPo(g_id, u_id, -1);
+        }
+        if (like) {
+            if (isFindGoods) {
+                goodsMapper.insertLikeFindGoods(updateGoodsPo);
+            } else {
+                goodsMapper.insertLikeFindPeople(updateGoodsPo);
+            }
+        } else {
+            if (isFindGoods) {
+                goodsMapper.deleteLikeFindGoods(updateGoodsPo);
+            } else {
+                goodsMapper.deleteLikeFindPeople(updateGoodsPo);
+            }
+        }
+        if (isFindGoods) {
+            goodsMapper.updateFindGoodsLike(updateGoodsPo);
+        } else {
+            goodsMapper.updateFindPeopleLike(updateGoodsPo);
+        }
     }
 
     @Override

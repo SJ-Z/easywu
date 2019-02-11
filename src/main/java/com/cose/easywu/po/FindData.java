@@ -8,17 +8,21 @@ public class FindData {
     private List<FindGoodsQueryPo> newestFindPeopleList;
     private List<FindGoodsQueryPo> newestFindGoodsList;
     private List<FindGoodsQueryPo> releaseFindGoodsList;
+    private List<FindGoodsQueryPo> releaseFindPeopleList;
     private List<FindGoodsQueryPo> likeFindGoodsList;
+    private List<FindGoodsQueryPo> likeFindPeopleList;
 
     public FindData() {
     }
 
-    public FindData(List<FindType> findTypeList, List<FindGoodsQueryPo> newestFindPeopleList, List<FindGoodsQueryPo> newestFindGoodsList, List<FindGoodsQueryPo> releaseFindGoodsList, List<FindGoodsQueryPo> likeFindGoodsList) {
+    public FindData(List<FindType> findTypeList, List<FindGoodsQueryPo> newestFindPeopleList, List<FindGoodsQueryPo> newestFindGoodsList, List<FindGoodsQueryPo> releaseFindGoodsList, List<FindGoodsQueryPo> releaseFindPeopleList, List<FindGoodsQueryPo> likeFindGoodsList, List<FindGoodsQueryPo> likeFindPeopleList) {
         this.findTypeList = findTypeList;
         this.newestFindPeopleList = newestFindPeopleList;
         this.newestFindGoodsList = newestFindGoodsList;
         this.releaseFindGoodsList = releaseFindGoodsList;
+        this.releaseFindPeopleList = releaseFindPeopleList;
         this.likeFindGoodsList = likeFindGoodsList;
+        this.likeFindPeopleList = likeFindPeopleList;
     }
 
     public List<FindType> getFindTypeList() {
@@ -53,12 +57,28 @@ public class FindData {
         this.releaseFindGoodsList = releaseFindGoodsList;
     }
 
+    public List<FindGoodsQueryPo> getReleaseFindPeopleList() {
+        return releaseFindPeopleList;
+    }
+
+    public void setReleaseFindPeopleList(List<FindGoodsQueryPo> releaseFindPeopleList) {
+        this.releaseFindPeopleList = releaseFindPeopleList;
+    }
+
     public List<FindGoodsQueryPo> getLikeFindGoodsList() {
         return likeFindGoodsList;
     }
 
     public void setLikeFindGoodsList(List<FindGoodsQueryPo> likeFindGoodsList) {
         this.likeFindGoodsList = likeFindGoodsList;
+    }
+
+    public List<FindGoodsQueryPo> getLikeFindPeopleList() {
+        return likeFindPeopleList;
+    }
+
+    public void setLikeFindPeopleList(List<FindGoodsQueryPo> likeFindPeopleList) {
+        this.likeFindPeopleList = likeFindPeopleList;
     }
 
     @Override
@@ -68,7 +88,9 @@ public class FindData {
                 ", newestFindPeopleList=" + newestFindPeopleList +
                 ", newestFindGoodsList=" + newestFindGoodsList +
                 ", releaseFindGoodsList=" + releaseFindGoodsList +
+                ", releaseFindPeopleList=" + releaseFindPeopleList +
                 ", likeFindGoodsList=" + likeFindGoodsList +
+                ", likeFindPeopleList=" + likeFindPeopleList +
                 '}';
     }
 }

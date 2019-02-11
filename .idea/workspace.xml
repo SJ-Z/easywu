@@ -9,13 +9,10 @@
     <list default="true" id="64fb0107-7985-4e64-9a5e-ee2dfdc1df1b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/859c813b-ec78-40d2-9359-f7ea942a1862.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/859c813b-ec78-40d2-9359-f7ea942a1862.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/find_goods_pic/5f3980c365324dc00.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/find_goods_pic/5f3980c365324dc01.jpg" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/cose/easywu/controller/GoodsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cose/easywu/controller/GoodsController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/cose/easywu/mapper/GoodsMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cose/easywu/mapper/GoodsMapper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/cose/easywu/mapper/GoodsMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cose/easywu/mapper/GoodsMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/cose/easywu/po/FindData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cose/easywu/po/FindData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/cose/easywu/po/FindGoodsQueryPo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cose/easywu/po/FindGoodsQueryPo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/cose/easywu/service/GoodsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cose/easywu/service/GoodsService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/cose/easywu/service/impl/GoodsServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cose/easywu/service/impl/GoodsServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/cose/easywu/service/impl/HomeServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cose/easywu/service/impl/HomeServiceImpl.java" afterDir="false" />
@@ -55,10 +52,10 @@
     <session id="-1621099225">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="94" />
+          <entry key="project.closed" value="95" />
           <entry key="project.open.time.1" value="7" />
           <entry key="project.open.time.10" value="13" />
-          <entry key="project.open.time.11" value="11" />
+          <entry key="project.open.time.11" value="12" />
           <entry key="project.open.time.13" value="2" />
           <entry key="project.open.time.14" value="2" />
           <entry key="project.open.time.15" value="1" />
@@ -70,7 +67,7 @@
           <entry key="project.open.time.7" value="4" />
           <entry key="project.open.time.8" value="24" />
           <entry key="project.open.time.9" value="24" />
-          <entry key="project.opened" value="97" />
+          <entry key="project.opened" value="98" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -78,15 +75,15 @@
           <entry key="class" value="5" />
           <entry key="cpp" value="1" />
           <entry key="html" value="1" />
-          <entry key="java" value="442" />
-          <entry key="jpg" value="34" />
+          <entry key="java" value="450" />
+          <entry key="jpg" value="35" />
           <entry key="jsp" value="2" />
           <entry key="png" value="2" />
           <entry key="pom" value="1" />
           <entry key="properties" value="13" />
           <entry key="sql" value="1" />
           <entry key="svg" value="2" />
-          <entry key="xml" value="109" />
+          <entry key="xml" value="110" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
@@ -94,46 +91,46 @@
           <entry key="C++" value="1" />
           <entry key="CLASS" value="5" />
           <entry key="HTML" value="1" />
-          <entry key="Image" value="36" />
-          <entry key="JAVA" value="442" />
+          <entry key="Image" value="37" />
+          <entry key="JAVA" value="450" />
           <entry key="JSP" value="2" />
           <entry key="Properties" value="13" />
           <entry key="SVG" value="2" />
           <entry key="Scratch" value="1" />
-          <entry key="XML" value="110" />
+          <entry key="XML" value="111" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="18" />
           <entry key="html" value="26" />
-          <entry key="java" value="16574" />
+          <entry key="java" value="17144" />
           <entry key="jsp" value="1" />
           <entry key="properties" value="235" />
           <entry key="txt" value="12" />
-          <entry key="xml" value="5109" />
+          <entry key="xml" value="5465" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="HTML" value="26" />
-          <entry key="JAVA" value="16574" />
+          <entry key="JAVA" value="17144" />
           <entry key="JSP" value="1" />
           <entry key="PLAIN_TEXT" value="30" />
           <entry key="Properties" value="235" />
-          <entry key="SQL" value="205" />
-          <entry key="XML" value="4904" />
+          <entry key="SQL" value="244" />
+          <entry key="XML" value="5221" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/cose/easywu/controller/GoodsController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="370">
-              <caret line="414" column="13" lean-forward="true" selection-start-line="414" selection-start-column="13" selection-end-line="414" selection-end-column="13" />
+            <state relative-caret-position="-824">
+              <caret line="672" column="34" selection-start-line="672" selection-start-column="22" selection-end-line="672" selection-end-column="34" />
             </state>
           </provider>
         </entry>
@@ -141,17 +138,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/cose/easywu/service/GoodsService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="494">
-              <caret line="32" lean-forward="true" selection-start-line="32" selection-end-line="32" />
+            <state relative-caret-position="570">
+              <caret line="36" selection-start-line="36" selection-end-line="36" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/cose/easywu/service/impl/GoodsServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="484">
-              <caret line="250" column="59" lean-forward="true" selection-start-line="250" selection-start-column="59" selection-end-line="250" selection-end-column="59" />
+            <state relative-caret-position="107">
+              <caret line="271" column="47" lean-forward="true" selection-start-line="271" selection-start-column="47" selection-end-line="271" selection-end-column="47" />
             </state>
           </provider>
         </entry>
@@ -159,8 +156,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/cose/easywu/mapper/GoodsMapper.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="427">
-              <caret line="31" column="67" lean-forward="true" selection-start-line="31" selection-start-column="67" selection-end-line="31" selection-end-column="67" />
+            <state relative-caret-position="522">
+              <caret line="54" column="59" lean-forward="true" selection-start-line="54" selection-start-column="59" selection-end-line="54" selection-end-column="59" />
             </state>
           </provider>
         </entry>
@@ -168,8 +165,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/cose/easywu/mapper/GoodsMapper.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="354">
-              <caret line="54" column="13" lean-forward="true" selection-start-line="54" selection-start-column="13" selection-end-line="54" selection-end-column="13" />
+            <state relative-caret-position="468">
+              <caret line="173" lean-forward="true" selection-start-line="173" selection-end-line="173" />
             </state>
           </provider>
         </entry>
@@ -187,28 +184,36 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>core</find>
-      <find>jackson</find>
-      <find>gson</find>
-      <find>slf</find>
-      <find>log4j</find>
-      <find>newest</find>
-      <find>selectNewestGoods</find>
-      <find>selectReleaseGoodsList</find>
-      <find>selectGoodsLike</find>
-      <find>select</find>
-      <find>selectLike</find>
-      <find>replyDetailResult</find>
-      <find>getGoodsInfo</find>
       <find>getGood</find>
       <find>selectgoodsbyid</find>
       <find>selectNew</find>
-      <find>release</find>
       <find>insertGoods</find>
       <find>insertFindGoods</find>
       <find>fg_type</find>
       <find>getNewestGoodsList</find>
       <find>selectNewestFindGoods</find>
+      <find>selectLikeFindGoodsList</find>
+      <find>setLike</find>
+      <find>setLikeGoods</find>
+      <find>insertLikeGoods</find>
+      <find>updateGoodsLike</find>
+      <find>goodsAddComment</find>
+      <find>addComment</find>
+      <find>insertCommentBean</find>
+      <find>insertCommentDetailPo</find>
+      <find>insertCommentBeanFindPeople</find>
+      <find>goodsComment</find>
+      <find>getGoodsComment</find>
+      <find>selectGoodsCommentWithReply</find>
+      <find>commentResultFindGoods</find>
+      <find>goodsAddReply</find>
+      <find>addRe</find>
+      <find>insertReplyPo</find>
+      <find>delete</find>
+      <find>updateGoods</find>
+      <find>updateGoodsS</find>
+      <find>release_find</find>
+      <find>release</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -260,14 +265,14 @@
         <option value="$PROJECT_DIR$/src/main/java/com/cose/easywu/mapper/HomeMapper.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/cose/easywu/mapper/HomeMapper.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/cose/easywu/controller/HomeController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/cose/easywu/po/FindGoodsQueryPo.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/cose/easywu/po/FindData.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/cose/easywu/service/impl/HomeServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/cose/easywu/po/FindGoodsQueryPo.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/cose/easywu/service/GoodsService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/cose/easywu/controller/GoodsController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/cose/easywu/service/impl/GoodsServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/cose/easywu/mapper/GoodsMapper.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/cose/easywu/mapper/GoodsMapper.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/com/cose/easywu/controller/GoodsController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/cose/easywu/service/GoodsService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/cose/easywu/service/impl/GoodsServiceImpl.java" />
       </list>
     </option>
   </component>
@@ -338,8 +343,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -477,6 +480,8 @@
         </subPane>
       </pane>
       <pane id="PackagesPane" />
+      <pane id="Scope" />
+      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -487,7 +492,7 @@
     <property name="Repository.Attach.Sources" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1549797222208" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1549895172659" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/find_goods_pic" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -741,18 +746,19 @@
       <workItem from="1549631071371" duration="1072000" />
       <workItem from="1549678257258" duration="5374000" />
       <workItem from="1549722709996" duration="955000" />
-      <workItem from="1549762293798" duration="5884000" />
+      <workItem from="1549762293798" duration="8642000" />
+      <workItem from="1549852050954" duration="11718000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="336783000" />
+    <option name="totallyTimeSpent" value="351259000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.28284183" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.28686327" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -762,7 +768,7 @@
       <window_info id="Web" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.5078014" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.5078014" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -801,13 +807,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com.cose.easemob.lmc/tool/JsonTool.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="15" column="25" selection-start-line="15" selection-start-column="25" selection-end-line="15" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com.cose.easemob.lmc/service/TalkDataService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="228">
@@ -935,13 +934,6 @@
       </provider>
       <provider editor-type-id="MavenHelperPluginDependencyAnalyzer" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/cose/easywu/po/UpdateGoodsPo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="15" column="11" selection-start-line="15" selection-start-column="11" selection-end-line="15" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/cose/easywu/po/Type.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="399">
@@ -1013,13 +1005,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/cose/jpush/JPushHelper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="173" selection-start-line="173" selection-end-line="173" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/cose/easywu/po/HomeData.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="152">
@@ -1055,13 +1040,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/cose/easywu/controller/HomeController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="45" column="13" lean-forward="true" selection-start-line="45" selection-start-column="13" selection-end-line="45" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/cose/easywu/mapper/HomeMapper.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="152">
@@ -1076,58 +1054,94 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/cose/easywu/controller/HomeController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="489">
+          <caret line="45" column="13" lean-forward="true" selection-start-line="45" selection-start-column="13" selection-end-line="45" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/cose/easywu/po/FindData.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="10" column="53" selection-start-line="10" selection-start-column="53" selection-end-line="10" selection-end-column="53" />
+        <state relative-caret-position="304">
+          <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
           <folding>
-            <element signature="e#1129#1130#0" expanded="true" />
-            <element signature="e#1172#1173#0" expanded="true" />
-            <element signature="e#1386#1387#0" expanded="true" />
-            <element signature="e#1428#1429#0" expanded="true" />
+            <element signature="e#1235#1236#0" expanded="true" />
+            <element signature="e#1270#1271#0" expanded="true" />
+            <element signature="e#1334#1335#0" expanded="true" />
+            <element signature="e#1382#1383#0" expanded="true" />
+            <element signature="e#1445#1446#0" expanded="true" />
+            <element signature="e#1488#1489#0" expanded="true" />
+            <element signature="e#1702#1703#0" expanded="true" />
+            <element signature="e#1744#1745#0" expanded="true" />
+            <element signature="e#1955#1956#0" expanded="true" />
+            <element signature="e#1998#1999#0" expanded="true" />
+            <element signature="e#2214#2215#0" expanded="true" />
+            <element signature="e#2258#2259#0" expanded="true" />
+            <element signature="e#2474#2475#0" expanded="true" />
+            <element signature="e#2514#2515#0" expanded="true" />
+            <element signature="e#2715#2716#0" expanded="true" />
+            <element signature="e#2756#2757#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/cose/easywu/service/impl/HomeServiceImpl.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/cose/easywu/po/UpdateGoodsPo.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="413">
-          <caret line="45" selection-start-line="45" selection-end-line="45" />
+        <state relative-caret-position="76">
+          <caret line="26" column="11" selection-start-line="26" selection-start-column="11" selection-end-line="26" selection-end-column="11" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/cose/easywu/mapper/GoodsMapper.xml">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/cose/jpush/JPushHelper.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="354">
-          <caret line="54" column="13" lean-forward="true" selection-start-line="54" selection-start-column="13" selection-end-line="54" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/cose/easywu/mapper/GoodsMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="427">
-          <caret line="31" column="67" lean-forward="true" selection-start-line="31" selection-start-column="67" selection-end-line="31" selection-end-column="67" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/cose/easywu/service/impl/GoodsServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="484">
-          <caret line="250" column="59" lean-forward="true" selection-start-line="250" selection-start-column="59" selection-end-line="250" selection-end-column="59" />
+        <state relative-caret-position="209">
+          <caret line="145" selection-start-line="145" selection-end-line="145" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/cose/easywu/service/GoodsService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="494">
-          <caret line="32" lean-forward="true" selection-start-line="32" selection-end-line="32" />
+        <state relative-caret-position="570">
+          <caret line="36" selection-start-line="36" selection-end-line="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/cose/easywu/mapper/GoodsMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="522">
+          <caret line="54" column="59" lean-forward="true" selection-start-line="54" selection-start-column="59" selection-end-line="54" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/cose/easywu/mapper/GoodsMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="468">
+          <caret line="173" lean-forward="true" selection-start-line="173" selection-end-line="173" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/cose/easywu/service/impl/HomeServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="20" selection-start-line="20" selection-end-line="20" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/cose/easywu/controller/GoodsController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="370">
-          <caret line="414" column="13" lean-forward="true" selection-start-line="414" selection-start-column="13" selection-end-line="414" selection-end-column="13" />
+        <state relative-caret-position="-824">
+          <caret line="672" column="34" selection-start-line="672" selection-start-column="22" selection-end-line="672" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/find_goods_pic/4f8b63de65754eaf0.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/cose/easywu/service/impl/GoodsServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="107">
+          <caret line="271" column="47" lean-forward="true" selection-start-line="271" selection-start-column="47" selection-end-line="271" selection-end-column="47" />
         </state>
       </provider>
     </entry>

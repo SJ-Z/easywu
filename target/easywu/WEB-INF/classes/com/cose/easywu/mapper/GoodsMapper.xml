@@ -67,6 +67,12 @@
         FROM findgoods, users, likefindgoods WHERE lfg_u_id = u_id AND lfg_fg_id = fg_id ORDER BY fg_updateTime DESC
     </select>
 
+    <select id="selectLikeFindPeopleList" parameterType="Map" resultType="com.cose.easywu.po.FindGoodsQueryPo">
+        SELECT fg_id, fg_name, fg_desc, fg_pic1, fg_pic2, fg_pic3, fg_state, fg_like, fg_updateTime,
+               fg_ft_id, fg_u_id, u_nick AS fg_u_nick, u_photo AS fg_u_photo, u_sex AS fg_u_sex
+        FROM findpeople, users, likefindpeople WHERE lfp_u_id = u_id AND lfp_fg_id = fg_id ORDER BY fg_updateTime DESC
+    </select>
+
     <select id="selectGoodsByTypeId" parameterType="Map" resultType="com.cose.easywu.po.GoodsQueryPo">
         SELECT g_id, g_name, g_desc, g_price, g_originalPrice, g_pic1, g_pic2, g_pic3, g_updateTime, g_state,
                g_like, g_t_id, u_id AS g_u_id, u_nick AS g_u_nick, u_photo AS g_u_photo, u_sex AS g_u_sex
@@ -99,6 +105,11 @@
         FROM findgoods WHERE fg_u_id = #{u_id} AND fg_state != 4 ORDER BY fg_updateTime DESC
     </select>
 
+    <select id="selectReleaseFindPeopleList" parameterType="String" resultType="com.cose.easywu.po.FindGoodsQueryPo">
+        SELECT fg_id, fg_name, fg_desc, fg_pic1, fg_pic2, fg_pic3, fg_updateTime, fg_state, fg_like, fg_ft_id
+        FROM findpeople WHERE fg_u_id = #{u_id} AND fg_state != 4 ORDER BY fg_updateTime DESC
+    </select>
+
     <select id="selectBuyGoodsList" parameterType="String" resultType="com.cose.easywu.po.GoodsQueryPo">
         SELECT g_id, g_name, g_desc, g_price, g_originalPrice, g_pic1, g_pic2, g_pic3, g_updateTime, g_state, g_like, g_t_id,
                g_u_id, u_nick AS g_u_nick, u_photo AS g_u_photo, u_sex AS g_u_sex
@@ -113,12 +124,36 @@
         INSERT INTO likegoods VALUES (#{u_id}, #{g_id})
     </insert>
 
+    <insert id="insertLikeFindGoods" parameterType="com.cose.easywu.po.UpdateGoodsPo">
+        INSERT INTO likefindgoods VALUES (#{u_id}, #{g_id})
+    </insert>
+
+    <insert id="insertLikeFindPeople" parameterType="com.cose.easywu.po.UpdateGoodsPo">
+        INSERT INTO likefindpeople VALUES (#{u_id}, #{g_id})
+    </insert>
+
     <delete id="deleteLikeGoods" parameterType="com.cose.easywu.po.UpdateGoodsPo">
         DELETE FROM likegoods WHERE lg_u_id = #{u_id} AND lg_g_id = #{g_id}
     </delete>
 
+    <delete id="deleteLikeFindGoods" parameterType="com.cose.easywu.po.UpdateGoodsPo">
+        DELETE FROM likefindgoods WHERE lfg_u_id = #{u_id} AND lfg_fg_id = #{g_id}
+    </delete>
+
+    <delete id="deleteLikeFindPeople" parameterType="com.cose.easywu.po.UpdateGoodsPo">
+        DELETE FROM likefindpeople WHERE lfp_u_id = #{u_id} AND lfp_fg_id = #{g_id}
+    </delete>
+
     <update id="updateGoodsLike" parameterType="com.cose.easywu.po.UpdateGoodsPo">
         UPDATE goods SET g_like = g_like + #{count} WHERE g_id = #{g_id}
+    </update>
+
+    <update id="updateFindGoodsLike" parameterType="com.cose.easywu.po.UpdateGoodsPo">
+        UPDATE findgoods SET fg_like = fg_like + #{count} WHERE fg_id = #{g_id}
+    </update>
+
+    <update id="updateFindPeopleLike" parameterType="com.cose.easywu.po.UpdateGoodsPo">
+        UPDATE findpeople SET fg_like = fg_like + #{count} WHERE fg_id = #{g_id}
     </update>
 
     <update id="updateGoodsUpdateTime" parameterType="com.cose.easywu.po.UpdateGoodsPo">
@@ -127,6 +162,14 @@
 
     <update id="updateGoodsState" parameterType="com.cose.easywu.po.UpdateGoodsPo">
         UPDATE goods SET g_state = #{state} WHERE g_id = #{g_id} AND g_u_id = #{u_id}
+    </update>
+
+    <update id="updateFindGoodsState" parameterType="com.cose.easywu.po.UpdateGoodsPo">
+        UPDATE findgoods SET fg_state = #{state} WHERE fg_id = #{g_id} AND fg_u_id = #{u_id}
+    </update>
+
+    <update id="updateFindPeopleState" parameterType="com.cose.easywu.po.UpdateGoodsPo">
+        UPDATE findpeople SET fg_state = #{state} WHERE fg_id = #{g_id} AND fg_u_id = #{u_id}
     </update>
 
     <update id="updateGoodsStateAndBuyerID" parameterType="com.cose.easywu.po.UpdateGoodsPo">
@@ -197,5 +240,80 @@
         </selectKey>
     </insert>
 
+    <insert id="insertFindGoodsReplyPo" parameterType="com.cose.easywu.po.ReplyDetailPo">
+        INSERT INTO findgoodsreplydetail (fgrd_content, fgrd_createTime, fgrd_fgcd_id, fgrd_u_id, fgrd_orgin_u_id)
+        VALUES (#{reply}, #{createTime}, #{comment_id}, #{u_id}, #{origin_uid});
+        <selectKey resultType="int" keyProperty="id" order="AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+    </insert>
+
+    <insert id="insertFindPeopleReplyPo" parameterType="com.cose.easywu.po.ReplyDetailPo">
+        INSERT INTO findpeoplereplydetail (fprd_content, fprd_createTime, fprd_fpcd_id, fprd_u_id, fprd_orgin_u_id)
+        VALUES (#{reply}, #{createTime}, #{comment_id}, #{u_id}, #{origin_uid});
+        <selectKey resultType="int" keyProperty="id" order="AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+    </insert>
+
+    <insert id="insertCommentBeanFindGoods"
+            useGeneratedKeys="true" keyColumn="gc_id" keyProperty="id" parameterType="com.cose.easywu.po.CommentBean">
+        INSERT INTO findgoodscomment (fgc_fg_id) VALUES (#{g_id});
+        <selectKey resultType="int" keyProperty="id" order="AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+    </insert>
+
+    <insert id="insertCommentBeanFindPeople"
+            useGeneratedKeys="true" keyColumn="gc_id" keyProperty="id" parameterType="com.cose.easywu.po.CommentBean">
+        INSERT INTO findpeoplecomment (fpc_fg_id) VALUES (#{g_id});
+        <selectKey resultType="int" keyProperty="id" order="AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+    </insert>
+
+    <insert id="insertCommentDetailPoFindGoods"
+            useGeneratedKeys="true" keyColumn="gc_id" keyProperty="id" parameterType="com.cose.easywu.po.CommentDetailPo">
+        INSERT INTO findgoodscommentdetail (fgcd_content, fgcd_fgc_id, fgcd_u_id, fgcd_createTime)
+        VALUES (#{content}, #{gc_id}, #{u_id}, #{createTime});
+        <selectKey resultType="int" keyProperty="id" order="AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+    </insert>
+
+    <insert id="insertCommentDetailPoFindPeople"
+            useGeneratedKeys="true" keyColumn="gc_id" keyProperty="id" parameterType="com.cose.easywu.po.CommentDetailPo">
+        INSERT INTO findpeoplecommentdetail (fpcd_content, fpcd_fpc_id, fpcd_u_id, fpcd_createTime)
+        VALUES (#{content}, #{gc_id}, #{u_id}, #{createTime});
+        <selectKey resultType="int" keyProperty="id" order="AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+    </insert>
+
+    <select id="selectFindGoodsCommentWithReply" parameterType="String" resultMap="commentResult">
+        SELECT temp.*, u2.u_id u2_id, u2.u_nick u2_nick FROM (SELECT u1.u_id u1_id, u1.u_nick u1_nick, u1.u_photo u1_photo,
+                                                                     fgc.fgc_id gc_id, fgc.fgc_fg_id gc_g_id, fgcd.fgcd_id gcd_id,
+                                                                     fgcd.fgcd_content gcd_content, fgcd.fgcd_createTime gcd_createTime,
+                                                                     fgrd.fgrd_id grd_id, fgrd.fgrd_content grd_content,
+                                                                     fgrd.fgrd_createTime grd_createTime, fgrd.fgrd_u_id grd_u_id
+                                                              FROM users u1, findgoodscomment fgc, findgoodscommentdetail fgcd LEFT OUTER JOIN findgoodsreplydetail fgrd
+                                                                                                      ON fgcd.fgcd_id = fgrd.fgrd_fgcd_id
+                                                              WHERE fgc.fgc_fg_id = #{g_id} AND fgc.fgc_id = fgcd.fgcd_fgc_id AND u1.u_id = fgcd.fgcd_u_id
+                                                              ORDER BY fgcd.fgcd_createTime DESC) temp
+                                                                 LEFT OUTER JOIN users u2 ON temp.grd_u_id = u2.u_id
+    </select>
+
+    <select id="selectFindPeopleCommentWithReply" parameterType="String" resultMap="commentResult">
+        SELECT temp.*, u2.u_id u2_id, u2.u_nick u2_nick FROM (SELECT u1.u_id u1_id, u1.u_nick u1_nick, u1.u_photo u1_photo,
+                                                                     fpc.fpc_id gc_id, fpc.fpc_fg_id gc_g_id, fpcd.fpcd_id gcd_id,
+                                                                     fpcd.fpcd_content gcd_content, fpcd.fpcd_createTime gcd_createTime,
+                                                                     fprd.fprd_id grd_id, fprd.fprd_content grd_content,
+                                                                     fprd.fprd_createTime grd_createTime, fprd.fprd_u_id grd_u_id
+                                                              FROM users u1, findpeoplecomment fpc, findpeoplecommentdetail fpcd LEFT OUTER JOIN findpeoplereplydetail fprd
+                                                                                                           ON fpcd.fpcd_id = fprd.fprd_fpcd_id
+                                                              WHERE fpc.fpc_fg_id = #{g_id} AND fpc.fpc_id = fpcd.fpcd_fpc_id AND u1.u_id = fpcd.fpcd_u_id
+                                                              ORDER BY fpcd.fpcd_createTime DESC) temp
+                                                                 LEFT OUTER JOIN users u2 ON temp.grd_u_id = u2.u_id
+    </select>
 
 </mapper>

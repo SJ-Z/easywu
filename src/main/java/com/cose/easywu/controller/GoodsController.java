@@ -101,6 +101,38 @@ public class GoodsController {
         return null;
     }
 
+    // 添加失物招领评论的回复
+    @RequestMapping("/findGoodsAddReply")
+    public @ResponseBody
+    String findGoodsAddReply(@RequestBody String json) {
+        JSONObject jsonObject = JSONObject.parseObject(json);
+        String u_id = jsonObject.getString("u_id");
+        String reply = jsonObject.getString("reply");
+        String origin_uid = jsonObject.getString("origin_uid");
+        String fg_id = jsonObject.getString("fg_id");
+        int comment_id = jsonObject.getInteger("comment_id");
+        boolean isFindGoods = jsonObject.getBoolean("isFindGoods");
+        Date createTime = new Date();
+        int replyId = goodsService.addReplyToFindComment(u_id, reply, origin_uid, comment_id, createTime, isFindGoods);
+
+        String content;
+        if (replyId != 0) {
+            content = "{'code':'1', 'msg':'回复成功', 'time':'" + createTime.getTime() + "', 'id':'" + replyId + "'}";
+            StringBuilder stringBuilder = new StringBuilder("有人回复了你的评论：");
+            stringBuilder.append(reply);
+            JPushHelper.jPushNotification(origin_uid, stringBuilder.toString(), fg_id, createTime, JPushHelper.TYPE_GOODS_REPLY);
+        } else {
+            content = "{'code':'0', 'msg':'回复失败'}";
+        }
+        try {
+            return URLEncoder.encode(content, "utf-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
     // 添加商品评论
     @RequestMapping("/goodsAddComment")
     public @ResponseBody
@@ -134,6 +166,53 @@ public class GoodsController {
         return null;
     }
 
+    // 添加失物招领评论
+    @RequestMapping("/findGoodsAddComment")
+    public @ResponseBody
+    String findGoodsAddComment(@RequestBody String json) {
+        JSONObject jsonObject = JSONObject.parseObject(json);
+        String comment = jsonObject.getString("comment");
+        int gc_id = jsonObject.getInteger("gc_id");
+        String fg_id = jsonObject.getString("fg_id");
+        String u_id = jsonObject.getString("u_id");
+        String fg_u_id = jsonObject.getString("fg_u_id");
+        String fg_name = jsonObject.getString("fg_name");
+        boolean isFindGoods = jsonObject.getBoolean("isFindGoods");
+        Date createTime = new Date();
+        String content;
+        int comment_id;
+        if (isFindGoods) {
+            comment_id = goodsService.addCommentToFindGoods(comment, gc_id, fg_id, u_id, createTime);
+        } else {
+            comment_id = goodsService.addCommentToFindPeople(comment, gc_id, fg_id, u_id, createTime);
+        }
+        if (comment_id != 0) {
+            content = "{'code':'1', 'msg':'留言成功', 'time':'" + createTime.getTime() + "', 'id':'" + comment_id + "'}";
+            if (isFindGoods) {
+                StringBuilder stringBuilder = new StringBuilder("你发布的寻物启示(");
+                stringBuilder.append(fg_name)
+                        .append(")收到一条新留言：")
+                        .append(comment);
+                JPushHelper.jPushNotification(fg_u_id, stringBuilder.toString(), fg_id, createTime, JPushHelper.TYPE_GOODS_COMMENT);
+            } else {
+                StringBuilder stringBuilder = new StringBuilder("你发布的失物招领(");
+                stringBuilder.append(fg_name)
+                        .append(")收到一条新留言：")
+                        .append(comment);
+                JPushHelper.jPushNotification(fg_u_id, stringBuilder.toString(), fg_id, createTime, JPushHelper.TYPE_GOODS_COMMENT);
+            }
+        } else {
+            content = "{'code':'0', 'msg':'留言失败'}";
+        }
+        try {
+            return URLEncoder.encode(content, "utf-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
     // 加载商品评论
     @RequestMapping("/goodsComment")
     public @ResponseBody
@@ -141,6 +220,26 @@ public class GoodsController {
         JSONObject jsonObject = JSONObject.parseObject(json);
         String g_id = jsonObject.getString("g_id");
         CommentBean commentBean = goodsService.getGoodsComment(g_id);
+        jsonObject = new JSONObject();
+        jsonObject.put("CommentBean", commentBean);
+        String content = jsonObject.toJSONString();
+        try {
+            return URLEncoder.encode(content, "utf-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    // 加载商品评论
+    @RequestMapping("/findGoodsComment")
+    public @ResponseBody
+    String findGoodsComment(@RequestBody String json) {
+        JSONObject jsonObject = JSONObject.parseObject(json);
+        String fg_id = jsonObject.getString("fg_id");
+        boolean isFindGoods = jsonObject.getBoolean("isFindGoods");
+        CommentBean commentBean = goodsService.getFindGoodsComment(fg_id, isFindGoods);
         jsonObject = new JSONObject();
         jsonObject.put("CommentBean", commentBean);
         String content = jsonObject.toJSONString();
@@ -309,6 +408,29 @@ public class GoodsController {
         return null;
     }
 
+    // 删除失物招领
+    @RequestMapping("/deleteFindGoods")
+    public @ResponseBody
+    String deleteFindGoods(@RequestBody String json) {
+        JSONObject jsonObject = JSONObject.parseObject(json);
+        String fg_id = jsonObject.getString("fg_id");
+        String u_id = jsonObject.getString("u_id");
+        boolean isFindGoods = jsonObject.getBoolean("isFindGoods");
+        String content;
+        if (goodsService.userDeleteFindGoods(fg_id, u_id, isFindGoods)) {
+            content = "{'code':'1', 'msg':'商品删除成功'}";
+        } else {
+            content = "{'code':'0', 'msg':'商品删除失败'}";
+        }
+        try {
+            return URLEncoder.encode(content, "utf-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
     // 擦亮商品
     @RequestMapping("/polishGoods")
     public @ResponseBody
@@ -341,6 +463,31 @@ public class GoodsController {
         String u_id = jsonObject.getString("u_id");
         boolean like = jsonObject.getBoolean("like");
         goodsService.setLikeGoods(g_id, u_id, like);
+        String content;
+        if (like) {
+            content = "{'code':'1', 'msg':'收藏成功'}";
+        } else {
+            content = "{'code':'1', 'msg':'取消收藏成功'}";
+        }
+        try {
+            return URLEncoder.encode(content, "utf-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    // 修改收藏的失物招领
+    @RequestMapping("/setLikeFindGoods")
+    public @ResponseBody
+    String setLikeFindGoods(@RequestBody String json) {
+        JSONObject jsonObject = JSONObject.parseObject(json);
+        String fg_id = jsonObject.getString("fg_id");
+        String u_id = jsonObject.getString("u_id");
+        boolean like = jsonObject.getBoolean("like");
+        boolean isFindGoods = jsonObject.getBoolean("isFindGoods");
+        goodsService.setLikeFindGoods(fg_id, u_id, like, isFindGoods);
         String content;
         if (like) {
             content = "{'code':'1', 'msg':'收藏成功'}";
