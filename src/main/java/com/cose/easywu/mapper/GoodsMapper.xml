@@ -61,16 +61,18 @@
         LIMIT #{startPos}, #{pageSize}
     </select>
 
-    <select id="selectLikeFindGoodsList" parameterType="Map" resultType="com.cose.easywu.po.FindGoodsQueryPo">
+    <select id="selectLikeFindGoodsList" parameterType="String" resultType="com.cose.easywu.po.FindGoodsQueryPo">
         SELECT fg_id, fg_name, fg_desc, fg_pic1, fg_pic2, fg_pic3, fg_state, fg_like, fg_updateTime,
                fg_ft_id, fg_u_id, u_nick AS fg_u_nick, u_photo AS fg_u_photo, u_sex AS fg_u_sex
-        FROM findgoods, users, likefindgoods WHERE lfg_u_id = u_id AND lfg_fg_id = fg_id ORDER BY fg_updateTime DESC
+        FROM findgoods, users, likefindgoods WHERE lfg_u_id = #{u_id} AND lfg_fg_id = fg_id AND fg_u_id = u_id
+        ORDER BY fg_updateTime DESC
     </select>
 
-    <select id="selectLikeFindPeopleList" parameterType="Map" resultType="com.cose.easywu.po.FindGoodsQueryPo">
+    <select id="selectLikeFindPeopleList" parameterType="String" resultType="com.cose.easywu.po.FindGoodsQueryPo">
         SELECT fg_id, fg_name, fg_desc, fg_pic1, fg_pic2, fg_pic3, fg_state, fg_like, fg_updateTime,
                fg_ft_id, fg_u_id, u_nick AS fg_u_nick, u_photo AS fg_u_photo, u_sex AS fg_u_sex
-        FROM findpeople, users, likefindpeople WHERE lfp_u_id = u_id AND lfp_fg_id = fg_id ORDER BY fg_updateTime DESC
+        FROM findpeople, users, likefindpeople WHERE lfp_u_id = #{u_id} AND lfp_fg_id = fg_id AND fg_u_id = u_id
+        ORDER BY fg_updateTime DESC
     </select>
 
     <select id="selectGoodsByTypeId" parameterType="Map" resultType="com.cose.easywu.po.GoodsQueryPo">
@@ -117,7 +119,18 @@
     </select>
 
     <select id="selectGoodsById" parameterType="String" resultType="com.cose.easywu.po.GoodsQueryPo">
-        SELECT * FROM goods, users WHERE g_id = #{g_id} AND g_u_id = u_id
+        SELECT goods.*, users.u_nick g_u_nick, users.u_photo g_u_photo, users.u_sex g_u_sex
+        FROM goods, users WHERE g_id = #{g_id} AND g_u_id = u_id
+    </select>
+
+    <select id="selectFindGoodsById" parameterType="String" resultType="com.cose.easywu.po.FindGoodsQueryPo">
+        SELECT findgoods.*, users.u_nick fg_u_nick, users.u_photo fg_u_photo, users.u_sex fg_u_sex
+        FROM findgoods, users WHERE fg_id = #{g_id} AND fg_u_id = u_id
+    </select>
+
+    <select id="selectFindPeopleById" parameterType="String" resultType="com.cose.easywu.po.FindGoodsQueryPo">
+        SELECT findpeople.*, users.u_nick fg_u_nick, users.u_photo fg_u_photo, users.u_sex fg_u_sex
+        FROM findpeople, users WHERE fg_id = #{g_id} AND fg_u_id = u_id
     </select>
 
     <insert id="insertLikeGoods" parameterType="com.cose.easywu.po.UpdateGoodsPo">
@@ -158,6 +171,14 @@
 
     <update id="updateGoodsUpdateTime" parameterType="com.cose.easywu.po.UpdateGoodsPo">
         UPDATE goods SET g_updateTime = #{updateTime} WHERE g_id = #{g_id} AND g_u_id = #{u_id}
+    </update>
+
+    <update id="updateFindGoodsUpdateTime" parameterType="com.cose.easywu.po.UpdateGoodsPo">
+        UPDATE findgoods SET fg_updateTime = #{updateTime} WHERE fg_id = #{g_id} AND fg_u_id = #{u_id}
+    </update>
+
+    <update id="updateFindPeopleUpdateTime" parameterType="com.cose.easywu.po.UpdateGoodsPo">
+        UPDATE findpeople SET fg_updateTime = #{updateTime} WHERE fg_id = #{g_id} AND fg_u_id = #{u_id}
     </update>
 
     <update id="updateGoodsState" parameterType="com.cose.easywu.po.UpdateGoodsPo">

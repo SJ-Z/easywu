@@ -102,6 +102,14 @@ public class GoodsServiceImpl implements GoodsService {
     }
 
     @Override
+    public FindGoodsQueryPo getFindGoodsInfo(String fg_id, boolean isFindGoods) {
+        if (isFindGoods) {
+            return goodsMapper.selectFindGoodsById(fg_id);
+        }
+        return goodsMapper.selectFindPeopleById(fg_id);
+    }
+
+    @Override
     public List<GoodsQueryPo> getGoodsOfType(String type_id, Page page) {
         Map<String, Object> pageMap = new HashMap<>();
         pageMap.put("type_id", type_id);
@@ -197,6 +205,21 @@ public class GoodsServiceImpl implements GoodsService {
             result = goodsMapper.updateFindGoodsState(updateGoodsPo);
         } else {
             result = goodsMapper.updateFindPeopleState(updateGoodsPo);
+        }
+        if (result == 1) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean polishFindGoods(String fg_id, String u_id, Date updateTime, boolean isFindGoods) {
+        UpdateGoodsPo updateGoodsPo = new UpdateGoodsPo(fg_id, u_id, updateTime);
+        int result;
+        if (isFindGoods) {
+            result = goodsMapper.updateFindGoodsUpdateTime(updateGoodsPo);
+        } else {
+            result = goodsMapper.updateFindPeopleUpdateTime(updateGoodsPo);
         }
         if (result == 1) {
             return true;

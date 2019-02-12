@@ -53,4 +53,8 @@ public interface GoodsMapper {
     int insertFindPeopleReplyPo(ReplyDetailPo replyDetailPo);
     int updateFindGoodsState(UpdateGoodsPo updateGoodsPo);
     int updateFindPeopleState(UpdateGoodsPo updateGoodsPo);
+    FindGoodsQueryPo selectFindGoodsById(String fg_id);
+    FindGoodsQueryPo selectFindPeopleById(String fg_id);
+    int updateFindGoodsUpdateTime(UpdateGoodsPo updateGoodsPo);
+    int updateFindPeopleUpdateTime(UpdateGoodsPo updateGoodsPo);
 }

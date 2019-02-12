@@ -278,6 +278,35 @@ public class GoodsController {
         return null;
     }
 
+    // 根据失物招领id查询信息
+    @RequestMapping("/getFindGoodsInfo")
+    public @ResponseBody
+    String getFindGoodsInfo(@RequestBody String json) {
+        JSONObject jsonObject = JSONObject.parseObject(json);
+        String fg_id = jsonObject.getString("fg_id");
+        boolean isFindGoods = jsonObject.getBoolean("isFindGoods");
+        FindGoodsQueryPo findGoods = goodsService.getFindGoodsInfo(fg_id, isFindGoods);
+        JSONObject jsonObject2 = new JSONObject();
+        String content;
+        if (findGoods != null) {
+            jsonObject2.put("code", 1);
+            jsonObject2.put("msg", "查询成功");
+            jsonObject2.put("findGoods", findGoods);
+            content = jsonObject2.toJSONString();
+        } else {
+            jsonObject2.put("code", 0);
+            jsonObject2.put("msg", "商品不存在");
+            content = jsonObject2.toJSONString();
+        }
+        try {
+            return URLEncoder.encode(content, "utf-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
     // 拒绝商品订单
     @RequestMapping("/newGoodsOrderRefuse")
     public @ResponseBody
@@ -454,6 +483,30 @@ public class GoodsController {
         return null;
     }
 
+    // 擦亮失物招领信息
+    @RequestMapping("/polishFindGoods")
+    public @ResponseBody
+    String polishFindGoods(@RequestBody String json) {
+        JSONObject jsonObject = JSONObject.parseObject(json);
+        String fg_id = jsonObject.getString("fg_id");
+        String u_id = jsonObject.getString("u_id");
+        boolean isFindGoods = jsonObject.getBoolean("isFindGoods");
+        Date updateTime = new Date();
+        String content;
+        if (goodsService.polishFindGoods(fg_id, u_id, updateTime, isFindGoods)) {
+            content = "{'code':'1', 'msg':'" + updateTime.getTime() + "'}";
+        } else {
+            content = "{'code':'0', 'msg':'擦亮失败'}";
+        }
+        try {
+            return URLEncoder.encode(content, "utf-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
     // 修改收藏的商品
     @RequestMapping("/setLikeGoods")
     public @ResponseBody
@@ -552,6 +605,23 @@ public class GoodsController {
         return null;
     }
 
+    // 获取最新发布的寻找失物数据（根据页码返回数据，post请求）
+    @RequestMapping(value = "/newestFindGoods", method = RequestMethod.POST)
+    public @ResponseBody
+    String newestFindGoods(@RequestBody String json) {
+        JSONObject jsonObject = JSONObject.parseObject(json);
+        int pageCode = jsonObject.getInteger("pageCode");
+        List<FindGoodsQueryPo> newestFindGoodsList = goodsService.getNewestFindGoodsList(new Page(pageCode));
+        String content = JSONArray.toJSONString(newestFindGoodsList);
+        try {
+            return URLEncoder.encode(content, "utf-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
     // 获取最新发布的寻找失主数据（五条，get请求）
     @RequestMapping(value = "/newestFindPeople", method = RequestMethod.GET)
     public @ResponseBody
@@ -559,6 +629,23 @@ public class GoodsController {
         Page page = new Page(5, 0);
         List<FindGoodsQueryPo> newestGoodsList = goodsService.getNewestFindPeopleList(page);
         String content = JSONArray.toJSONString(newestGoodsList);
+        try {
+            return URLEncoder.encode(content, "utf-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    // 获取最新发布的寻找失物数据（根据页码返回数据，post请求）
+    @RequestMapping(value = "/newestFindPeople", method = RequestMethod.POST)
+    public @ResponseBody
+    String newestFindPeople(@RequestBody String json) {
+        JSONObject jsonObject = JSONObject.parseObject(json);
+        int pageCode = jsonObject.getInteger("pageCode");
+        List<FindGoodsQueryPo> newestFindGoodsList = goodsService.getNewestFindPeopleList(new Page(pageCode));
+        String content = JSONArray.toJSONString(newestFindGoodsList);
         try {
             return URLEncoder.encode(content, "utf-8");
         } catch (UnsupportedEncodingException e) {

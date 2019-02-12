@@ -35,4 +35,6 @@ public interface GoodsService {
     CommentBean getFindGoodsComment(String fg_id, boolean isFindGoods);
     int addReplyToFindComment(String u_id, String reply, String origin_uid, int comment_id, Date createTime, boolean isFindGoods);
     boolean userDeleteFindGoods(String fg_id, String u_id, boolean isFindGoods);
+    FindGoodsQueryPo getFindGoodsInfo(String fg_id, boolean isFindGoods);
+    boolean polishFindGoods(String fg_id, String u_id, Date updateTime, boolean isFindGoods);
 }
