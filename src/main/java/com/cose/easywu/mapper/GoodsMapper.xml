@@ -83,11 +83,43 @@
         LIMIT #{startPos}, #{pageSize}
     </select>
 
+    <select id="selectFindGoodsByTypeId" parameterType="Map" resultType="com.cose.easywu.po.FindGoodsQueryPo">
+        SELECT fg_id, fg_name, fg_desc, fg_pic1, fg_pic2, fg_pic3, fg_updateTime, fg_state, fg_like, fg_ft_id,
+               u_id AS fg_u_id, u_nick AS fg_u_nick, u_photo AS fg_u_photo, u_sex AS fg_u_sex
+        FROM findgoods, users WHERE fg_u_id = u_id AND fg_state = 0 AND fg_ft_id = #{type_id}
+        ORDER BY fg_updateTime DESC
+        LIMIT #{startPos}, #{pageSize}
+    </select>
+
+    <select id="selectFindPeopleByTypeId" parameterType="Map" resultType="com.cose.easywu.po.FindGoodsQueryPo">
+        SELECT fg_id, fg_name, fg_desc, fg_pic1, fg_pic2, fg_pic3, fg_updateTime, fg_state, fg_like, fg_ft_id,
+               u_id AS fg_u_id, u_nick AS fg_u_nick, u_photo AS fg_u_photo, u_sex AS fg_u_sex
+        FROM findpeople, users WHERE fg_u_id = u_id AND fg_state = 0 AND fg_ft_id = #{type_id}
+        ORDER BY fg_updateTime DESC
+        LIMIT #{startPos}, #{pageSize}
+    </select>
+
     <select id="selectGoodsByKey" parameterType="Map" resultType="com.cose.easywu.po.GoodsQueryPo">
         SELECT g_id, g_name, g_desc, g_price, g_originalPrice, g_pic1, g_pic2, g_pic3, g_updateTime, g_state,
                g_like, g_t_id, u_id AS g_u_id, u_nick AS g_u_nick, u_photo AS g_u_photo, u_sex AS g_u_sex
         FROM goods, users WHERE g_u_id = u_id AND g_state = 0 AND g_name LIKE '%${key}%'
         ORDER BY g_updateTime DESC
+        LIMIT #{startPos}, #{pageSize}
+    </select>
+
+    <select id="selectFindGoodsByKey" parameterType="Map" resultType="com.cose.easywu.po.FindGoodsQueryPo">
+        SELECT fg_id, fg_name, fg_desc, fg_pic1, fg_pic2, fg_pic3, fg_updateTime, fg_state, fg_like, fg_ft_id,
+               u_id AS fg_u_id, u_nick AS fg_u_nick, u_photo AS fg_u_photo, u_sex AS fg_u_sex
+        FROM findgoods, users WHERE fg_u_id = u_id AND fg_state = 0 AND fg_name LIKE '%${key}%'
+        ORDER BY fg_updateTime DESC
+        LIMIT #{startPos}, #{pageSize}
+    </select>
+
+    <select id="selectFindPeopleByKey" parameterType="Map" resultType="com.cose.easywu.po.FindGoodsQueryPo">
+        SELECT fg_id, fg_name, fg_desc, fg_pic1, fg_pic2, fg_pic3, fg_updateTime, fg_state, fg_like, fg_ft_id,
+               u_id AS fg_u_id, u_nick AS fg_u_nick, u_photo AS fg_u_photo, u_sex AS fg_u_sex
+        FROM findpeople, users WHERE fg_u_id = u_id AND fg_state = 0 AND fg_name LIKE '%${key}%'
+        ORDER BY fg_updateTime DESC
         LIMIT #{startPos}, #{pageSize}
     </select>
 

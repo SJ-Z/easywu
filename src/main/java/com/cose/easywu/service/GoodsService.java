@@ -37,4 +37,7 @@ public interface GoodsService {
     boolean userDeleteFindGoods(String fg_id, String u_id, boolean isFindGoods);
     FindGoodsQueryPo getFindGoodsInfo(String fg_id, boolean isFindGoods);
     boolean polishFindGoods(String fg_id, String u_id, Date updateTime, boolean isFindGoods);
+    List<FindGoodsQueryPo> getFindGoodsOfType(String type_id, Page page, boolean isFindGoods);
+    List<FindGoodsQueryPo> searchFindGoods(String key, Page page, boolean isFindGoods);
+    boolean userRemoveFindGoods(String fg_id, String u_id, boolean isFindGoods);
 }

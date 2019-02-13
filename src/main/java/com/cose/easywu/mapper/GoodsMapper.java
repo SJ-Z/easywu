@@ -57,4 +57,8 @@ public interface GoodsMapper {
     FindGoodsQueryPo selectFindPeopleById(String fg_id);
     int updateFindGoodsUpdateTime(UpdateGoodsPo updateGoodsPo);
     int updateFindPeopleUpdateTime(UpdateGoodsPo updateGoodsPo);
+    List<FindGoodsQueryPo> selectFindGoodsByTypeId(Map<String, Object> pageMap);
+    List<FindGoodsQueryPo> selectFindPeopleByTypeId(Map<String, Object> pageMap);
+    List<FindGoodsQueryPo> selectFindGoodsByKey(Map<String, Object> pageMap);
+    List<FindGoodsQueryPo> selectFindPeopleByKey(Map<String, Object> pageMap);
 }

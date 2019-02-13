@@ -119,12 +119,38 @@ public class GoodsServiceImpl implements GoodsService {
     }
 
     @Override
+    public List<FindGoodsQueryPo> getFindGoodsOfType(String type_id, Page page, boolean isFindGoods) {
+        Map<String, Object> pageMap = new HashMap<>();
+        pageMap.put("type_id", type_id);
+        pageMap.put("pageSize", page.getPageSize());
+        pageMap.put("startPos", page.getPageSize() * page.getPageCode());
+        if (isFindGoods) {
+            return goodsMapper.selectFindGoodsByTypeId(pageMap);
+        } else {
+            return goodsMapper.selectFindPeopleByTypeId(pageMap);
+        }
+    }
+
+    @Override
     public List<GoodsQueryPo> searchGoods(String key, Page page) {
         Map<String, Object> pageMap = new HashMap<>();
         pageMap.put("key", key);
         pageMap.put("pageSize", page.getPageSize());
         pageMap.put("startPos", page.getPageSize() * page.getPageCode());
         return goodsMapper.selectGoodsByKey(pageMap);
+    }
+
+    @Override
+    public List<FindGoodsQueryPo> searchFindGoods(String key, Page page, boolean isFindGoods) {
+        Map<String, Object> pageMap = new HashMap<>();
+        pageMap.put("key", key);
+        pageMap.put("pageSize", page.getPageSize());
+        pageMap.put("startPos", page.getPageSize() * page.getPageCode());
+        if (isFindGoods) {
+            return goodsMapper.selectFindGoodsByKey(pageMap);
+        } else {
+            return goodsMapper.selectFindPeopleByKey(pageMap);
+        }
     }
 
     @Override
@@ -179,6 +205,22 @@ public class GoodsServiceImpl implements GoodsService {
         UpdateGoodsPo updateGoodsPo = new UpdateGoodsPo(g_id, u_id);
         updateGoodsPo.setState(4); // 4表示用户界面不显示
         int result = goodsMapper.updateGoodsState(updateGoodsPo);
+        if (result == 1) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean userRemoveFindGoods(String fg_id, String u_id, boolean isFindGoods) {
+        UpdateGoodsPo updateGoodsPo = new UpdateGoodsPo(fg_id, u_id);
+        updateGoodsPo.setState(4); // 4表示用户界面不显示
+        int result;
+        if (isFindGoods) {
+            result = goodsMapper.updateFindGoodsState(updateGoodsPo);
+        } else {
+            result = goodsMapper.updateFindPeopleState(updateGoodsPo);
+        }
         if (result == 1) {
             return true;
         }

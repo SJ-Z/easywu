@@ -27,6 +27,10 @@ public class JPushHelper {
     public static int TYPE_NEW_GOODS_ORDER = 2;
     public static int TYPE_CONFIRM_GOODS_ORDER = 3;
     public static int TYPE_REFUSE_GOODS_ORDER = 4;
+    public static int TYPE_FIND_GOODS_COMMENT = 5;
+    public static int TYPE_FIND_GOODS_REPLY = 6;
+    public static int TYPE_FIND_PEOPLE_COMMENT = 7;
+    public static int TYPE_FIND_PEOPLE_REPLY = 8;
 
     /**
      * 极光推送，外部调用方法

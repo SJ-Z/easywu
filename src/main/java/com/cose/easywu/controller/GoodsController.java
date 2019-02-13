@@ -52,6 +52,25 @@ public class GoodsController {
         return null;
     }
 
+    // 按关键字搜索失物招领
+    @RequestMapping("/searchFindGoods")
+    public @ResponseBody
+    String searchFindGoods(@RequestBody String json) {
+        JSONObject jsonObject = JSONObject.parseObject(json);
+        int pageCode = jsonObject.getInteger("pageCode");
+        String key = jsonObject.getString("key");
+        boolean isFindGoods = jsonObject.getBoolean("isFindGoods");
+        List<FindGoodsQueryPo> newestGoodsList = goodsService.searchFindGoods(key, new Page(pageCode), isFindGoods);
+        String content = JSONArray.toJSONString(newestGoodsList);
+        try {
+            return URLEncoder.encode(content, "utf-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
     // 分页查询某一分类下的商品
     @RequestMapping("/typeGoods")
     public @ResponseBody
@@ -60,6 +79,25 @@ public class GoodsController {
         int pageCode = jsonObject.getInteger("pageCode");
         String type_id = jsonObject.getString("type_id");
         List<GoodsQueryPo> newestGoodsList = goodsService.getGoodsOfType(type_id, new Page(pageCode));
+        String content = JSONArray.toJSONString(newestGoodsList);
+        try {
+            return URLEncoder.encode(content, "utf-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    // 分页查询某一分类下的寻物启示
+    @RequestMapping("/typeFindGoods")
+    public @ResponseBody
+    String typeFindGoods(@RequestBody String json) {
+        JSONObject jsonObject = JSONObject.parseObject(json);
+        int pageCode = jsonObject.getInteger("pageCode");
+        String type_id = jsonObject.getString("type_id");
+        boolean isFindGoods = jsonObject.getBoolean("isFindGoods");
+        List<FindGoodsQueryPo> newestGoodsList = goodsService.getFindGoodsOfType(type_id, new Page(pageCode), isFindGoods);
         String content = JSONArray.toJSONString(newestGoodsList);
         try {
             return URLEncoder.encode(content, "utf-8");
@@ -120,7 +158,11 @@ public class GoodsController {
             content = "{'code':'1', 'msg':'回复成功', 'time':'" + createTime.getTime() + "', 'id':'" + replyId + "'}";
             StringBuilder stringBuilder = new StringBuilder("有人回复了你的评论：");
             stringBuilder.append(reply);
-            JPushHelper.jPushNotification(origin_uid, stringBuilder.toString(), fg_id, createTime, JPushHelper.TYPE_GOODS_REPLY);
+            if (isFindGoods) {
+                JPushHelper.jPushNotification(origin_uid, stringBuilder.toString(), fg_id, createTime, JPushHelper.TYPE_FIND_GOODS_REPLY);
+            } else {
+                JPushHelper.jPushNotification(origin_uid, stringBuilder.toString(), fg_id, createTime, JPushHelper.TYPE_FIND_PEOPLE_REPLY);
+            }
         } else {
             content = "{'code':'0', 'msg':'回复失败'}";
         }
@@ -193,13 +235,13 @@ public class GoodsController {
                 stringBuilder.append(fg_name)
                         .append(")收到一条新留言：")
                         .append(comment);
-                JPushHelper.jPushNotification(fg_u_id, stringBuilder.toString(), fg_id, createTime, JPushHelper.TYPE_GOODS_COMMENT);
+                JPushHelper.jPushNotification(fg_u_id, stringBuilder.toString(), fg_id, createTime, JPushHelper.TYPE_FIND_GOODS_COMMENT);
             } else {
                 StringBuilder stringBuilder = new StringBuilder("你发布的失物招领(");
                 stringBuilder.append(fg_name)
                         .append(")收到一条新留言：")
                         .append(comment);
-                JPushHelper.jPushNotification(fg_u_id, stringBuilder.toString(), fg_id, createTime, JPushHelper.TYPE_GOODS_COMMENT);
+                JPushHelper.jPushNotification(fg_u_id, stringBuilder.toString(), fg_id, createTime, JPushHelper.TYPE_FIND_PEOPLE_COMMENT);
             }
         } else {
             content = "{'code':'0', 'msg':'留言失败'}";
@@ -405,6 +447,29 @@ public class GoodsController {
             content = "{'code':'1', 'msg':'商品删除成功'}";
         } else {
             content = "{'code':'0', 'msg':'商品删除失败'}";
+        }
+        try {
+            return URLEncoder.encode(content, "utf-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    // 移除失物招领
+    @RequestMapping("/removeFindGoods")
+    public @ResponseBody
+    String removeFindGoods(@RequestBody String json) {
+        JSONObject jsonObject = JSONObject.parseObject(json);
+        String fg_id = jsonObject.getString("fg_id");
+        String u_id = jsonObject.getString("u_id");
+        boolean isFindGoods = jsonObject.getBoolean("isFindGoods");
+        String content;
+        if (goodsService.userRemoveFindGoods(fg_id, u_id, isFindGoods)) {
+            content = "{'code':'1', 'msg':'失物招领删除成功'}";
+        } else {
+            content = "{'code':'0', 'msg':'失物招领删除失败'}";
         }
         try {
             return URLEncoder.encode(content, "utf-8");
