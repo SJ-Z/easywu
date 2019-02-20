@@ -739,8 +739,10 @@ public class GoodsController {
 
         // 设置保存路径
         String str = request.getServletContext().getRealPath("/");
-        int loc = str.indexOf("target");
-        String savepath = str.substring(0, loc) + "goods_pic";
+//        int loc = str.indexOf("target");
+        int loc = str.indexOf("easywu");
+        String savepath = str.substring(0, loc) + "easywu" + File.separator + "goods_pic";
+//        String savepath = str.substring(0, loc) + "goods_pic";
 
         //使用sfu去解析request对象，得到List<FileItem>
         try {
@@ -840,8 +842,9 @@ public class GoodsController {
 
         // 设置保存路径
         String str = request.getServletContext().getRealPath("/");
-        int loc = str.indexOf("target");
-        String savepath = str.substring(0, loc) + "find_goods_pic";
+//        int loc = str.indexOf("target");
+        int loc = str.indexOf("easywu");
+        String savepath = str.substring(0, loc) + "easywu" + File.separator + "find_goods_pic";
 
         //使用sfu去解析request对象，得到List<FileItem>
         try {
