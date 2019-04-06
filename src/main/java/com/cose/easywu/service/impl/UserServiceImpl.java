@@ -2,9 +2,15 @@ package com.cose.easywu.service.impl;
 
 import com.cose.easywu.exception.UserException;
 import com.cose.easywu.mapper.UserMapper;
+import com.cose.easywu.po.Admin;
 import com.cose.easywu.po.User;
 import com.cose.easywu.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 public class UserServiceImpl implements UserService {
 
@@ -44,11 +50,32 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public Admin login_tzsc(String username, String pwd) {
+        Admin admin = new Admin(username, pwd);
+        admin = userMapper.selectTzscIdByUsernameAndPwd(admin);
+        return admin;
+    }
+
+    @Override
+    public boolean addTzscNotification(String admin_id, String title, String content, Date time) {
+        Map<String, String> map = new HashMap<>();
+        map.put("admin_id", admin_id);
+        map.put("title", title);
+        map.put("content", content);
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        map.put("time", formatter.format(time));
+        int id = userMapper.insertTzscNotification(map);
+        if (id > 0) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
     public String login(String u_email, String u_pwd) throws UserException {
         User user = new User();
         user.setU_email(u_email);
         user.setU_pwd(u_pwd);
-        System.out.println("user:" + user);
         String u_id = userMapper.selectIdByEmailAndPwd(user);
         if (u_id == null || u_id.equals("")) {
             throw new UserException("邮箱或密码错误");

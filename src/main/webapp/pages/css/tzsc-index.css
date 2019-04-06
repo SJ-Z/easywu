@@ -1,0 +1,600 @@
+@import "font-static.css";
+
+[class^="icon-"],
+[class*=" icon-"]{
+    font-family: icomoon;
+    font-style: normal;
+}
+
+.navbar-tzsc{
+    background-color: #222;
+    margin-bottom: 0;
+    width: 100%;
+    padding: 15px;
+}
+
+.container-fluid{
+    padding: 0 30px;
+}
+
+.navbar-header .navbar-brand{
+   padding: 0;
+}
+
+.navbar-header .header-title{
+    color: white;
+    font-family: FzFont;
+    width: 250px;
+    font-size: 25px;
+    line-height: 50px;
+    padding-left: 25px;
+}
+
+.navbar-nav li{
+    padding: 0;
+}
+
+.navbar .navbar-message{
+    font-size: 20px;
+    top: 2px;
+    position: relative;
+    display: block;
+}
+
+.navbar .badge{
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: inline-block;
+    width: 22px;
+    height: 22px;
+    line-height: 22px;
+    text-align: center;
+    padding: 0;
+    border-radius: 50%;
+}
+
+.bg-red{
+    background: #ff7676 !important;
+    color: #fff;
+}
+
+.badge-corner {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-weight: 400;
+    font-size: 13px;
+}
+
+.navbar .logout{
+    font-size: 18px;
+}
+
+.navbar .logout .glyphicon-log-out{
+    top: 3px;
+}
+
+/*
+* ==========================================================
+*     SIDEBAR
+* ==========================================================
+*/
+.page-content{
+    display:-ms-flexbox;
+    display:flex;
+    -ms-flex-align:stretch;
+    align-items:stretch;
+}
+
+nav.side-navbar {
+    background: #fff;
+    min-width: 250px;
+    max-width: 250px;
+    color: #686a76;
+    -webkit-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
+    z-index: 9;
+}
+
+nav.side-navbar a {
+    color: inherit;
+    position: relative;
+    font-size: 0.9em;
+}
+
+nav.side-navbar a i {
+    font-size: 1.2em;
+    margin-right: 10px;
+    -webkit-transition: none;
+    transition: none;
+}
+
+nav.side-navbar .sidebar-header {
+    padding: 30px 15px;
+    display: flex;
+    align-items:center
+}
+
+nav.side-navbar .avatar {
+    width: 55px;
+    height: 55px;
+}
+
+nav.side-navbar .avatar img{
+    max-width: 100%;
+    height: auto;
+    border-style: none;
+}
+
+nav.side-navbar .title {
+    margin-left: 10px;
+}
+
+nav.side-navbar .title h1 {
+    color: #333;
+}
+
+nav.side-navbar .title p {
+    font-size: 0.9em;
+    font-weight: 200;
+    margin-bottom: 0;
+    color: #aaa;
+}
+
+nav.side-navbar ul {
+    padding: 15px 0;
+}
+
+nav.side-navbar ul li a {
+    padding: 10px 15px;
+    text-decoration: none;
+    display: block;
+    font-weight: 300;
+    border-left: 4px solid transparent;
+}
+
+nav.side-navbar ul li a:hover {
+    background: #796AEE;
+    border-left: 4px solid #3b25e6;
+    color: #fff;
+}
+
+nav.side-navbar ul li li a {
+    padding-left: 50px;
+    background: #EEF5F9;
+}
+
+nav.side-navbar ul li.active > a {
+    background: #796AEE;
+    color: #fff;
+    border-left: 4px solid #3b25e6;
+}
+
+nav.side-navbar ul li.active > a:hover {
+    background: #796AEE;
+}
+
+nav.side-navbar ul li li.active > a {
+    background: #8e81f1;
+}
+
+nav.side-navbar ul li ul {
+    padding: 0;
+}
+
+.icon-statistics::before{
+    content: '\e99c';
+    font-size: 18px;
+}
+
+.icon-goods-manage::before{
+    content: '\e900';
+    font-size: 18px;
+}
+
+.icon-notification::before{
+    content: '\e91a';
+    font-size: 18px;
+}
+
+/*
+* ==========================================================
+*     MAIN
+* ==========================================================
+*/
+.main{
+    width: 1500px;
+    height: 715px;
+    position: relative;
+}
+
+/* **********************以下是商品展示栏的样式***************** */
+.goods{
+    display: block;
+    width: 300px;
+    height: 210px;
+    border-radius: 8px;
+    border: 1px #000 solid;
+    margin-left: 20px;
+    margin-top: 10px;
+}
+
+.goods form{
+    width: 100%;
+    height: 92%;
+}
+
+/* 各个框的布局 */
+input:disabled,
+textarea:disabled{
+    background-color: #fff;
+}
+
+.top{
+    height: 15%;
+    width: 100%;
+    text-align: center;
+    font-size: 16px;
+    border-bottom: 1px solid #000;
+}
+.goods-photo{
+    width: 30%;
+    height: 80%;
+    padding-top: 10px;
+    padding-left: 4px;
+    border-right: 1px #000 solid;
+}
+.goods-name,
+.goods-type,
+.goods-price,
+.goods-state,
+.goods-uid,
+.goods-uname{
+    width: 70%;
+    height: 10%;
+    font-size: 12px;
+    border-radius: 4px;
+    border: 1px #fff solid;
+}
+
+.goods-desc{
+    width: 70%;
+    height: 20%;
+    font-size: 12px;
+    border-radius: 4px;
+    border: 1px #fff solid;
+}
+
+.goods .bottom{
+    width: 100%;
+    height: 15%;
+    padding-right: 20px;
+    border-top: 1px solid #000;
+    text-align: center;
+}
+
+.goods .bottom label{
+    width: 28%;
+    font-size: 12px;
+    font-weight: normal;
+    padding-top: 4px;
+}
+.goods .bottom input{
+    width: 60%;
+    height: 25px;
+    font-size: 12px;
+    font-weight: normal;
+}
+
+.top label,
+#goods-id{
+    height: 100%;
+    font-size: 1.4em;
+}
+
+#desc{
+    height: 100%;
+}
+.goods label,
+.goods input,
+.goods textarea{
+    height: 100%;
+}
+.goods label{
+    width: 20%;
+    float: left;
+    text-align: center;
+}
+.goods input{
+    width: 80%;
+    float: left;
+    border: none;
+    overflow: hidden;
+}
+.goods textarea{
+    width: 80%;
+    border: none;
+    padding: 0;
+}
+
+/* 结束布局 */
+
+/* bottom部分的样式 */
+.delete_goods img {
+    margin-top: 1px;
+    display: inline-block;
+}
+
+a:link {
+    font-size: 16px;
+    color: #6699cc;
+    text-decoration: none;
+}
+a:visited {
+    font-size: 16px;
+    color: #00aeff;
+    text-decoration: none;
+}
+a:hover {
+    font-size: 16px;
+    color: slateblue;
+    text-decoration: none;
+}
+
+.clearf:before,
+.clearf:after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+.fl{
+    float: left;
+}
+
+.fr{
+    float: right
+}
+
+.display-none{
+    display: none;
+}
+
+/*全部商品部分*/
+.goodsList{
+    position: absolute;
+    margin: 0 auto;
+    height: 100%;
+    float: left;
+    padding: 0 auto;
+}
+
+.container-page{
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+.search-page{
+    bottom: -55px;
+}
+.page{
+    width: 800px;
+    height: 40px;
+    background: #EEF5F9;
+    text-align: center;
+    padding: 10px;
+    box-sizing: border-box;
+}
+.record-div{
+    display: inline-block;
+    margin-right: 20px;
+    font-size: 15px;
+    color: #ABA8A7;
+}
+.page-container{
+    display: inline-block;
+}
+.page-container .pageCode, .page-container .pageCode-search{
+    text-decoration: none;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 1px solid #ccc;
+    text-align: center;
+    line-height: 20px;
+    color: black;
+    margin-right: 10px;
+}
+.page-container .pageCode:hover, .page-container .pageCode-search:hover{
+    background-color: #8e81f1;
+    color: white;
+}
+.page-container .cur{
+    background-color: #8e81f1;
+    color: white;
+}
+
+.page .page-a-last, .page .page-a-last-search {
+    display: inline-block;
+    margin-right: 15px;
+}
+.page .page-a-next, .page .page-a-next-search {
+    display: inline-block;
+    margin-left: 3px;
+}
+
+.page-a-disable {
+    color: black !important;
+    cursor: default;
+}
+/* 结束布局 */
+
+/*搜索商品部分*/
+.search-form{
+    display: inline-block;
+    top: 10px;
+}
+.search-id{
+    height: 30px;
+    width: 350px;
+    border-radius: 6px;
+    margin: auto;
+    background-color: #8e81f1;
+}
+.search-name{
+    height: 30px;
+    width: 450px;
+    border-radius: 6px;
+    margin: auto;
+    background-color: #8e81f1;
+}
+.search-id span, .search-name span{
+    height: 100%;
+    width: 25%;
+    float: left;
+    background-color: white;
+    text-align: center;
+    padding-top: 3px;
+    font-size: 18px;
+}
+.search-input{
+    height: 100%;
+    width: 55%;
+    font-size: 18px;
+    outline: none;
+    float: left;
+    background-color: #fff;
+    border: 1px solid #8e81f1;
+    padding-left: 3px;
+}
+
+.search-btn{
+    width: 20%;
+    height: 100%;
+    color: #fff;
+    background-color: #8e81f1;
+    padding: 0;
+    border: none;
+    font-size: 20px;
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+}
+
+.search-type-form{
+    text-align: center;
+}
+.selection{
+    display: inline-block;
+    width: 155px;
+    margin: auto;
+}
+.selection select{
+    height: 30px;
+    text-align: center;
+    text-align-last: center;
+    margin-top: 10px;
+}
+.selection-btn{
+    height: 30px;
+    width: 100px;
+    background-color: #8e81f1;
+    font-size: 16px;
+    color: white;
+    border-radius: 6px;
+    border: none;
+}
+
+.search-btn:hover,
+.selection-btn:hover{
+    background-color: #B1A8F6;
+}
+.search-btn:focus,
+.selection-btn:focus{
+    outline: 0;
+}
+
+.search-id-msg, .search-name-msg, .search-type-msg{
+    margin-top: 5px;
+    text-align: center;
+    color: #EA5333;
+    display: none;
+}
+
+.search-goodsList{
+    top: 60px;
+}
+/* 结束布局 */
+
+/* **********************以下是发送通知的样式***************** */
+.notification-container{
+    display: flex;
+    justify-content: center;
+    align-items: normal;
+    margin-top: 20px;
+}
+.notification-page{
+    width: 600px;
+    height: auto;
+    border: 2px #8e81f1 solid;
+    padding: 10px 20px 30px 20px;
+    text-align: center;
+}
+.notification-new{
+    color: #8e81f1;
+    font-family: FzFont;
+    font-size: 30px;
+    line-height: 50px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+.notification-title, .notification-content{
+    font-family: 黑体;
+    text-align: center;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: normal;
+}
+.notification-span{
+    font-size: 18px;
+}
+.notification-title-input{
+    font-size: 18px;
+    padding: 0 5px 0 5px;
+    width: 400px;
+}
+.notification-content-textarea{
+    font-size: 18px;
+    line-height: 20px;
+    padding: 5px;
+    width: 400px;
+    height: 250px;
+}
+.notification-msg{
+    font-family: 黑体;
+    font-size: 18px;
+    height: 20px;
+    margin-bottom: 15px;
+    text-align: center;
+    color: #EA5333;
+}
+.notification-send-btn{
+    width: 70px;
+    color: #fff;
+    background-color: #8e81f1;
+    padding: 3px 0;
+    border: none;
+    font-size: 20px;
+    border-radius: 6px;
+}
+.notification-send-btn:hover{
+    background-color: #B1A8F6;
+}
+.notification-send-btn:focus{
+    outline: 0;
+}
+/* 结束布局 */

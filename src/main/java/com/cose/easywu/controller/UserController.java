@@ -6,11 +6,13 @@ import com.cose.easemob.lmc.service.impl.TalkDataServiceImpl;
 import com.cose.easemob.lmc.service.impl.TalkHttpServiceImplApache;
 import com.cose.easemob.lmc.tool.JsonTool;
 import com.cose.easywu.exception.UserException;
+import com.cose.easywu.po.Admin;
 import com.cose.easywu.po.User;
 import com.cose.easywu.service.UserService;
 import com.cose.easywu.utils.CommonUtils;
 import com.cose.easywu.utils.email.Mail;
 import com.cose.easywu.utils.email.MailUtils;
+import com.cose.jpush.JPushHelper;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadBase;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
@@ -18,24 +20,19 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.fileupload.servlet.ServletRequestContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.mail.MessagingException;
 import javax.mail.Session;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.text.MessageFormat;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Properties;
+import java.util.*;
 
 @Controller
 @RequestMapping("/user")
@@ -44,6 +41,29 @@ public class UserController {
     private UserService userService;
     // 通过构造方法注入http请求业务以实现数据业务
     TalkDataService talkDataService = new TalkDataServiceImpl(new TalkHttpServiceImplApache());
+
+    // 跳蚤市场管理员发布通知
+    @RequestMapping("/tzsc_sendNotification")
+    public void tzsc_sendNotification(@RequestBody Map<String, String> params, HttpServletResponse response) {
+        response.setContentType("application/json;charset=utf-8");
+        String admin_id = params.get("admin_id");
+        String title = "跳蚤市场管理员通知：" + params.get("title");
+        String content = params.get("content");
+        Date time = new Date();
+        boolean success = userService.addTzscNotification(admin_id, title, content, time);
+        JSONObject jsonObject = new JSONObject();
+        if (success) {
+            JPushHelper.jPushAdminNotification(title, content, 0, time);
+            jsonObject.put("code", 1);
+        } else {
+            jsonObject.put("code", 0);
+        }
+        try {
+            response.getWriter().write(jsonObject.toJSONString());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     // 获取环信需要的昵称、头像信息
     @RequestMapping("/hxInfo")
@@ -300,6 +320,29 @@ public class UserController {
         }
 
         return null;
+    }
+
+    // 跳蚤市场管理员登录
+    @RequestMapping("/tzsc_login")
+    public void tzsc_login(@RequestBody Map<String, String> params, HttpServletResponse response) {
+        response.setContentType("application/json;charset=utf-8");
+        String username = params.get("username");
+        String pwd = params.get("pwd");
+        Admin admin = userService.login_tzsc(username, pwd);
+        System.out.println(admin);
+        JSONObject jsonObject = new JSONObject();
+        if (admin.getId() != null) { //登录成功
+            jsonObject.put("code", 1);
+            jsonObject.put("id", admin.getId());
+            jsonObject.put("nick", admin.getNick());
+        } else { //登录失败
+            jsonObject.put("code", 0);
+        }
+        try {
+            response.getWriter().write(jsonObject.toJSONString());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     // 登录

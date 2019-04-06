@@ -1,7 +1,10 @@
 package com.cose.easywu.service;
 
 import com.cose.easywu.exception.UserException;
+import com.cose.easywu.po.Admin;
 import com.cose.easywu.po.User;
+
+import java.util.Date;
 
 public interface UserService {
 
@@ -17,4 +20,6 @@ public interface UserService {
     boolean editPwd(String u_email, String u_newpwd, String u_oldpwd);
     void editSex(String u_id, int u_sex);
     void savePhoto(String u_id, String photoName);
+    Admin login_tzsc(String username, String pwd);
+    boolean addTzscNotification(String admin_id, String title, String content, Date time);
 }

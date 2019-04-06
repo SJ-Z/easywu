@@ -75,10 +75,38 @@
         ORDER BY fg_updateTime DESC
     </select>
 
+    <select id="selectGoodsCountByTypeId" parameterType="String" resultType="int">
+        SELECT count(*) FROM goods WHERE g_t_id = #{value}
+    </select>
+
+    <select id="selectGoodsCountByName" parameterType="String" resultType="int">
+        SELECT count(*) FROM goods WHERE g_name LIKE '%${value}%'
+    </select>
+
+    <select id="selectAllGoodsCount" resultType="int">
+        SELECT count(*) FROM goods
+    </select>
+
+    <select id="selectAllGoods" parameterType="Map" resultType="com.cose.easywu.po.GoodsQueryBean">
+        SELECT g_id, g_name, g_desc, g_price, g_originalPrice, g_pic1, g_pic2, g_pic3, g_updateTime,
+               g_like, g_state, t_name AS g_t_name, u_id AS g_u_id, u_nick AS g_u_nick
+        FROM goods, users, type WHERE g_u_id = u_id AND t_id=g_t_id
+        ORDER BY g_updateTime DESC
+        LIMIT #{startPos}, #{pageSize}
+    </select>
+
     <select id="selectGoodsByTypeId" parameterType="Map" resultType="com.cose.easywu.po.GoodsQueryPo">
         SELECT g_id, g_name, g_desc, g_price, g_originalPrice, g_pic1, g_pic2, g_pic3, g_updateTime, g_state,
                g_like, g_t_id, u_id AS g_u_id, u_nick AS g_u_nick, u_photo AS g_u_photo, u_sex AS g_u_sex
         FROM goods, users WHERE g_u_id = u_id AND g_state = 0 AND g_t_id = #{type_id}
+        ORDER BY g_updateTime DESC
+        LIMIT #{startPos}, #{pageSize}
+    </select>
+
+    <select id="selectGoodsByTypeIdWithAllState" parameterType="Map" resultType="com.cose.easywu.po.GoodsQueryBean">
+        SELECT g_id, g_name, g_desc, g_price, g_originalPrice, g_pic1, g_pic2, g_pic3, g_updateTime, g_state,
+               g_like, g_t_id, g_u_id ,u_nick AS g_u_nick, t_name AS g_t_name
+        FROM goods, users, type WHERE g_u_id = u_id AND g_t_id = #{type_id} AND g_t_id = t_id
         ORDER BY g_updateTime DESC
         LIMIT #{startPos}, #{pageSize}
     </select>
@@ -96,6 +124,14 @@
                u_id AS fg_u_id, u_nick AS fg_u_nick, u_photo AS fg_u_photo, u_sex AS fg_u_sex
         FROM findpeople, users WHERE fg_u_id = u_id AND fg_state = 0 AND fg_ft_id = #{type_id}
         ORDER BY fg_updateTime DESC
+        LIMIT #{startPos}, #{pageSize}
+    </select>
+
+    <select id="selectGoodsByName" parameterType="Map" resultType="com.cose.easywu.po.GoodsQueryBean">
+        SELECT g_id, g_name, g_desc, g_price, g_originalPrice, g_pic1, g_pic2, g_pic3, g_updateTime, g_state,
+               g_like, g_u_id, u_nick AS g_u_nick, t_name AS g_t_name
+        FROM goods, users, type WHERE g_u_id = u_id AND g_name LIKE '%${key}%' AND g_t_id = t_id
+        ORDER BY g_updateTime DESC
         LIMIT #{startPos}, #{pageSize}
     </select>
 
@@ -148,6 +184,11 @@
         SELECT g_id, g_name, g_desc, g_price, g_originalPrice, g_pic1, g_pic2, g_pic3, g_updateTime, g_state, g_like, g_t_id,
                g_u_id, u_nick AS g_u_nick, u_photo AS g_u_photo, u_sex AS g_u_sex
         FROM goods, users WHERE g_buyer_id = #{u_id} AND g_u_id = u_id ORDER BY g_updateTime DESC
+    </select>
+
+    <select id="selectGoodsById2" parameterType="String" resultType="com.cose.easywu.po.GoodsQueryBean">
+        SELECT goods.*, users.u_nick g_u_nick, type.t_name g_t_name
+        FROM goods, users, type WHERE g_id = #{g_id} AND g_u_id = u_id AND g_t_id = t_id
     </select>
 
     <select id="selectGoodsById" parameterType="String" resultType="com.cose.easywu.po.GoodsQueryPo">
@@ -211,6 +252,10 @@
 
     <update id="updateFindPeopleUpdateTime" parameterType="com.cose.easywu.po.UpdateGoodsPo">
         UPDATE findpeople SET fg_updateTime = #{updateTime} WHERE fg_id = #{g_id} AND fg_u_id = #{u_id}
+    </update>
+
+    <update id="updateGoodsStateByAdmin" parameterType="com.cose.easywu.po.UpdateGoodsPo">
+        UPDATE goods SET g_state = #{state} WHERE g_id = #{g_id}
     </update>
 
     <update id="updateGoodsState" parameterType="com.cose.easywu.po.UpdateGoodsPo">

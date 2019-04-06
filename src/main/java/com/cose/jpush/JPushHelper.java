@@ -33,6 +33,20 @@ public class JPushHelper {
     public static int TYPE_FIND_PEOPLE_REPLY = 8;
 
     /**
+     * 极光推送，管理员发布通知
+     * @param id 管理员的标志位，0表示跳蚤市场管理员，1表示失物招领管理员，2表示超级管理员
+     * @param time
+     */
+    public static void jPushAdminNotification(String title, String content, int id, Date time) {
+        PushResult result = push(title, content, id, time);
+        if (result != null && result.isResultOK()) {
+            log.info("对全体的信息推送成功！");
+        } else {
+            log.info("对全体的信息推送失败！");
+        }
+    }
+
+    /**
      * 极光推送，外部调用方法
      */
     public static void jPushNotification(String alias, String alert, String g_id, Date createTime, int type) {
@@ -131,6 +145,39 @@ public class JPushHelper {
                                 .addExtra("type", type).build())
                         .build())
                 .build();
+    }
+
+    /**
+     * 极光推送方法(采用java SDK)，管理员消息推送
+     */
+    private static PushResult push(String title, String content, int id, Date time) {
+        ClientConfig clientConfig = ClientConfig.getInstance();
+        JPushClient jpushClient = new JPushClient(MASTER_SECRET, APP_KEY, null, clientConfig);
+        PushPayload payload = PushPayload.newBuilder()
+                .setPlatform(Platform.android())
+                .setAudience(Audience.all())
+                .setNotification(Notification.newBuilder()
+                        .setAlert(title)
+                        .addPlatformNotification(AndroidNotification.newBuilder()
+                                .addExtra("NotificationType", true)
+                                .addExtra("time", time.getTime())
+                                .addExtra("content", content)
+                                .addExtra("id", id).build())
+                        .build())
+                .build();
+        try {
+            return jpushClient.sendPush(payload);
+        } catch (APIConnectionException e) {
+            log.error("Connection error. Should retry later. ", e);
+            return null;
+        } catch (APIRequestException e) {
+            log.error("Error response from JPush server. Should review and fix it. ", e);
+            log.info("HTTP Status: " + e.getStatus());
+            log.info("Error Code: " + e.getErrorCode());
+            log.info("Error Message: " + e.getErrorMessage());
+            log.info("Msg ID: " + e.getMsgId());
+            return null;
+        }
     }
 
     /**

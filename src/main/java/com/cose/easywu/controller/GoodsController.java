@@ -2,10 +2,7 @@ package com.cose.easywu.controller;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.cose.easywu.po.CommentBean;
-import com.cose.easywu.po.FindGoodsQueryPo;
-import com.cose.easywu.po.GoodsQueryPo;
-import com.cose.easywu.po.Page;
+import com.cose.easywu.po.*;
 import com.cose.easywu.service.GoodsService;
 import com.cose.easywu.utils.CommonUtils;
 import com.cose.jpush.JPushHelper;
@@ -16,13 +13,12 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.fileupload.servlet.ServletRequestContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.File;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.*;
@@ -33,6 +29,70 @@ public class GoodsController {
 
     @Autowired
     private GoodsService goodsService;
+
+    // web端按商品分类id搜索
+    @RequestMapping("/searchGoodsByTypeId")
+    public void searchGoodsByTypeId(@RequestParam("t_id") String t_id, @RequestParam("pageCode") String pageCode,
+                                  HttpServletResponse response) {
+        response.setContentType("application/json;charset=utf-8");
+
+        List<GoodsQueryBean> goodsList = goodsService.getGoodsOfTypeId(t_id, new Page(12, Integer.valueOf(pageCode) - 1));
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("goodsList", goodsList);
+        if (pageCode.equals("1")) {
+            int count = goodsService.getGoodsCountByTypeId(t_id);
+            jsonObject.put("count", count);
+            jsonObject.put("pageCount", count % 12 == 0 ? count / 12 : count / 12 + 1); //每页12条记录
+        }
+
+        try {
+            response.getWriter().write(jsonObject.toJSONString());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // web端按商品id搜索
+    @RequestMapping("/searchGoodsById")
+    public void searchGoodsById(@RequestParam("g_id") String g_id, HttpServletResponse response) {
+        response.setContentType("application/json;charset=utf-8");
+
+        GoodsQueryBean goods = goodsService.getGoodsById(g_id);
+        String content = JSONObject.toJSONString(goods);
+
+        try {
+            response.getWriter().write(content);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // web端按商品名称搜索
+    @RequestMapping("/searchGoodsByName")
+    public void searchGoodsByName(@RequestParam("g_name") String g_name, @RequestParam("pageCode") String pageCode,
+                                  HttpServletResponse response) {
+        try {
+            g_name = new String(g_name.getBytes("ISO-8859-1"), "UTF-8"); // 解决get中文乱码
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        response.setContentType("application/json;charset=utf-8");
+
+        List<GoodsQueryBean> goodsList = goodsService.searchGoodsByName(g_name, new Page(12, Integer.valueOf(pageCode) - 1));
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("goodsList", goodsList);
+        if (pageCode.equals("1")) {
+            int count = goodsService.getGoodsCountByName(g_name);
+            jsonObject.put("count", count);
+            jsonObject.put("pageCount", count % 12 == 0 ? count / 12 : count / 12 + 1); //每页12条记录
+        }
+
+        try {
+            response.getWriter().write(jsonObject.toJSONString());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     // 按关键字搜索商品
     @RequestMapping("/searchGoods")
@@ -69,6 +129,51 @@ public class GoodsController {
         }
 
         return null;
+    }
+
+    // 查询所有商品的页码数量（每页12条记录）
+    @RequestMapping("/allGoodsCount")
+    public void getAllGoodsCount(HttpServletResponse response) {
+        response.setContentType("application/json;charset=utf-8");
+
+        int count = goodsService.getAllGoodsCount();
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("count", count);
+        jsonObject.put("pageCount", count % 12 == 0 ? count / 12 : count / 12 + 1); //每页12条记录
+
+        try {
+            response.getWriter().write(jsonObject.toJSONString());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // 查询所有分类
+    @RequestMapping("/allType")
+    public void getAllType(HttpServletResponse response) {
+        response.setContentType("application/json;charset=utf-8");
+        List<Type> typeList = goodsService.getAllType();
+        String content = JSONArray.toJSONString(typeList);
+        try {
+            response.getWriter().write(content);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // 分页查询所有商品（按最新擦亮时间排序）
+    @RequestMapping("/allGoods")
+    public void getAllGoods(@RequestParam("pageCode") String pageCode, HttpServletResponse response) {
+        response.setContentType("application/json;charset=utf-8");
+
+        List<GoodsQueryBean> goodsList = goodsService.getAllGoods(new Page(12, Integer.valueOf(pageCode) - 1));
+        String content = JSONArray.toJSONString(goodsList);
+
+        try {
+            response.getWriter().write(content);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     // 分页查询某一分类下的商品
@@ -478,6 +583,25 @@ public class GoodsController {
         }
 
         return null;
+    }
+
+    // 管理员删除商品
+    @RequestMapping("/deleteGoodsByAdmin")
+    public void deleteGoodsByAdmin(@RequestParam("g_id") String g_id, HttpServletResponse response) {
+        response.setContentType("application/json;charset=utf-8");
+        JSONObject jsonObject = new JSONObject();
+        if (goodsService.adminDeleteGoods(g_id)) {
+            jsonObject.put("code", 1);
+            jsonObject.put("msg", "商品删除成功");
+        } else {
+            jsonObject.put("code", 0);
+            jsonObject.put("msg", "商品删除失败");
+        }
+        try {
+            response.getWriter().write(jsonObject.toJSONString());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     // 删除商品

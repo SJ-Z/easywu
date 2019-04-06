@@ -1,9 +1,6 @@
 package com.cose.easywu.service;
 
-import com.cose.easywu.po.CommentBean;
-import com.cose.easywu.po.FindGoodsQueryPo;
-import com.cose.easywu.po.GoodsQueryPo;
-import com.cose.easywu.po.Page;
+import com.cose.easywu.po.*;
 
 import java.util.Date;
 import java.util.List;
@@ -23,6 +20,7 @@ public interface GoodsService {
     int addComment(String comment, int gc_id, String g_id, String u_id, Date date);
     GoodsQueryPo getGoodsInfo(String g_id);
     List<GoodsQueryPo> getGoodsOfType(String type_id, Page page);
+    List<GoodsQueryBean> getGoodsOfTypeId(String type_id, Page page);
     List<GoodsQueryPo> searchGoods(String key, Page page);
     boolean confirmNewGoodsOrder(String g_id, String u_id);
     boolean refuseNewGoodsOrder(String g_id, String u_id);
@@ -40,4 +38,12 @@ public interface GoodsService {
     List<FindGoodsQueryPo> getFindGoodsOfType(String type_id, Page page, boolean isFindGoods);
     List<FindGoodsQueryPo> searchFindGoods(String key, Page page, boolean isFindGoods);
     boolean userRemoveFindGoods(String fg_id, String u_id, boolean isFindGoods);
+    List<GoodsQueryBean> getAllGoods(Page page);
+    int getAllGoodsCount();
+    boolean adminDeleteGoods(String g_id);
+    List<Type> getAllType();
+    GoodsQueryBean getGoodsById(String g_id);
+    List<GoodsQueryBean> searchGoodsByName(String g_name, Page page);
+    int getGoodsCountByName(String g_name);
+    int getGoodsCountByTypeId(String t_id);
 }

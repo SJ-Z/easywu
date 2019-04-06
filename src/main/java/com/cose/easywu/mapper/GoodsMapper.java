@@ -61,4 +61,12 @@ public interface GoodsMapper {
     List<FindGoodsQueryPo> selectFindPeopleByTypeId(Map<String, Object> pageMap);
     List<FindGoodsQueryPo> selectFindGoodsByKey(Map<String, Object> pageMap);
     List<FindGoodsQueryPo> selectFindPeopleByKey(Map<String, Object> pageMap);
+    List<GoodsQueryBean> selectAllGoods(Map<String, Object> pageMap);
+    int selectAllGoodsCount();
+    int updateGoodsStateByAdmin(UpdateGoodsPo updateGoodsPo);
+    GoodsQueryBean selectGoodsById2(String g_id);
+    List<GoodsQueryBean> selectGoodsByName(Map<String, Object> pageMap);
+    int selectGoodsCountByName(String g_name);
+    List<GoodsQueryBean> selectGoodsByTypeIdWithAllState(Map<String, Object> pageMap);
+    int selectGoodsCountByTypeId(String t_id);
 }

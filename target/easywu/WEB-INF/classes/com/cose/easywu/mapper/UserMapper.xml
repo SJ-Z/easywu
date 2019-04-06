@@ -51,4 +51,16 @@
         UPDATE users SET u_photo=#{u_photo} WHERE u_id=#{u_id}
     </update>
 
+    <select id="selectTzscIdByUsernameAndPwd" parameterType="com.cose.easywu.po.Admin" resultType="com.cose.easywu.po.Admin">
+        SELECT ta_id id, ta_nick nick FROM transadmin WHERE ta_username=#{username} AND ta_pwd=#{pwd}
+    </select>
+
+    <insert id="insertTzscNotification" parameterType="Map">
+        INSERT INTO transinfo (ti_title, ti_content, ti_ta_id, ti_time) VALUES (#{title}, #{content}, #{admin_id},
+                              #{time})
+        <selectKey resultType="int" keyProperty="ti_id" order="AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+    </insert>
+
 </mapper>

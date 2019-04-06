@@ -1,6 +1,9 @@
 package com.cose.easywu.mapper;
 
+import com.cose.easywu.po.Admin;
 import com.cose.easywu.po.User;
+
+import java.util.Map;
 
 public interface UserMapper {
 
@@ -28,4 +31,8 @@ public interface UserMapper {
     void updateSexById(User user);
     // 按用户id更新用户头像
     void updatePhotoById(User user);
+    // 跳蚤市场管理员登录
+    Admin selectTzscIdByUsernameAndPwd(Admin admin);
+    // 跳蚤市场管理员发布一条通知
+    int insertTzscNotification(Map<String, String> map);
 }

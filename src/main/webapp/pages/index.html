@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>简物后台管理</title>
+    <!-- 引入Bootstrap核心样式文件（必须） -->
+    <link rel="stylesheet" href="lib/bootstrap/css/bootstrap.css">
+    <!-- 你自己的样式或其他文件 -->
+    <link rel="stylesheet" href="css/index.css">
+    <!--站点图标-->
+    <link rel="shortcut icon" href="img/fav_ico.ico" type="image/x-icon">
+</head>
+<body>
+
+<section class="bg-main">
+    <p class="brand" href="javascript:;">
+        <img src="img/logo.png" alt="">
+        <span>简物后台管理</span>
+    </p>
+    <div class="container vh-100">
+        <div class="row bg-row">
+            <div class="col-md-4 col-card">
+                <div class="btn btn-outline-light btn-radius btn-lg role-card" data-toggle="modal" data-target="#tzsc-LoginModal">
+                    <img class="media-object" src="img/role-tzsc-admin.png" alt="">
+                    <h4 class="media-heading role-text">跳蚤市场</h4>
+                </div>
+            </div>
+            <div class="col-md-4 col-card">
+                <div class="btn btn-outline-light btn-radius btn-lg role-card" data-toggle="modal" data-target="#super-LoginModal">
+                    <img class="media-object" src="img/role-super-admin.png" alt="">
+                    <h4 class="media-heading role-text">超级管理员</h4>
+                </div>
+            </div>
+            <div class="col-md-4 col-card">
+                <div class="btn btn-outline-light btn-radius btn-lg role-card" data-toggle="modal" data-target="#swzl-LoginModal">
+                    <img class="media-object" src="img/role-swzl-admin.png" alt="">
+                    <h4 class="media-heading role-text">失物招领</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--跳蚤市场管理员登录框-->
+<div class="modal fade login-modal" id="tzsc-LoginModal" tabindex="-1" role="dialog" aria-labelledby="tzscModalLabel" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <div class="login-header-title">
+                    <img class="login-logo" src="img/logo.png" alt="">
+                    <h4 class="modal-title text-danger login-title" id="tzscModalLabel">跳蚤市场管理员登录</h4>
+                </div>
+            </div>
+            <form>
+                <div class="modal-body">
+                    <div class="email-div label">
+                        <span><img src="img/email.png" alt=""></span>
+                        <input type="text" placeholder="请输入用户名" id="tzsc-username">
+                    </div>
+                    <div class="pwd-div label">
+                        <span><img src="img/pwd.png" alt=""></span>
+                        <input type="password" placeholder="请输入密码" id="tzsc-pwd">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="tzsc-login-msg"></div>
+                    <!--<div class="tzsc-login-msg">用户名或密码错误，登录失败</div>-->
+                    <button type="button" class="btn btn-primary btn-login" id="tzsc-login-btn">登录</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!--超级管理员登录框-->
+<div class="modal fade login-modal" id="super-LoginModal" tabindex="-1" role="dialog" aria-labelledby="superModalLabel" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <div class="login-header-title" style="left: 10%">
+                    <img class="login-logo" src="img/logo.png" alt="">
+                    <h4 class="modal-title text-danger login-title" id="superModalLabel">超级管理员登录</h4>
+                </div>
+            </div>
+            <form action="">
+                <div class="modal-body">
+                    <div class="email-div label">
+                        <span><img src="img/email.png" alt=""></span>
+                        <input type="text" placeholder="请输入邮箱">
+                    </div>
+                    <div class="pwd-div label">
+                        <span><img src="img/pwd.png" alt=""></span>
+                        <input type="password" placeholder="请输入密码">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="super-login-msg">邮箱或密码错误，登录失败</div>
+                    <button type="submit" class="btn btn-primary btn-login">登录</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!--失物招领管理员登录框-->
+<div class="modal fade login-modal" id="swzl-LoginModal" tabindex="-1" role="dialog" aria-labelledby="swzlModalLabel" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <div class="login-header-title">
+                    <img class="login-logo" src="img/logo.png" alt="">
+                    <h4 class="modal-title text-danger login-title" id="swzlModalLabel">失物招领管理员登录</h4>
+                </div>
+            </div>
+            <form action="">
+                <div class="modal-body">
+                    <div class="email-div label">
+                        <span><img src="img/email.png" alt=""></span>
+                        <input type="text" placeholder="请输入邮箱">
+                    </div>
+                    <div class="pwd-div label">
+                        <span><img src="img/pwd.png" alt=""></span>
+                        <input type="password" placeholder="请输入密码">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="swzl-login-msg">邮箱或密码错误，登录失败</div>
+                    <button type="submit" class="btn btn-primary btn-login">登录</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- 由于Bootstrap的JS插件依赖jQuery，so 引入jQuery -->
+<script src="lib/jquery/jquery-1.12.4.js"></script>
+<!-- 引入所有的Bootstrap的JS插件 -->
+<script src="lib/bootstrap/js/bootstrap.js"></script>
+<!-- 你自己的脚本文件 -->
+<script src="js/index.js"></script>
+</body>
+</html>

@@ -1,0 +1,265 @@
+@import "font-static.css";
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-family: sans-serif;
+    line-height: 1.15;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    -ms-overflow-style: scrollbar;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    margin: 0;
+    font-family: Barlow, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #fcfdfd;
+    text-align: left;
+    background-color: #36454f;
+}
+
+a{
+    text-decoration: none;
+}
+
+/*placeholder的设置*/
+input::-webkit-input-placeholder,textarea::-webkit-input-placeholder{
+    color:#d4d4d4;
+    font-size:16px;
+}
+
+input:-moz-placeholder,textarea:-moz-placeholder{
+    color:#d4d4d4;
+    font-size:16px;
+}
+
+input::-moz-placeholder,textarea::-moz-placeholder{
+    color:#d4d4d4;
+    font-size:16px;
+}
+input:-ms-input-placeholder,textarea:-ms-input-placeholder{
+    color:#d4d4d4;
+    font-size:16px;
+}
+/*placeholder的设置*/
+
+.btn {
+    text-transform: none;
+    font-size: 1rem;
+    background-image: none;
+    border-width: 1px; }
+.btn:hover, .btn:focus {
+    background-image: none; }
+
+.btn-lg, .btn-group-lg > .btn {
+    font-size: 1.25rem; }
+
+.btn-outline-light {
+    color: #fcfdfd;
+    background-color: transparent;
+    background-image: none;
+    border-color: #fcfdfd;
+}
+.btn-outline-light:hover {
+    color: #465966;
+    background-color: #fcfdfd;
+    border-color: #fcfdfd;
+}
+.btn-outline-light:focus, .btn-outline-light.focus {
+    box-shadow: 0 0 0 0.2rem rgba(252, 253, 253, 0.5);
+}
+.btn-outline-light.disabled, .btn-outline-light:disabled {
+    color: #fcfdfd;
+    background-color: transparent;
+}
+.btn-outline-light:not([disabled]):not(.disabled):active, .btn-outline-light:not([disabled]):not(.disabled).active,
+.show > .btn-outline-light.dropdown-toggle {
+    color: #465966;
+    background-color: #fcfdfd;
+    border-color: #fcfdfd;
+    box-shadow: 0 0 0 0.2rem rgba(252, 253, 253, 0.5);
+}
+
+.vh-100 {
+    height: 100vh;
+}
+
+.brand{
+    margin: 60px auto;
+    color: white;
+    font-family: TitleFont;
+    font-size: 80px;
+    z-index: 2;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.brand img{
+    margin-right: 20px;
+}
+
+.bg-main {
+    width: 100%;
+    height: 100%;
+    background-color: #566e7e;
+    background-image: url("../img/index_bg.jpg");
+    background-size: cover;
+    background-position: center center;
+    text-align: center;
+}
+
+.bg-main:before {
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    display: block;
+    left: 0;
+    top: 0;
+    content: "";
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+.bg-main .container {
+    z-index: 2;
+    position: relative;
+}
+
+.btn.btn-radius {
+    border-radius: 30px;
+    padding: 0.5rem 1.5rem;
+}
+
+.bg-main .bg-row{
+    margin-top: 30%;
+}
+
+.col-card{
+    margin: 20px 0;
+}
+
+.card{
+    border: 1px solid white;
+    padding: 30px;
+}
+
+.role-text{
+    font-family: TitleFont;
+    font-size: 30px;
+    margin-top: 15px;
+}
+
+.role-card{
+    padding: 30px 0 !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-modal{
+    margin-top: 10%;
+}
+
+.close{
+    outline: none;
+}
+
+.close span{
+    font-size: 28px;
+}
+
+.login-header-title{
+    width: 80%;
+    position: relative;
+    left: 5%;
+}
+
+.login-logo{
+    display: inline-block;
+    margin-left: 22%;
+}
+
+.login-title{
+    display: inline-block;
+    font-family: FzFont;
+    font-size: 25px;
+    position: absolute;
+    top: 20px;
+}
+
+.modal-body{
+    height: 130px;
+}
+
+.email-div{
+    width: 300px;
+    height: 40px;
+    border: 1px solid #bbb;
+    margin-left: 50%;
+    left: -150px;
+    border-radius: 5px;
+    position: absolute;
+}
+
+.pwd-div{
+    width: 300px;
+    height: 40px;
+    border: 1px solid #bbb;
+    margin-left: 50%;
+    left: -150px;
+    top: 70px;
+    border-radius: 5px;
+    position: absolute;
+}
+
+.email-div span, .pwd-div span{
+    left: 10px;
+    top: 7px;
+    position: absolute;
+}
+
+.email-div input, .pwd-div input{
+    border: none;
+    outline: none;
+    left: 45px;
+    position: absolute;
+    font-size: 18px;
+    height: 92%;
+    width: 250px;
+    font-family: "Microsoft JhengHei Light";
+    color: black;
+}
+
+.modal-footer{
+    text-align: center;
+    padding: 5px 15px 15px 15px;
+}
+
+.btn-login{
+    width: 300px;
+    font-family: "Symbol";
+    font-size: 20px;
+    line-height: 30px;
+}
+
+.tzsc-login-msg,
+.super-login-msg,
+.swzl-login-msg{
+    font-family: 黑体;
+    font-size: 18px;
+    height: 25px;
+    text-align: center;
+    color: #EA5333;
+    margin-bottom: 6px;
+}

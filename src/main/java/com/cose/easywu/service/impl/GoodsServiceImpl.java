@@ -1,6 +1,7 @@
 package com.cose.easywu.service.impl;
 
 import com.cose.easywu.mapper.GoodsMapper;
+import com.cose.easywu.mapper.HomeMapper;
 import com.cose.easywu.po.*;
 import com.cose.easywu.service.GoodsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,9 @@ import java.util.Map;
 public class GoodsServiceImpl implements GoodsService {
     @Autowired
     private GoodsMapper goodsMapper;
+
+    @Autowired
+    private HomeMapper homeMapper;
 
     @Override
     public int addReplyToComment(String u_id, String reply, String origin_uid, int comment_id, Date createTime) {
@@ -110,12 +114,44 @@ public class GoodsServiceImpl implements GoodsService {
     }
 
     @Override
+    public int getGoodsCountByName(String g_name) {
+        return goodsMapper.selectGoodsCountByName(g_name);
+    }
+
+    @Override
+    public int getAllGoodsCount() {
+        return goodsMapper.selectAllGoodsCount();
+    }
+
+    @Override
+    public int getGoodsCountByTypeId(String t_id) {
+        return goodsMapper.selectGoodsCountByTypeId(t_id);
+    }
+
+    @Override
+    public List<GoodsQueryBean> getAllGoods(Page page) {
+        Map<String, Object> pageMap = new HashMap<>();
+        pageMap.put("pageSize", page.getPageSize());
+        pageMap.put("startPos", page.getPageSize() * page.getPageCode());
+        return goodsMapper.selectAllGoods(pageMap);
+    }
+
+    @Override
     public List<GoodsQueryPo> getGoodsOfType(String type_id, Page page) {
         Map<String, Object> pageMap = new HashMap<>();
         pageMap.put("type_id", type_id);
         pageMap.put("pageSize", page.getPageSize());
         pageMap.put("startPos", page.getPageSize() * page.getPageCode());
         return goodsMapper.selectGoodsByTypeId(pageMap);
+    }
+
+    @Override
+    public List<GoodsQueryBean> getGoodsOfTypeId(String type_id, Page page) {
+        Map<String, Object> pageMap = new HashMap<>();
+        pageMap.put("type_id", type_id);
+        pageMap.put("pageSize", page.getPageSize());
+        pageMap.put("startPos", page.getPageSize() * page.getPageCode());
+        return goodsMapper.selectGoodsByTypeIdWithAllState(pageMap);
     }
 
     @Override
@@ -225,6 +261,36 @@ public class GoodsServiceImpl implements GoodsService {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public boolean adminDeleteGoods(String g_id) {
+        UpdateGoodsPo updateGoodsPo = new UpdateGoodsPo(g_id);
+        updateGoodsPo.setState(3); // 3表示被管理员下架
+        int result = goodsMapper.updateGoodsStateByAdmin(updateGoodsPo);
+        if (result == 1) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public List<Type> getAllType() {
+        return homeMapper.selectAllType();
+    }
+
+    @Override
+    public GoodsQueryBean getGoodsById(String g_id) {
+        return goodsMapper.selectGoodsById2(g_id);
+    }
+
+    @Override
+    public List<GoodsQueryBean> searchGoodsByName(String g_name, Page page) {
+        Map<String, Object> pageMap = new HashMap<>();
+        pageMap.put("key", g_name);
+        pageMap.put("pageSize", page.getPageSize());
+        pageMap.put("startPos", page.getPageSize() * page.getPageCode());
+        return goodsMapper.selectGoodsByName(pageMap);
     }
 
     @Override

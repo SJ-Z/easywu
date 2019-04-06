@@ -13,6 +13,10 @@ public class UpdateGoodsPo {
     public UpdateGoodsPo() {
     }
 
+    public UpdateGoodsPo(String g_id) {
+        this.g_id = g_id;
+    }
+
     public UpdateGoodsPo(String g_id, String u_id) {
         this.g_id = g_id;
         this.u_id = u_id;
